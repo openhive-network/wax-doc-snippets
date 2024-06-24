@@ -11,7 +11,14 @@
   "engines": {
     "node": ">= 18"
   },
+  "alias": {
+    "_comment0": "TODO: Remove the following line in production",
+    "@hiveio/wax": "npm:@hive-staging/wax"
+  },
   "packageManager": "pnpm@9.1.1+sha256.9551e803dcb7a1839fdf5416153a844060c7bce013218ce823410532504ac10b",
+  "dependencies": {
+    "@hiveio/wax": "npm:@hive-staging/wax@^0.3.28-TODO-remove-alias-in-production"
+  },
   "devDependencies": {
     "@types/node": "18",
     "tsx": "^4.15.7",
