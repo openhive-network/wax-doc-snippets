@@ -5,7 +5,7 @@
   "private": false,
   "scripts": {
     "build": "tsc",
-    "test": "./scripts/build-and-test.sh"
+    "test": "sh ./scripts/build-and-test.sh"
   },
   "license": "SEE LICENSE IN LICENSE.md",
   "engines": {

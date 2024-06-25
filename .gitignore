@@ -11,7 +11,8 @@ node_modules
 .vscode
 
 # Generated build files
-dist
+*.js
+!/scripts/runner.js
 
 # Beekeeper data
 storage_root-node
