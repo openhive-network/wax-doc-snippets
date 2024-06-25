@@ -5,7 +5,7 @@
   "private": false,
   "scripts": {
     "build": "tsc",
-    "test": "tsx"
+    "test": "./scripts/build-and-test.sh"
   },
   "license": "SEE LICENSE IN LICENSE.md",
   "engines": {
@@ -17,11 +17,11 @@
   },
   "packageManager": "pnpm@9.1.1+sha256.9551e803dcb7a1839fdf5416153a844060c7bce013218ce823410532504ac10b",
   "dependencies": {
-    "@hiveio/wax": "npm:@hive-staging/wax@^0.3.28-TODO-remove-alias-in-production"
+    "@hiveio/wax": "npm:@hive-staging/wax@^0.3.28-TODO-remove-alias-in-production",
+    "@hiveio/beekeeper": "npm:@hive-staging/beekeeper@^0.1.7-TODO-remove-alias-in-production"
   },
   "devDependencies": {
     "@types/node": "18",
-    "tsx": "^4.15.7",
     "typescript": "^5.5.2"
   }
 }
