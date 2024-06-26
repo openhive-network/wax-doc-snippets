@@ -1,11 +1,12 @@
 {
-  "name": "hive-docs-snippets",
+  "name": "wax-doc-snippets",
   "version": "1.0.0",
   "type": "module",
   "private": false,
   "scripts": {
     "build": "tsc",
-    "test": "sh ./scripts/build-and-test.sh"
+    "test": "sh ./scripts/build-and-test.sh",
+    "test-config-init-general-base": "npm test src/typescript/config/init-general/base.ts"
   },
   "license": "SEE LICENSE IN LICENSE.md",
   "engines": {
