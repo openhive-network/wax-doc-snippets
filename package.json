@@ -7,7 +7,9 @@
     "build": "tsc",
     "test": "sh ./scripts/build-and-test.sh",
     "test-config-init-general-base": "npm test src/typescript/config/init-general/base.ts",
-    "test-config-init-general-chain": "npm test src/typescript/config/init-general/chain.ts"
+    "test-config-init-general-chain": "npm test src/typescript/config/init-general/chain.ts",
+    "test-config-init-with-config-base": "npm test src/typescript/config/init-with-config/base.ts",
+    "test-config-init-with-config-chain": "npm test src/typescript/config/init-with-config/chain.ts"
   },
   "license": "SEE LICENSE IN LICENSE.md",
   "engines": {
