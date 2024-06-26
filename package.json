@@ -9,7 +9,9 @@
     "test-config-init-general-base": "npm test src/typescript/config/init-general/base.ts",
     "test-config-init-general-chain": "npm test src/typescript/config/init-general/chain.ts",
     "test-config-init-with-config-base": "npm test src/typescript/config/init-with-config/base.ts",
-    "test-config-init-with-config-chain": "npm test src/typescript/config/init-with-config/chain.ts"
+    "test-config-init-with-config-chain": "npm test src/typescript/config/init-with-config/chain.ts",
+    "test-key-generation-generate-key-generate-private-key": "npm test src/typescript/key-generation/generate-key/generate-private-key.ts",
+    "test-key-generation-suggest-brain-key": "npm test src/typescript/key-generation/suggest-brain-key/suggest-brain-key.ts"
   },
   "license": "SEE LICENSE IN LICENSE.md",
   "engines": {
