@@ -59,7 +59,8 @@
     "test-tb-operation-factories-creating-update-proposal": "npm test src/typescript/transaction-builder/operation-factories/update-proposal/creating-update-proposal.ts",
     "test-tb-operation-factories-update-proposal-end-date": "npm test src/typescript/transaction-builder/operation-factories/update-proposal/update-proposal-end-date.ts",
     "test-tb-operation-factories-default-witness-properties": "npm test src/typescript/transaction-builder/operation-factories/witness-set-properties/default-witness-properties.ts",
-    "test-tb-operation-factories-set-explicit": "npm test src/typescript/transaction-builder/operation-factories/witness-set-properties/set-explicit.ts"
+    "test-tb-operation-factories-set-explicit": "npm test src/typescript/transaction-builder/operation-factories/witness-set-properties/set-explicit.ts",
+    "test-tb-example-usage": "npm test src/typescript/transaction-builder/example-usage/example-usage.ts"
   },
   "license": "SEE LICENSE IN LICENSE.md",
   "engines": {
