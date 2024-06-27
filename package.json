@@ -34,7 +34,10 @@
     "test-formatters-operation-formatters-rc-delegate": "npm test src/typescript/formatters/operation-formatters/rc-delegate.ts",
     "test-formatters-operation-formatters-witness-update": "npm test src/typescript/formatters/operation-formatters/witness-update.ts",
     "test-key-generation-generate-key-generate-private-key": "npm test src/typescript/key-generation/generate-key/generate-private-key.ts",
-    "test-key-generation-suggest-brain-key": "npm test src/typescript/key-generation/suggest-brain-key/suggest-brain-key.ts"
+    "test-key-generation-suggest-brain-key": "npm test src/typescript/key-generation/suggest-brain-key/suggest-brain-key.ts",
+    "test-manabars-manabars-calculations-manabar-downvote-account": "npm test src/typescript/manabars/manabars-calculations/manabar-downvote-account.ts",
+    "test-manabars-manabars-calculations-manabar-rc-account": "npm test src/typescript/manabars/manabars-calculations/manabar-rc-account.ts",
+    "test-manabars-manabars-calculations-manabar-upvote-account": "npm test src/typescript/manabars/manabars-calculations/manabar-upvote-account.ts"
   },
   "license": "SEE LICENSE IN LICENSE.md",
   "engines": {
