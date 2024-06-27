@@ -1,8 +1,8 @@
-import { TPublicKey, IBeekeeperInstance } from '@hiveio/beekeeper';
+import { TPublicKey, IBeekeeperUnlockedWallet } from '@hiveio/beekeeper';
 
 declare global {
   var snippetsBeekeeperData: {
-    wallet: IBeekeeperInstance;
+    wallet: IBeekeeperUnlockedWallet;
     password: string;
     publicKey1: TPublicKey;
     publicKey2: TPublicKey;

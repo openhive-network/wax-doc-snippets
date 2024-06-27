@@ -11,8 +11,8 @@ const tx = await hiveChain.getTransactionBuilder();
 tx.startEncrypt(publicKey1, publicKey2)
   .push({ // Add encrypted operations
     transfer: {
-      from: "alice",
-      to: "bob",
+      from_account: "alice",
+      to_account: "bob",
       amount: hiveChain.hive(100),
       memo: "This memo will be encrypted with two keys"
     }
