@@ -37,7 +37,11 @@
     "test-key-generation-suggest-brain-key": "npm test src/typescript/key-generation/suggest-brain-key/suggest-brain-key.ts",
     "test-manabars-manabars-calculations-manabar-downvote-account": "npm test src/typescript/manabars/manabars-calculations/manabar-downvote-account.ts",
     "test-manabars-manabars-calculations-manabar-rc-account": "npm test src/typescript/manabars/manabars-calculations/manabar-rc-account.ts",
-    "test-manabars-manabars-calculations-manabar-upvote-account": "npm test src/typescript/manabars/manabars-calculations/manabar-upvote-account.ts"
+    "test-manabars-manabars-calculations-manabar-upvote-account": "npm test src/typescript/manabars/manabars-calculations/manabar-upvote-account.ts",
+    "test-tb-initialization-explicit-data-initialization": "npm test src/typescript/transaction-builder/initialization/explicit-data-initialization.ts",
+    "test-tb-initialization-protobuf-transaction-initialization": "npm test src/typescript/transaction-builder/initialization/protobuf-transaction-initialization.ts",
+    "test-tb-initialization-api-form-initialization": "npm test src/typescript/transaction-builder/initialization/api-form-initialization.ts",
+    "test-tb-initialization-from-remote-initialization": "npm test src/typescript/transaction-builder/initialization/from-remote-initialization.ts"
   },
   "license": "SEE LICENSE IN LICENSE.md",
   "engines": {
