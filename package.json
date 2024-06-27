@@ -6,17 +6,35 @@
   "scripts": {
     "build": "tsc",
     "test": "sh ./scripts/build-and-test.sh",
+    "test-api-default-api-retrieve-block": "npm test src/typescript/api/default-api/retrieve-block.ts",
+    "test-api-default-api-set-endpoint": "npm test src/typescript/api/default-api/set-endpoint.ts",
+    "test-api-extend-api-interface-extend": "npm test src/typescript/api/extend-api/interface-extend.ts",
+    "test-api-extend-api-validate-extend": "npm test src/typescript/api/extend-api/validate-extend.ts",
+    "test-asset-manipulations-asset-convertions-hbd-to-hive": "npm test src/typescript/asset-manipulations/asset-convertions/hbd-to-hive.ts",
+    "test-asset-manipulations-asset-convertions-vests-to-hp": "npm test src/typescript/asset-manipulations/asset-convertions/vests-to-hp.ts",
+    "test-asset-manipulations-receiving-nai-asset-receive-nai-asset": "npm test src/typescript/asset-manipulations/receiving-nai-asset/receive-nai-asset.ts",
     "test-config-init-general-base": "npm test src/typescript/config/init-general/base.ts",
     "test-config-init-general-chain": "npm test src/typescript/config/init-general/chain.ts",
     "test-config-init-with-config-base": "npm test src/typescript/config/init-with-config/base.ts",
     "test-config-init-with-config-chain": "npm test src/typescript/config/init-with-config/chain.ts",
-    "test-key-generation-generate-key-generate-private-key": "npm test src/typescript/key-generation/generate-key/generate-private-key.ts",
-    "test-key-generation-suggest-brain-key": "npm test src/typescript/key-generation/suggest-brain-key/suggest-brain-key.ts",
     "test-encryption-encrypt-buffer-multiple-keys": "npm test src/typescript/encryption/encrypt-buffer/multiple-keys.ts",
     "test-encryption-encrypt-buffer-one-key": "npm test src/typescript/encryption/encrypt-buffer/one-key.ts",
     "test-encryption-encrypt-operations-multiple-keys": "npm test src/typescript/encryption/encrypt-operations/multiple-keys.ts",
     "test-encryption-encrypt-operations-multiple-start-encrypt": "npm test src/typescript/encryption/encrypt-operations/multiple-start-encrypt.ts",
-    "test-encryption-encrypt-operations-one-key": "npm test src/typescript/encryption/encrypt-operations/one-key.ts"
+    "test-encryption-encrypt-operations-one-key": "npm test src/typescript/encryption/encrypt-operations/one-key.ts",
+    "test-formatters-blockchain-formatters-format-nai": "npm test src/typescript/formatters/blockchain-formatters/format-nai.ts",
+    "test-formatters-blockchain-formatters-format-number": "npm test src/typescript/formatters/blockchain-formatters/format-number.ts",
+    "test-formatters-blockchain-formatters-format-options": "npm test src/typescript/formatters/blockchain-formatters/format-options.ts",
+    "test-formatters-blockchain-formatters-format-tx": "npm test src/typescript/formatters/blockchain-formatters/format-tx.ts",
+    "test-formatters-custom-formatters-by-instance": "npm test src/typescript/formatters/custom-formatters/by-instance.ts",
+    "test-formatters-custom-formatters-by-name": "npm test src/typescript/formatters/custom-formatters/by-name.ts",
+    "test-formatters-custom-formatters-by-value": "npm test src/typescript/formatters/custom-formatters/by-value.ts",
+    "test-formatters-operation-formatters-community": "npm test src/typescript/formatters/operation-formatters/community.ts",
+    "test-formatters-operation-formatters-follow": "npm test src/typescript/formatters/operation-formatters/follow.ts",
+    "test-formatters-operation-formatters-rc-delegate": "npm test src/typescript/formatters/operation-formatters/rc-delegate.ts",
+    "test-formatters-operation-formatters-witness-update": "npm test src/typescript/formatters/operation-formatters/witness-update.ts",
+    "test-key-generation-generate-key-generate-private-key": "npm test src/typescript/key-generation/generate-key/generate-private-key.ts",
+    "test-key-generation-suggest-brain-key": "npm test src/typescript/key-generation/suggest-brain-key/suggest-brain-key.ts"
   },
   "license": "SEE LICENSE IN LICENSE.md",
   "engines": {
@@ -28,8 +46,9 @@
   },
   "packageManager": "pnpm@9.1.1+sha256.9551e803dcb7a1839fdf5416153a844060c7bce013218ce823410532504ac10b",
   "dependencies": {
-    "@hiveio/wax": "npm:@hive-staging/wax@^0.3.28-TODO-remove-alias-in-production",
-    "@hiveio/beekeeper": "npm:@hive-staging/beekeeper@^0.1.7-TODO-remove-alias-in-production"
+    "@hiveio/beekeeper": "1.27.6-rc2",
+    "@hiveio/wax": "1.27.6-rc1",
+    "class-validator": "^0.14.1"
   },
   "devDependencies": {
     "@types/node": "18",

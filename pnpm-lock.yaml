@@ -9,11 +9,14 @@ importers:
   .:
     dependencies:
       '@hiveio/beekeeper':
-        specifier: npm:@hive-staging/beekeeper@^0.1.7-TODO-remove-alias-in-production
-        version: '@hive-staging/beekeeper@0.1.7'
+        specifier: 1.27.6-rc2
+        version: 1.27.6-rc2
       '@hiveio/wax':
-        specifier: npm:@hive-staging/wax@^0.3.28-TODO-remove-alias-in-production
-        version: '@hive-staging/wax@0.3.28'
+        specifier: 1.27.6-rc1
+        version: 1.27.6-rc1
+      class-validator:
+        specifier: ^0.14.1
+        version: 0.14.1
     devDependencies:
       '@types/node':
         specifier: '18'
@@ -24,13 +27,13 @@ importers:
 
 packages:
 
-  '@hive-staging/beekeeper@0.1.7':
-    resolution: {integrity: sha512-NK7A+PEOHHrz96rJ/lvvIjcrUSQgH9agXvp4+QfqD/okI2E7X/hQXXOVYxTnTOJ7zt9wN6sgiKETySbZVQdXYg==}
-    engines: {node: '>= 12'}
+  '@hiveio/beekeeper@1.27.6-rc2':
+    resolution: {integrity: sha512-Kun/bWZ36lc5nZY3IZkg9AdqbIPFqW0RoJDrAVtC3GNxrUTxwJh8UWldmRrjGQKnJS8VXvsRxK+8QhZIZIjDMA==}
+    engines: {node: '>= 18'}
 
-  '@hive-staging/wax@0.3.28':
-    resolution: {integrity: sha512-eG8JFCR3/5GWqWs72j2Cu13rwAYNWaWQeKCA/KzO4qZqlyNh0NvKya9hkguiabrDg9ebuyycj1NKq4GhuFy5CQ==}
-    engines: {node: '>= 12'}
+  '@hiveio/wax@1.27.6-rc1':
+    resolution: {integrity: sha512-YC2BMbdT5RimBVy+EpuDXV6PXQtgSpN6uPLLa/KQFfW0J4t/YFtBHMd7OjE2UO8NehqKVRXYGA4wM6dYuKw1TA==}
+    engines: {node: '>= 18'}
 
   '@protobufjs/aspromise@1.1.2':
     resolution: {integrity: sha512-j+gKExEuLmKwvz3OgROXtrJ2UG2x8Ch2YZUxahh+s1F2HZ+wAceUNLkvy6zKCPVRkU++ZWQrdxsUeQXmcg4uoQ==}
@@ -74,6 +77,10 @@ packages:
   class-validator@0.14.1:
     resolution: {integrity: sha512-2VEG9JICxIqTpoK1eMzZqaV+u/EiwEJkMGzTrZf6sU/fwsnOITVgYJ8yojSy6CaXtO9V0Cc6ZQZ8h8m4UBuLwQ==}
 
+  events@3.3.0:
+    resolution: {integrity: sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==}
+    engines: {node: '>=0.8.x'}
+
   libphonenumber-js@1.11.4:
     resolution: {integrity: sha512-F/R50HQuWWYcmU/esP5jrH5LiWYaN7DpN0a/99U8+mnGGtnx8kmRE+649dQh3v+CowXXZc8vpkf5AmYkO0AQ7Q==}
 
@@ -101,13 +108,14 @@ packages:
 
 snapshots:
 
-  '@hive-staging/beekeeper@0.1.7': {}
+  '@hiveio/beekeeper@1.27.6-rc2': {}
 
-  '@hive-staging/wax@0.3.28':
+  '@hiveio/wax@1.27.6-rc1':
     dependencies:
-      '@hive-staging/beekeeper': 0.1.7
+      '@hiveio/beekeeper': 1.27.6-rc2
       class-transformer: 0.5.1
       class-validator: 0.14.1
+      events: 3.3.0
       long: 5.2.3
       protobufjs: 7.3.2
       reflect-metadata: 0.1.14
@@ -148,6 +156,8 @@ snapshots:
       '@types/validator': 13.12.0
       libphonenumber-js: 1.11.4
       validator: 13.12.0
+
+  events@3.3.0: {}
 
   libphonenumber-js@1.11.4: {}
 
