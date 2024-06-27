@@ -44,7 +44,13 @@
     "test-tb-initialization-from-remote-initialization": "npm test src/typescript/transaction-builder/initialization/from-remote-initialization.ts",
     "test-tb-working-with-tb-simple-operation": "npm test src/typescript/transaction-builder/working-with-tb/simple-operation/simple-operation.ts",
     "test-tb-working-with-tb-complex-operation": "npm test src/typescript/transaction-builder/working-with-tb/complex-operation/complex-operation.ts",
-    "test-tb-working-with-tb-reading-properties": "npm test src/typescript/transaction-builder/working-with-tb/reading-properties/reading-properties.ts"
+    "test-tb-working-with-tb-reading-properties": "npm test src/typescript/transaction-builder/working-with-tb/reading-properties/reading-properties.ts",
+    "test-tb-working-with-tb-simple-build": "npm test src/typescript/transaction-builder/finalization/simple-build.ts",
+    "test-tb-working-with-tb-proto-form-signature-build": "npm test src/typescript/transaction-builder/finalization/proto-form-signature-build.ts",
+    "test-tb-working-with-tb-sign-and-build": "npm test src/typescript/transaction-builder/finalization/sign-and-build.ts",
+    "test-tb-working-with-tb-convert-to-api": "npm test src/typescript/transaction-builder/finalization/convert-to-api.ts",
+    "test-tb-working-with-tb-convert-to-legacy-api": "npm test src/typescript/transaction-builder/finalization/convert-to-legacy-api.ts",
+    "test-tb-working-with-tb-sign": "npm test src/typescript/transaction-builder/finalization/sign.ts"
   },
   "license": "SEE LICENSE IN LICENSE.md",
   "engines": {
