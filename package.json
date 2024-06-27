@@ -41,7 +41,10 @@
     "test-tb-initialization-explicit-data-initialization": "npm test src/typescript/transaction-builder/initialization/explicit-data-initialization.ts",
     "test-tb-initialization-protobuf-transaction-initialization": "npm test src/typescript/transaction-builder/initialization/protobuf-transaction-initialization.ts",
     "test-tb-initialization-api-form-initialization": "npm test src/typescript/transaction-builder/initialization/api-form-initialization.ts",
-    "test-tb-initialization-from-remote-initialization": "npm test src/typescript/transaction-builder/initialization/from-remote-initialization.ts"
+    "test-tb-initialization-from-remote-initialization": "npm test src/typescript/transaction-builder/initialization/from-remote-initialization.ts",
+    "test-tb-working-with-tb-simple-operation": "npm test src/typescript/transaction-builder/working-with-tb/simple-operation/simple-operation.ts",
+    "test-tb-working-with-tb-complex-operation": "npm test src/typescript/transaction-builder/working-with-tb/complex-operation/complex-operation.ts",
+    "test-tb-working-with-tb-reading-properties": "npm test src/typescript/transaction-builder/working-with-tb/reading-properties/reading-properties.ts"
   },
   "license": "SEE LICENSE IN LICENSE.md",
   "engines": {
