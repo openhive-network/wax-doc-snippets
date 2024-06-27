@@ -1,9 +1,9 @@
 import fs from 'fs';
 import beekeeperFactory from '@hiveio/beekeeper';
 
-const jsFiles = fs.readdirSync('.').filter(file => file.endsWith('.js') && !file.endsWith('/runner.js')).map(file => `./${file}`);
+const jsFiles = fs.readdirSync('.').filter(file => file.endsWith('.js') && !file.endsWith('runner.js')).map(file => `./${file}`);
 
-const beekeeper = await beekeeperFactory();
+const beekeeper = await beekeeperFactory({ enableLogs: false });
 
 const session = await beekeeper.createSession('my.salt');
 
@@ -18,5 +18,4 @@ const publicKey2 = await wallet.importKey(
 
 globalThis.snippetsBeekeeperData = { wallet, password, publicKey1, publicKey2 };
 
-// We assume that there is only one output file
 await import(jsFiles[0]);
