@@ -25,7 +25,8 @@ tx.push(
     // Flag the post of the author (authoraccount) in the community (communityname) with the permlink (postpermlink)
     // Add notes regarding the violation (violation notes).
     .flagPost(communityName, 'author_account', 'post_permlink', 'violation notes')
-    .authorize(yourAccount) // The account that authorizes the operation must also sign the transaction
+    // The account that authorizes underlying custom json operation is also reponsible for signing the transaction usign its posting authority
+    .authorize(yourAccount)
     .build() // Build the current set of hive apps opeartion readu to be pushed into the transaction
 );
 
