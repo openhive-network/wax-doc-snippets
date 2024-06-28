@@ -60,7 +60,11 @@
     "test-tb-operation-factories-update-proposal-end-date": "npm test src/typescript/transaction-builder/operation-factories/update-proposal/update-proposal-end-date.ts",
     "test-tb-operation-factories-default-witness-properties": "npm test src/typescript/transaction-builder/operation-factories/witness-set-properties/default-witness-properties.ts",
     "test-tb-operation-factories-set-explicit": "npm test src/typescript/transaction-builder/operation-factories/witness-set-properties/set-explicit.ts",
-    "test-tb-example-usage": "npm test src/typescript/transaction-builder/example-usage/example-usage.ts"
+    "test-tb-example-usage": "npm test src/typescript/transaction-builder/example-usage/example-usage.ts",
+    "test-tb-hive-apps-resource-credits": "npm test src/typescript/transaction-builder/hive-apps-operations/resource-credits-operations.ts",
+    "test-tb-hive-apps-follow-operation": "npm test src/typescript/transaction-builder/hive-apps-operations/follow-operation.ts",
+    "test-tb-hive-apps-community-operation": "npm test src/typescript/transaction-builder/hive-apps-operations/community-operation.ts",
+    "test-tb-hive-apps-community-properties": "npm test src/typescript/transaction-builder/hive-apps-operations/community-properties.ts"
   },
   "license": "SEE LICENSE IN LICENSE.md",
   "engines": {
