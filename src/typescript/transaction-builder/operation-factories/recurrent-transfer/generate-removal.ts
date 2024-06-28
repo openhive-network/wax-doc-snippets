@@ -1,4 +1,4 @@
-import { createHiveChain, RecurrentTransferPairIdBuilder } from '@hiveio/wax';
+import { createHiveChain, RecurrentTransferBuilder } from '@hiveio/wax';
 
 const chain = await createHiveChain();
 
@@ -11,9 +11,9 @@ const amount = chain.hive(10000); // 100.000 HIVE
 const memo = "Monthly subscription";
 
 // Use this time just for example default values for recurrence and executions which is 24 for recurrence and 2 for executions.
-tx.useBuilder(RecurrentTransferPairIdBuilder, builder => {
+tx.useBuilder(RecurrentTransferBuilder, builder => {
     builder.generateRemoval();
-}, from, to, pairId, amount, memo);
+}, from, to, amount, memo);
 
 // Build up ProtoTransaction object holding all operations and transaction TAPOS & expiration data, but transaction is **not signed yet**
 tx.build();
