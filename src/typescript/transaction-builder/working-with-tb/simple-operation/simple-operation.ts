@@ -19,7 +19,7 @@ const operation = {
 // Push operation into the transction
 tx.push(operation);
 
-// Build up ProtoTransaction object holding all operations and transaction TAPOS & expiration data, but transaction is **not signed yet**
+// Build transaction holding all operations and transaction TAPOS & expiration data, but transaction is **not signed yet**
 const builtTx = tx.build();
 
 console.log(builtTx.operations);
