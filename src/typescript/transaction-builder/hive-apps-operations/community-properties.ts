@@ -37,5 +37,4 @@ tx.push(
 // Sign and build the transaction
 const builtTx = tx.build(wallet, publicKey1);
 
-console.log(builtTx.operations);
-console.log(`Required posting auths: ${builtTx.operations[0].custom_json.required_posting_auths}`);
+console.log(builtTx.operations[0]); // Update community properties operation

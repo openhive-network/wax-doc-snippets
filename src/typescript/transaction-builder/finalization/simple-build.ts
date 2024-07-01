@@ -20,6 +20,6 @@ const operation = {
 tx.push(operation);
 
 // Build up ProtoTransaction object holding all operations and transaction TAPOS & expiration data, but transaction is **not signed yet**
-const builtTransaction = tx.build();
+tx.build();
 
-console.log(builtTransaction);
+console.log(tx.toApi());

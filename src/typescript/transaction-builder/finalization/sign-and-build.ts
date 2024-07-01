@@ -22,6 +22,6 @@ const operation = {
 tx.push(operation);
 
 // Build transaction with signature provided.
-const builtTransaction = tx.build(wallet, publicKey1);
+tx.build(wallet, publicKey1);
 
-console.log(builtTransaction);
+console.log(tx.toApi());

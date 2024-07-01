@@ -22,6 +22,6 @@ const operation = {
 tx.push(operation);
 
 // Supplement a transaction with an externally generated signature.
-const signedTransaction = tx.build('signature...');
+tx.build('signature...');
 
-console.log(signedTransaction);
+console.log(tx.toApi());

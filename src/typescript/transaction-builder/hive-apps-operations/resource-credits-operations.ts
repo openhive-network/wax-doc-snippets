@@ -46,5 +46,5 @@ otherTx.push(
 // Sign and build the other transaction
 const otherBuiltTx = otherTx.build(wallet, publicKey1);
 
-console.log(otherBuiltTx.operations);
-console.log(`Required posting auths: ${otherBuiltTx.operations[0].custom_json.required_posting_auths}`);
+console.log(otherBuiltTx.operations[0]); // Delegate operation
+console.log(otherBuiltTx.operations[1]); // Remove delegation operation
