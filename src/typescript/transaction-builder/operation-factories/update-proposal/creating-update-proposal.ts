@@ -12,5 +12,5 @@ const permlink = "proposal-update";
 
 tx.useBuilder(UpdateProposalBuilder, () => {}, proposalId, creator, dailyPay, subject, permlink);
 
-// Build up ProtoTransaction object holding all operations and transaction TAPOS & expiration data, but transaction is **not signed yet**
+// Build up a transaction object holding all operations and transaction TAPOS & expiration data, but transaction is **not signed yet**
 tx.build();

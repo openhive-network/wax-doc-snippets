@@ -17,5 +17,5 @@ tx.useBuilder(ReplyBuilder, builder => {
   'parent_author', 'parent_permlink', 'reply_author', 'reply-body'
 );
 
-// Build up ProtoTransaction object holding all operations and transaction TAPOS & expiration data, but transaction is **not signed yet**
+// Build up a transaction object holding all operations and transaction TAPOS & expiration data, but transaction is **not signed yet**
 tx.build();

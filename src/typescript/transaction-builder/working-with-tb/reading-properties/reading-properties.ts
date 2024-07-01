@@ -19,7 +19,7 @@ const operation = {
 // Push operation into the transction
 txBuilder.push(operation);
 
-// Build up ProtoTransaction object holding all operations and transaction TAPOS & expiration data, but transaction is **not signed yet**
+// Build up a transaction object holding all operations and transaction TAPOS & expiration data, but transaction is **not signed yet**
 const builtTransaction = txBuilder.build();
 
 // Most transaction properties should be read from the transaction before building it.
