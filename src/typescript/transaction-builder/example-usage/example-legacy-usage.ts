@@ -3,11 +3,11 @@ import { createHiveChain, ReplyBuilder, BroadcastTransactionRequest } from '@hiv
 // Initialize chain
 const chain = await createHiveChain();
 
-// Create a wallet
+// Create/get a wallet
 const { wallet, publicKey1 } = globalThis.snippetsBeekeeperData;
 
-// Create a transaction
-const tx = await chain.getTransactionBuilder();
+// Create a transaction builder
+const txBuilder = await chain.getTransactionBuilder();
 
 // Declare example operation
 const operation = {
@@ -20,18 +20,18 @@ const operation = {
 };
 
 // Push the operation into the transaction
-tx.push(operation);
+txBuilder.push(operation);
 
 // Latch the transaction state (pushed operations, expiration time and TAPoS)
-tx.build();
+txBuilder.build();
 
 // Convert the transaction into the Hive API-legacy form JSON before signing
-const legacyApiTx = tx.toLegacyApi();
+const legacyApiTx = txBuilder.toLegacyApi();
 
 console.log(legacyApiTx);
 
 // Because we want to process transction signing externally, we need to calculate its digest first.
-const digest = tx.legacy_sigDigest;
+const digest = txBuilder.legacy_sigDigest;
 
 /* Here you can make any external signing process specific to HIVE transaction, by using another signing tool than beekeeper */
 
@@ -39,9 +39,9 @@ const digest = tx.legacy_sigDigest;
 const signature = wallet.signDigest(publicKey1, digest);
 
 // Suplement the transaction by created signature
-tx.build(signature);
+txBuilder.build(signature);
 
 // This is JSON form ready for broadcasting or passing to third-party service.
-const txApiForm = tx.toLegacyApi();
+const txApiForm = txBuilder.toLegacyApi();
 
 console.log(txApiForm);

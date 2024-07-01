@@ -3,14 +3,14 @@ import { createHiveChain, ReplyBuilder, BroadcastTransactionRequest } from '@hiv
 // Initialize chain
 const chain = await createHiveChain();
 
-// Create a wallet
+// Create/get a wallet
 const { wallet, publicKey1, publicKey2 } = globalThis.snippetsBeekeeperData;
 
-// Create a transaction
-const tx = await chain.getTransactionBuilder();
+// Create a transaction builder
+const txBuilder = await chain.getTransactionBuilder();
 
 // Use the ReplyBuilder to create a reply operation
-tx.useBuilder(ReplyBuilder, builder => {
+txBuilder.useBuilder(ReplyBuilder, builder => {
     builder
       .addBeneficiaries({ account: 'test', weight: 40 })
       .pushTags('tag')
@@ -23,7 +23,7 @@ tx.useBuilder(ReplyBuilder, builder => {
 );
 
 // Convert the transaction into the Hive API-form JSON
-const apiTx = tx.toApi();
+const apiTx = txBuilder.toApi();
 
 // log apiTransaction
 console.log(apiTx);
@@ -42,12 +42,11 @@ txFromApi.build(wallet, publicKey2);
 // log multi signed transaction
 console.log(txFromApi.toApi());
 
-// Broadcast the transaction
+// Prepare transaction for broadcasting
 const broadcastRequest = new BroadcastTransactionRequest(txFromApi);
 
 /*
- * Broadcast finalization.
- * The code is commented out because it is not possible to broadcast transactions in the playground environment.
- * It is because only presentational private keys that has been used here.
+ * Call actual broadcast API to send transaction to the blockchain.
+ * The code is commented out because examples does not have access to Hive mainnet keys.
  */
 // const broadcastedTx = await chain.api.network_broadcast_api.broadcast_transaction(broadcastRequest);

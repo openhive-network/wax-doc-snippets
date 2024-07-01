@@ -5,8 +5,8 @@ const wax = await createWaxFoundation();
 
 const { publicKey1 } = globalThis.snippetsBeekeeperData;
 
-// Initialize transaction
-const tx = new wax.TransactionBuilder('04c507a8c7fe5be96be64ce7c86855e1806cbde3', '2023-11-09T21:51:27');
+// Initialize a transaction builder object
+const txBuilder = new wax.TransactionBuilder('04c507a8c7fe5be96be64ce7c86855e1806cbde3', '2023-11-09T21:51:27');
 
 // Declare example operation
 const operation = {
@@ -19,9 +19,9 @@ const operation = {
 };
 
 // Push operation into the transction
-tx.push(operation);
+txBuilder.push(operation);
 
 // Supplement a transaction with an externally generated signature.
-tx.build('signature...');
+txBuilder.build('signature...');
 
-console.log(tx.toApi());
+console.log(txBuilder.toApi());
