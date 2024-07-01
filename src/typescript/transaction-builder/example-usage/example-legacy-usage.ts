@@ -19,7 +19,7 @@ const operation = {
   }
 };
 
-// Use the ReplyBuilder to create a reply operation
+// Push the operation into the transaction
 tx.push(operation);
 
 // Latch the transaction state (pushed operations, expiration time and TAPoS)

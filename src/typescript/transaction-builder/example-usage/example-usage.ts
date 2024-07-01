@@ -31,19 +31,23 @@ console.log(apiTx);
 // Apply the transaction in the API form into transaction builder interface
 const txFromApi = chain.TransactionBuilder.fromApi(apiTx);
 
-const txSigned = txFromApi.build(wallet, publicKey1);
+txFromApi.build(wallet, publicKey1);
 
-// log txSigned
-console.log(txSigned);
+// Log txSigned
+console.log(txFromApi.toApi());
 
 // Multi sign the transaction with another public key
-const txMultiSigned = txFromApi.build(wallet, publicKey2);
+txFromApi.build(wallet, publicKey2);
 
 // log multi signed transaction
-console.log(txMultiSigned);
+console.log(txFromApi.toApi());
 
 // Broadcast the transaction
-const txBroadcasted = new BroadcastTransactionRequest(txFromApi);
+const broadcastRequest = new BroadcastTransactionRequest(txFromApi);
 
-// log broadcasted transaction
-console.log(txBroadcasted);
+/*
+ * Broadcast finalization.
+ * The code is commented out because it is not possible to broadcast transactions in the playground environment.
+ * It is because only presentational private keys that has been used here.
+ */
+// const broadcastedTx = await chain.api.network_broadcast_api.broadcast_transaction(broadcastRequest);
