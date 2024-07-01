@@ -47,4 +47,4 @@ otherTx.push(
 const otherBuiltTx = otherTx.build(wallet, publicKey1);
 
 console.log(otherBuiltTx.operations);
-console.log(`Requierd posting auths: ${otherBuiltTx.operations[0].custom_json.required_posting_auths}`);
+console.log(`Required posting auths: ${otherBuiltTx.operations[0].custom_json.required_posting_auths}`);

@@ -34,4 +34,4 @@ tx.push(
 const builtTx = tx.build(wallet, publicKey1);
 
 console.log(builtTx.operations);
-console.log(`Requierd posting auths: ${builtTx.operations[0].custom_json.required_posting_auths}`);
+console.log(`Required posting auths: ${builtTx.operations[0].custom_json.required_posting_auths}`);
