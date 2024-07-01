@@ -60,15 +60,16 @@
     "test-tb-operation-factories-update-proposal-end-date": "npm test src/typescript/transaction-builder/operation-factories/update-proposal/update-proposal-end-date.ts",
     "test-tb-operation-factories-default-witness-properties": "npm test src/typescript/transaction-builder/operation-factories/witness-set-properties/default-witness-properties.ts",
     "test-tb-operation-factories-set-explicit": "npm test src/typescript/transaction-builder/operation-factories/witness-set-properties/set-explicit.ts",
-    "test-tb-example-usage": "npm test src/typescript/transaction-builder/example-usage/example-usage.ts"
+    "test-tb-example-usage": "npm test src/typescript/transaction-builder/example-usage/example-usage.ts",
+    "test-tb-example-legacy-usage": "npm test src/typescript/transaction-builder/example-usage/example-legacy-usage.ts",
+    "test-tb-hive-apps-resource-credits": "npm test src/typescript/transaction-builder/hive-apps-operations/resource-credits-operations.ts",
+    "test-tb-hive-apps-follow-operation": "npm test src/typescript/transaction-builder/hive-apps-operations/follow-operation.ts",
+    "test-tb-hive-apps-community-operation": "npm test src/typescript/transaction-builder/hive-apps-operations/community-operation.ts",
+    "test-tb-hive-apps-community-properties": "npm test src/typescript/transaction-builder/hive-apps-operations/community-properties.ts"
   },
   "license": "SEE LICENSE IN LICENSE.md",
   "engines": {
     "node": ">= 18"
-  },
-  "alias": {
-    "_comment0": "TODO: Remove the following line in production",
-    "@hiveio/wax": "npm:@hive-staging/wax"
   },
   "packageManager": "pnpm@9.1.1+sha256.9551e803dcb7a1839fdf5416153a844060c7bce013218ce823410532504ac10b",
   "dependencies": {
