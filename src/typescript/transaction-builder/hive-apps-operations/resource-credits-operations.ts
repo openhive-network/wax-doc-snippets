@@ -25,9 +25,9 @@ tx.push(
   rcOperation
   // Delegate 1000 RC from your account to a friend's account.
   .delegate(yourAccount, 1000, friend)
-  // The account that authorizes underlying custom json operation is also reponsible for signing the transaction usign its posting authority
+  // The account that authorizes underlying custom json operation is also reponsible for signing the transaction using its posting authority
   .authorize(yourAccount)
-  .build() // Build the current set of hive apps opeartion readu to be pushed into the transaction
+  .build() // Build the current set of hive apps operation ready to be pushed into the transaction
 );
 
 // Sign and build the transaction
@@ -40,7 +40,7 @@ otherTx.push(
     // Remove delegation of RC from your account to a friend's account.
     .removeDelegation(yourAccount, otherFriend)
     .authorize(yourAccount) // The account that authorizes the operation must also sign the transaction
-    .build() // Build the current set of hive apps opeartion readu to be pushed into the transaction
+    .build() // Build the current set of hive apps operation ready to be pushed into the transaction
 );
 
 // Sign and build the other transaction

@@ -29,9 +29,9 @@ tx.push(
     .followBlog(yourAccount, blogToFollow)
     .muteBlog(yourAccount, blogToMute)
     .reblog(yourAccount, toReblog, 'post_permlink')
-    // The account that authorizes underlying custom json operation is also reponsible for signing the transaction usign its posting authority
+    // The account that authorizes underlying custom json operation is also reponsible for signing the transaction using its posting authority
     .authorize(yourAccount)
-    .build() // Build the current set of hive apps opeartion readu to be pushed into the transaction
+    .build() // Build the current set of hive apps operation ready to be pushed into the transaction
 );
 
 // Sign and build the transaction
