@@ -65,7 +65,8 @@
     "test-tb-hive-apps-resource-credits": "npm test src/typescript/transaction-builder/hive-apps-operations/resource-credits-operations.ts",
     "test-tb-hive-apps-follow-operation": "npm test src/typescript/transaction-builder/hive-apps-operations/follow-operation.ts",
     "test-tb-hive-apps-community-operation": "npm test src/typescript/transaction-builder/hive-apps-operations/community-operation.ts",
-    "test-tb-hive-apps-community-properties": "npm test src/typescript/transaction-builder/hive-apps-operations/community-properties.ts"
+    "test-tb-hive-apps-community-properties": "npm test src/typescript/transaction-builder/hive-apps-operations/community-properties.ts",
+    "test-tb-full-example-usage": "npm test src/typescript/transaction-builder/example-usage/full-transaction-builder-usage.ts"
   },
   "license": "SEE LICENSE IN LICENSE.md",
   "engines": {
