@@ -16,4 +16,4 @@ txBuilder.useBuilder(WitnessSetPropertiesBuilder, builder => {
 // Build up a transaction object holding all operations and transaction TAPOS & expiration data, but transaction is **not signed yet**
 const builtTransaction = txBuilder.build();
 
-console.log(builtTransaction.operations);
+console.log(builtTransaction.operations[0]); // Witness set properties operation
