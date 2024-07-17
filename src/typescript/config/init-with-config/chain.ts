@@ -7,4 +7,4 @@ const customOptions: IWaxOptionsChain = {
 };
 
 // Initialize Hive Chain with custom options
-createHiveChain(customOptions);
+await createHiveChain(customOptions);
