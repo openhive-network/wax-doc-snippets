@@ -1,10 +1,10 @@
-import { createHiveChain, ResourceCreditsOperationBuilder } from '@hiveio/wax';
+import { createHiveChain, ResourceCreditsOperation } from '@hiveio/wax';
 
 // Create chain
 const chain = await createHiveChain();
 
 // Create transaction with data from remote
-const tx = await chain.getTransactionBuilder();
+const tx = await chain.createTransaction();
 
 const { wallet, publicKey1 } = globalThis.snippetsBeekeeperData; // It should be the public key of the account that you authorize the operation
 
@@ -17,34 +17,32 @@ const friend = 'your_friend_account';
 // Other friend's account
 const otherFriend = 'other_friend_account'
 
-// Create resource credits operation builder new instance
-const rcOperation = new ResourceCreditsOperationBuilder();
+// Create resource credits operation new instance
+const rcOperation = new ResourceCreditsOperation();
 
-// Push operations of resource credits operation builder into the created transaction
-tx.push(
+// Push operations of resource credits operation into the created transaction
+tx.pushOperation(
   rcOperation
   // Delegate 1000 RC from your account to a friend's account.
   .delegate(yourAccount, 1000, friend)
   // The account that authorizes underlying custom json operation is also reponsible for signing the transaction using its posting authority
   .authorize(yourAccount)
-  .build() // Build the current set of hive apps operation ready to be pushed into the transaction
 );
 
 // Sign and build the transaction
-tx.build(wallet, publicKey1);
+tx.sign(wallet, publicKey1);
 
-const otherTx = await chain.getTransactionBuilder();
+const otherTx = await chain.createTransaction();
 
-otherTx.push(
+otherTx.pushOperation(
   rcOperation
     // Remove delegation of RC from your account to a friend's account.
     .removeDelegation(yourAccount, otherFriend)
-    .authorize(yourAccount) // The account that authorizes the operation must also sign the transaction
-    .build() // Build the current set of hive apps operation ready to be pushed into the transaction
+    .authorize(yourAccount) // The account that authorizes the operation must also sign the transaction// Build the current set of hive apps operation ready to be pushed into the transaction
 );
 
 // Sign and build the other transaction
-const otherBuiltTx = otherTx.build(wallet, publicKey1);
+otherTx.sign(wallet, publicKey1);
 
-console.log(otherBuiltTx.operations[0]); // Delegate operation
-console.log(otherBuiltTx.operations[1]); // Remove delegation operation
+console.log(otherTx.transaction.operations[0]); // Delegate operation
+console.log(otherTx.transaction.operations[1]); // Remove delegation operation

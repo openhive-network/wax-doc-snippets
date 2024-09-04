@@ -2,16 +2,16 @@ import beekeeperFactory from '@hiveio/beekeeper';
 import {
   createHiveChain,
   createWaxFoundation,
-  ReplyBuilder,
+  ReplyOperation,
   BroadcastTransactionRequest,
-  ArticleBuilder,
+  BlogPostOperation,
   ECommentFormat,
-  RecurrentTransferBuilder,
-  UpdateProposalBuilder,
-  WitnessSetPropertiesBuilder,
-  FollowOperationBuilder,
-  ResourceCreditsOperationBuilder,
-  CommunityOperationBuilder
+  RecurrentTransferOperation,
+  UpdateProposalOperation,
+  WitnessSetPropertiesOperation,
+  FollowOperation,
+  ResourceCreditsOperation,
+  CommunityOperation
 } from '@hiveio/wax';
 
 // Initialize wax api
@@ -54,43 +54,43 @@ const publicEncryptionSigningKey = await wallet.importKey(privateEncryptionKeyDa
 //                           Simple operation scenario                      //
 /////////////////////////////////////////////////////////////////////////////
 
-// Create a transaction builder
-const simpleOperationTxBuilder = await chain.getTransactionBuilder();
+// Create a transaction
+const simpleOperationTx = await chain.createTransaction();
 
 const voteOp = {
   vote: {
     voter: "voter",
-    author: "test_author",
+    author: "author",
     permlink: "test_permlink",
     weight: 2200
   }
 };
 
 // Push simple vote operation into previously initialized transaction
-simpleOperationTxBuilder.push(voteOp);
+simpleOperationTx.pushOperation(voteOp);
 
 // Sign and build the transaction
-simpleOperationTxBuilder.build(wallet, publicPostingSigningKey);
+simpleOperationTx.sign(wallet, publicPostingSigningKey);
 
 // Log the simple transaction into console in API form
-console.log(simpleOperationTxBuilder.toApi());
+console.log(simpleOperationTx.toApi());
 
 // Prepare transaction for broadcasting
-const simpleOperationTxBuilderBroadcastRequest = new BroadcastTransactionRequest(simpleOperationTxBuilder);
+const simpleOperationTxBroadcastRequest = new BroadcastTransactionRequest(simpleOperationTx);
 
 /*
  * Call actual broadcast API to send transaction to the blockchain.
  * The code is commented out because examples does not have access to Hive mainnet keys.
  */
-// const broadcastedTx = await chain.api.network_broadcast_api.broadcast_transaction(simpleOperationTxBuilderBroadcastRequest);
+// const broadcastedTx = await chain.api.network_broadcast_api.broadcast_transaction(simpleOperationTxBroadcastRequest);
 
 '--------------------------------------------------------------------------------------------------------------------------------'
 ////////////////////////////////////////////////////////////////////////////////
 //                      Simple operation legacy scenario                     //
 //////////////////////////////////////////////////////////////////////////////
 
-// Create a transaction builder
-const legacyTxBuilder = await chain.getTransactionBuilder();
+// Create a transaction
+const legacyTx = await chain.createTransaction();
 
 // Declare example transfer operation
 const transferOp = {
@@ -103,10 +103,10 @@ const transferOp = {
 };
 
 // Push simple vote operation into previously initialized transaction
-legacyTxBuilder.push(transferOp)
+legacyTx.pushOperation(transferOp)
 
 // Because we want to process transction signing externally, we need to calculate its digest first.
-const digest = legacyTxBuilder.legacy_sigDigest;
+const digest = legacyTx.legacy_sigDigest;
 
 /* Here you can make any external signing process specific to HIVE transaction, by using another signing tool than beekeeper */
 
@@ -114,30 +114,30 @@ const digest = legacyTxBuilder.legacy_sigDigest;
 const signature = wallet.signDigest(publicPostingSigningKey, digest);
 
 // Suplement the transaction by created signature
-legacyTxBuilder.build(signature);
+legacyTx.sign(signature);
 
 // This is JSON form ready for broadcasting or passing to third-party service.
-const txApiForm = legacyTxBuilder.toLegacyApi();
+const txApiForm = legacyTx.toLegacyApi();
 
 // Log the simple legacy transaction into console in API form
 console.log(txApiForm);
 
 // Prepare transaction for broadcasting
-const legacyTxBuilderBroadcastRequest = new BroadcastTransactionRequest(legacyTxBuilder);
+const legacyTxBroadcastRequest = new BroadcastTransactionRequest(legacyTx);
 
 /*
  * Call actual broadcast API to send transaction to the blockchain.
  * The code is commented out because examples does not have access to Hive mainnet keys.
  */
-// const broadcastedTx = await chain.api.network_broadcast_api.broadcast_transaction(legacyTxBuilderBroadcastRequest);
+// const broadcastedTx = await chain.api.network_broadcast_api.broadcast_transaction(legacyTxBroadcastRequest);
 
 '--------------------------------------------------------------------------------------------------------------------------------'
 ////////////////////////////////////////////////////////////////////////////////
 //                             Encryption example                            //
 //////////////////////////////////////////////////////////////////////////////
 
-// Create a transaction builder
-const encryptionTxBuilder = await chain.getTransactionBuilder();
+// Create a transaction
+const encryptionTx = await chain.createTransaction();
 
 // Declare other example transfer operation
 const transferEncryptionOp = {
@@ -149,174 +149,193 @@ const transferEncryptionOp = {
   }
 };
 
-encryptionTxBuilder
+encryptionTx
   // Start encryption process
   .startEncrypt(publicEncryptionSigningKey)
   // Push transfer operation into previously initialized transaction
-  .push(transferEncryptionOp)
+  .pushOperation(transferEncryptionOp)
   // Stop encryption process
   .stopEncrypt()
   // Push another transfer operation into previously initialized transaction
-  .push(transferOp);
+  .pushOperation(transferOp);
 
 // Sign and build the transaction
-encryptionTxBuilder.build(wallet, publicPostingSigningKey);
+encryptionTx.sign(wallet, publicPostingSigningKey);
 
 // Log the encryption transaction into console in API form
-console.log(encryptionTxBuilder.toApi());
+console.log(encryptionTx.toApi());
 
 // Prepare transaction for broadcasting
-const encryptionTxBuilderBroadcastRequest = new BroadcastTransactionRequest(encryptionTxBuilder);
+const encryptionTxBroadcastRequest = new BroadcastTransactionRequest(encryptionTx);
 
 /*
  * Call actual broadcast API to send transaction to the blockchain.
  * The code is commented out because examples does not have access to Hive mainnet keys.
  */
-// const broadcastedTx = await chain.api.network_broadcast_api.broadcast_transaction(encryptionTxBuilderBroadcastRequest);
+// const broadcastedTx = await chain.api.network_broadcast_api.broadcast_transaction(encryptionTxBroadcastRequest);
 
 '--------------------------------------------------------------------------------------------------------------------------------'
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//                                       Comment builder scenario                                          //
+//                                       Comment operation scenario                                          //
 // This example will create multiple operations including comment_operation and comment_options_operation //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Create a transaction builder
-const commentOperationTxBuilder = await chain.getTransactionBuilder();
+// Create a transaction
+const commentOperationTx = await chain.createTransaction();
 
 /*
- * Use ArticleBuilder to create an article operation and set all fields.
- * Note that all the builder methods are available only inside the builder arrow function.
+ * Use BlogPostOperation to create an article operation and set all fields.
 */
-commentOperationTxBuilder.useBuilder(ArticleBuilder, builder => {
-  builder
-    .setCategory('my-category')
-    .pushTags('my-article')
-    .setDescription('This is my article!')
-    .pushImages('article.jpg')
-    .pushLinks('https://example.com')
-    .setFormat(ECommentFormat.MARKDOWN)
-    .addBeneficiaries({ account: 'friend', weight: 40 })
-    .setMaxAcceptedPayout(chain.hive(100))
-    .setAllowCurationRewards(true)
-    .setAllowVotes(true)
-}, accountName, 'My article title', 'My article body', {}, 'My_article_permlink');
+commentOperationTx.pushOperation(new BlogPostOperation({
+  author: accountName,
+  permlink: 'My_article_permlink',
+  title: 'My article title',
+  body: 'My article body',
+  category: 'my-category',
+  tags: ['my-article'],
+  description: 'This is my article!',
+  images: ['article.jpg'],
+  links: ['https://example.com'],
+  format: ECommentFormat.MARKDOWN,
+  beneficiaries: [{ account: 'friend', weight: 40 }],
+  maxAcceptedPayout: chain.hbd(100),
+  allowCurationRewards: true,
+  allowVotes: true
+}));
 
 /*
- * Use ReplyBuilder to create a reply operation and set all fields.
- * Note that the category is not set because it is only available in the ArticleBuilder.
+ * Use ReplyOperation to create a reply operation and set all fields.
+ * Note that the category is not set because it is only available in the BlogPostOperation.
 */
-commentOperationTxBuilder.useBuilder(ReplyBuilder, builder => {
-  builder
-    .pushTags('my-reply')
-    .setDescription('This is my reply!')
-    .pushImages('reply.jpg')
-    .pushLinks('https://example.com')
-    .setFormat(ECommentFormat.MARKDOWN)
-    .addBeneficiaries({ account: 'friend', weight: 40 })
-    .setMaxAcceptedPayout(chain.hive(100))
-    .setAllowCurationRewards(true)
-    .setAllowVotes(true)
-}, accountName, 'My_article_permlink', accountName, 'My reply body');
+commentOperationTx.pushOperation(new ReplyOperation({
+  author: accountName,
+  permlink: 'My_reply_permlink',
+  parentAuthor: accountName,
+  parentPermlink: 'My_article_permlink',
+  body: 'My reply body',
+  tags: ['my-reply'],
+  description: 'This is my reply!',
+  images: ['reply.jpg'],
+  links: ['https://example.com'],
+  format: ECommentFormat.MARKDOWN,
+  beneficiaries: [{ account: 'friend', weight: 40 }],
+  maxAcceptedPayout: chain.hbd(100),
+  allowCurationRewards: true,
+  allowVotes: true
+}));
 
-/* Note that all the logic is hidden under the specific builder constructor that you are currently using. Thank to this, the usage of useBuilder is so simple */
+/* Note that all the logic is hidden under the specific operation constructor that you are currently using */
 
 // Sign and build the transaction
-commentOperationTxBuilder.build(wallet, publicPostingSigningKey);
+commentOperationTx.sign(wallet, publicPostingSigningKey);
 
 // Log the article transaction into console in API form
-console.log(commentOperationTxBuilder.toApi());
+console.log(commentOperationTx.toApi());
 
 // Prepare transaction for broadcasting
-const commentOperationTxBuilderBroadcastRequest = new BroadcastTransactionRequest(commentOperationTxBuilder);
+const commentOperationTxBroadcastRequest = new BroadcastTransactionRequest(commentOperationTx);
 
 /*
  * Call actual broadcast API to send transaction to the blockchain.
  * The code is commented out because examples does not have access to Hive mainnet keys.
  */
-// const broadcastedTx = await chain.api.network_broadcast_api.broadcast_transaction(commentOperationTxBuilderBroadcastRequest);
+// const broadcastedTx = await chain.api.network_broadcast_api.broadcast_transaction(commentOperationTxBroadcastRequest);
 
 '--------------------------------------------------------------------------------------------------------------------------------'
 ////////////////////////////////////////////////////////////////////////////////
 //                    Other operation factories scenario                     //
 //////////////////////////////////////////////////////////////////////////////
 
-// Create a transaction builder
-const operationFactoriesTxBuilder = await chain.getTransactionBuilder();
+// Create a transaction
+const operationFactoriesTx = await chain.createTransaction();
 
 // Create a recurrent transfer operation that will be executed every day for 30 days with the ammount of 100 HIVE
-operationFactoriesTxBuilder.useBuilder(RecurrentTransferBuilder, () => {}, accountName, 'friend', chain.hive(100), 'Daily pay', 24, 30);
+operationFactoriesTx.pushOperation(new RecurrentTransferOperation({
+  from: accountName,
+  to: 'friend',
+  amount: chain.hive(100),
+  memo: 'Daily pay',
+  recurrence: 24,
+  executions: 30
+}));
 
 // Create a proposal update operation of id equals 1 with the ammount of 100 HIVE
-operationFactoriesTxBuilder.useBuilder(UpdateProposalBuilder, () => {}, 1, accountName, chain.hive(100), 'Proposal Update', 'proposal-update', '2023-03-14');
+operationFactoriesTx.pushOperation(new UpdateProposalOperation({
+  proposalId: 1,
+  creator: accountName,
+  dailyPay: chain.hbd(100),
+  subject: 'Proposal Update',
+  permlink: 'proposal-update',
+  endDate:  '2023-03-14',
+}));
 
 // Create a witness set properties operation with hbd interest rate of 7.5%, maximum block size of 65536, account creation fee of 300.000 HIVE and url of "https://example.com"
-operationFactoriesTxBuilder.useBuilder(WitnessSetPropertiesBuilder, builder => {
-  builder
-    .setMaximumBlockSize(65536)
-    .setHBDInterestRate(750) // 7.5%
-    .setAccountCreationFee(chain.hive(30000)) // 300.000 HIVE
-    .setUrl("https://example.com");
-}, accountName, publicActiveSigningKey);
+operationFactoriesTx.pushOperation(new WitnessSetPropertiesOperation({
+  owner: accountName,
+  witnessSigningKey: publicActiveSigningKey,
+  maximumBlockSize: 65536,
+  hbdInterestRate: 750,
+  accountCreationFee: chain.hive(30000),
+  url: "https://example.com"
+}));
 
 // Sign and build the transaction
-operationFactoriesTxBuilder.build(wallet, publicActiveSigningKey);
+operationFactoriesTx.sign(wallet, publicActiveSigningKey);
 
 // Log the operation factories transaction into console in API form
-console.log(operationFactoriesTxBuilder.toApi());
+console.log(operationFactoriesTx.toApi());
 
 // Prepare transaction for broadcasting
-const operationFactoriesTxBuilderBroadcastRequest = new BroadcastTransactionRequest(operationFactoriesTxBuilder);
+const operationFactoriesTxBroadcastRequest = new BroadcastTransactionRequest(operationFactoriesTx);
 
 /*
  * Call actual broadcast API to send transaction to the blockchain.
  * The code is commented out because examples does not have access to Hive mainnet keys.
  */
-// const broadcastedTx = await chain.api.network_broadcast_api.broadcast_transaction(operationFactoriesTxBuilderBroadcastRequest);
+// const broadcastedTx = await chain.api.network_broadcast_api.broadcast_transaction(operationFactoriesTxBroadcastRequest);
 
 '--------------------------------------------------------------------------------------------------------------------------------'
 //////////////////////////////////////////////////////////////////////////////////
 //     Scenario taht includes all HiveAppsOperations (custom_json based)       //
 ////////////////////////////////////////////////////////////////////////////////
 
-// Create a transaction builder
-const otherOperationsTxBuilder = await chain.getTransactionBuilder();
+// Create a transaction
+const otherOperationsTx = await chain.createTransaction();
 
-// Create follow operation builder new instance
-const followOperationBuilder = new FollowOperationBuilder();
+// Create follow operation new instance
+const followOperation = new FollowOperation();
 
-// Push operations of follow operation builder into the created transaction
-otherOperationsTxBuilder.push(
-  followOperationBuilder
+// Push operations of follow operation into the created transaction
+otherOperationsTx.pushOperation(
+  followOperation
     .followBlog(accountName, 'blog_to_follow')
     .muteBlog(accountName, 'blog_to_mute')
     .reblog(accountName, 'to_reblog', 'post_permlink')
     // The account that authorizes underlying custom json operation is also reponsible for signing the transaction using its posting authority
     .authorize(accountName)
-    .build() // Build the current set of hive apps operation ready to be pushed into the transaction
 );
 
-// Create resource credits operation builder new instance
-const rcOperationBuilder = new ResourceCreditsOperationBuilder();
+// Create resource credits operation new instance
+const rcOperation = new ResourceCreditsOperation();
 
-// Push operations of resource credits operation builder into the created transaction
-otherOperationsTxBuilder.push(
-  rcOperationBuilder
+// Push operations of resource credits operation into the created transaction
+otherOperationsTx.pushOperation(
+  rcOperation
   // Delegate 1000 RC from your account to a friend's account.
   .delegate(accountName, 1000, 'friend')
   // The account that authorizes underlying custom json operation is also reponsible for signing the transaction using its posting authority
   .authorize(accountName)
-  .build() // Build the current set of hive apps operation ready to be pushed into the transaction
 );
 
-// Create community operation builder new instance
-const communityOperationBuilder = new CommunityOperationBuilder();
+// Create community operation new instance
+const communityOperation = new CommunityOperation();
 
 // Declare example community name
 const communityName = 'community_name';
 
-// Push operations of community operation builder into the created transaction
-otherOperationsTxBuilder.push(
-  communityOperationBuilder
+// Push operations of community operation into the created transaction
+otherOperationsTx.pushOperation(
+  communityOperation
     // Subscribe the community
     .subscribe('communityName')
     // Flag the post of the author in the community with the permlink
@@ -324,23 +343,22 @@ otherOperationsTxBuilder.push(
     .flagPost(communityName, 'author_account', 'post_permlink', 'violation notes')
     // The account that authorizes underlying custom json operation is also reponsible for signing the transaction using its posting authority
     .authorize(accountName)
-    .build() // Build the current set of hive apps operation ready to be pushed into the transaction
 );
 
 // Sign and build the transaction
-otherOperationsTxBuilder.build(wallet, publicPostingSigningKey);
+otherOperationsTx.sign(wallet, publicPostingSigningKey);
 
 // Log the other operations transaction into console in API form
-console.log(otherOperationsTxBuilder.toApi());
+console.log(otherOperationsTx.toApi());
 
 // Prepare transaction for broadcasting
-const otherOperationsTxBuilderBroadcastRequest = new BroadcastTransactionRequest(otherOperationsTxBuilder);
+const otherOperationsTxBroadcastRequest = new BroadcastTransactionRequest(otherOperationsTx);
 
 /*
  * Call actual broadcast API to send transaction to the blockchain.
  * The code is commented out because examples does not have access to Hive mainnet keys.
  */
-// const broadcastedTx = await chain.api.network_broadcast_api.broadcast_transaction(otherOperationsTxBuilderBroadcastRequest);
+// const broadcastedTx = await chain.api.network_broadcast_api.broadcast_transaction(otherOperationsTxBroadcastRequest);
 
 // Beekeeper cleanup
 session.close();

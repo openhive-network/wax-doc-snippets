@@ -4,12 +4,12 @@ const { wallet, publicKey1, publicKey2 } = globalThis.snippetsBeekeeperData; /* 
 
 const hiveChain = await createHiveChain();
 
-// Create a transaction builder
-const txBuilder = await hiveChain.getTransactionBuilder();
+// Create a transaction
+const tx = await hiveChain.createTransaction();
 
 // Start the encryption chain with two keys
-txBuilder.startEncrypt(publicKey1, publicKey2)
-  .push({ // Add encrypted operations
+tx.startEncrypt(publicKey1, publicKey2)
+  .pushOperation({ // Add encrypted operations
     transfer: {
       from_account: "alice",
       to_account: "bob",
@@ -20,6 +20,6 @@ txBuilder.startEncrypt(publicKey1, publicKey2)
   .stopEncrypt(); // Stop the encryption chain
 
 // Sign and build the transaction
-const signedTx = txBuilder.build(wallet, publicKey1);
+tx.sign(wallet, publicKey1);
 
-console.log(signedTx);
+console.log(tx.transaction);

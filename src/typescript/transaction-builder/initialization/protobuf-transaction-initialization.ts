@@ -11,5 +11,5 @@ const tx: transaction = {
   signatures: []
 };
 
-// Constructs a new Transaction Builder object with ready protobuf transaction.
-new wax.TransactionBuilder(tx);
+// Constructs a new Transaction object with ready protobuf transaction.
+wax.createTransactionFromProto(tx);

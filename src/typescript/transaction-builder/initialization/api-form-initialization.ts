@@ -12,5 +12,5 @@ const tx = JSON.stringify({
   signatures: []
 });
 
-// Converts Hive API-form transaction in JSON form to our transaction builder.
-wax.TransactionBuilder.fromApi(tx);
+// Converts Hive API-form transaction in JSON form to our transaction.
+wax.createTransactionFromJson(tx);

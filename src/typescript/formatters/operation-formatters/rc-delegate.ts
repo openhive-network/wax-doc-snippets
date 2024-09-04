@@ -1,17 +1,14 @@
-import { createHiveChain, ResourceCreditsOperationBuilder } from '@hiveio/wax';
+import { createHiveChain, ResourceCreditsOperation } from '@hiveio/wax';
 
 const chain = await createHiveChain();
 
-const tx = await chain.getTransactionBuilder();
+const tx = await chain.createTransaction();
 
-tx.push(new ResourceCreditsOperationBuilder()
+tx.pushOperation(new ResourceCreditsOperation()
   .delegate("initminer", 4127361273, "gtg", "null")
   .removeDelegation("initminer", "null")
-  .authorize("initminer")
-  .build());
+  .authorize("initminer"));
 
-const built = tx.build();
-
-const output = chain.formatter.format(built.operations);
+const output = chain.formatter.format(tx.transaction.operations);
 
 console.log(output);

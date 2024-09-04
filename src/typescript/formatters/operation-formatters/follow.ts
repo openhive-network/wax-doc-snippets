@@ -1,10 +1,10 @@
-import { createHiveChain, FollowOperationBuilder } from '@hiveio/wax';
+import { createHiveChain, FollowOperation } from '@hiveio/wax';
 
 const chain = await createHiveChain();
 
-const tx = await chain.getTransactionBuilder();
+const tx = await chain.createTransaction();
 
-tx.push(new FollowOperationBuilder()
+tx.pushOperation(new FollowOperation()
   .followBlacklistBlog("initminer", "gtg", "null")
   .followMutedBlog("initminer", "gtg")
   .resetAllBlog("initminer", "gtg", "null")
@@ -16,11 +16,8 @@ tx.push(new FollowOperationBuilder()
   .unfollowBlog("initminer", "gtg", "null")
   .unfollowMutedBlog("initminer", "gtg")
   .reblog("initminer", "gtg", "first-post")
-  .authorize("initminer")
-  .build());
+  .authorize("initminer"));
 
-const built = tx.build();
-
-const output = chain.formatter.format(built.operations);
+const output = chain.formatter.format(tx.transaction.operations);
 
 console.log(output);

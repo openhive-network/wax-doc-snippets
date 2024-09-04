@@ -1,10 +1,10 @@
-import { createHiveChain, CommunityOperationBuilder } from '@hiveio/wax';
+import { createHiveChain, CommunityOperation } from '@hiveio/wax';
 
 const chain = await createHiveChain();
 
-const tx = await chain.getTransactionBuilder();
+const tx = await chain.createTransaction();
 
-tx.push(new CommunityOperationBuilder()
+tx.pushOperation(new CommunityOperation()
   .flagPost("mycomm", "gtg", "first-post", "note")
   .mutePost("mycomm", "gtg", "first-post", "note")
   .pinPost("mycomm", "gtg", "first-post")
@@ -14,11 +14,8 @@ tx.push(new CommunityOperationBuilder()
   .unsubscribe("mycomm")
   .setUserTitle("mycomm", "gtg", "first-post")
   .updateProps("mycomm", { title: "Custom title" })
-  .authorize("gtg")
-  .build());
+  .authorize("gtg"));
 
-const built = tx.build();
-
-const output = chain.formatter.format(built.operations);
+const output = chain.formatter.format(tx.transaction.operations);
 
 console.log(output);
