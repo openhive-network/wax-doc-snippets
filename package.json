@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc",
     "test": "sh ./scripts/build-and-test.sh",
+    "testall": "run-s test-*",
     "test-api-default-api-retrieve-block": "npm test src/typescript/api/default-api/retrieve-block.ts",
     "test-api-default-api-set-endpoint": "npm test src/typescript/api/default-api/set-endpoint.ts",
     "test-api-extend-api-interface-extend": "npm test src/typescript/api/extend-api/interface-extend.ts",
@@ -80,6 +81,7 @@
   },
   "devDependencies": {
     "@types/node": "18",
+    "npm-run-all": "^4.1.5",
     "typescript": "^5.5.2"
   }
 }
