@@ -9,10 +9,10 @@ const tx = await chain.createTransaction();
 const { wallet, publicKey1 } = globalThis.snippetsBeekeeperData; // It should be the public key of the account that you authorize the operation
 
 // Your account name
-const yourAccount = 'your_account';
+const yourAccount = 'your-account';
 
 // Community name you want to join
-const communityName = 'community_name'
+const communityName = 'community-name'
 
 // Create community operation new instance
 const communityOperation = new CommunityOperation();

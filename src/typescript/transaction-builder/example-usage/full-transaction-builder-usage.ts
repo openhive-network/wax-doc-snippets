@@ -3,7 +3,6 @@ import {
   createHiveChain,
   createWaxFoundation,
   ReplyOperation,
-  BroadcastTransactionRequest,
   BlogPostOperation,
   ECommentFormat,
   RecurrentTransferOperation,
@@ -61,7 +60,7 @@ const voteOp = {
   vote: {
     voter: "voter",
     author: "author",
-    permlink: "test_permlink",
+    permlink: "test-permlink",
     weight: 2200
   }
 };
@@ -75,14 +74,11 @@ simpleOperationTx.sign(wallet, publicPostingSigningKey);
 // Log the simple transaction into console in API form
 console.log(simpleOperationTx.toApi());
 
-// Prepare transaction for broadcasting
-const simpleOperationTxBroadcastRequest = new BroadcastTransactionRequest(simpleOperationTx);
-
 /*
  * Call actual broadcast API to send transaction to the blockchain.
  * The code is commented out because examples does not have access to Hive mainnet keys.
  */
-// const broadcastedTx = await chain.api.network_broadcast_api.broadcast_transaction(simpleOperationTxBroadcastRequest);
+// await chain.broadcast(simpleOperationTx);
 
 '--------------------------------------------------------------------------------------------------------------------------------'
 ////////////////////////////////////////////////////////////////////////////////
@@ -122,14 +118,11 @@ const txApiForm = legacyTx.toLegacyApi();
 // Log the simple legacy transaction into console in API form
 console.log(txApiForm);
 
-// Prepare transaction for broadcasting
-const legacyTxBroadcastRequest = new BroadcastTransactionRequest(legacyTx);
-
 /*
  * Call actual broadcast API to send transaction to the blockchain.
  * The code is commented out because examples does not have access to Hive mainnet keys.
  */
-// const broadcastedTx = await chain.api.network_broadcast_api.broadcast_transaction(legacyTxBroadcastRequest);
+// await chain.broadcast(otherOperationsTx);
 
 '--------------------------------------------------------------------------------------------------------------------------------'
 ////////////////////////////////////////////////////////////////////////////////
@@ -165,14 +158,11 @@ encryptionTx.sign(wallet, publicPostingSigningKey);
 // Log the encryption transaction into console in API form
 console.log(encryptionTx.toApi());
 
-// Prepare transaction for broadcasting
-const encryptionTxBroadcastRequest = new BroadcastTransactionRequest(encryptionTx);
-
 /*
  * Call actual broadcast API to send transaction to the blockchain.
  * The code is commented out because examples does not have access to Hive mainnet keys.
  */
-// const broadcastedTx = await chain.api.network_broadcast_api.broadcast_transaction(encryptionTxBroadcastRequest);
+// await chain.broadcast(otherOperationsTx);
 
 '--------------------------------------------------------------------------------------------------------------------------------'
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -188,7 +178,7 @@ const commentOperationTx = await chain.createTransaction();
 */
 commentOperationTx.pushOperation(new BlogPostOperation({
   author: accountName,
-  permlink: 'My_article_permlink',
+  permlink: 'my-article-permlink',
   title: 'My article title',
   body: 'My article body',
   category: 'my-category',
@@ -209,9 +199,9 @@ commentOperationTx.pushOperation(new BlogPostOperation({
 */
 commentOperationTx.pushOperation(new ReplyOperation({
   author: accountName,
-  permlink: 'My_reply_permlink',
+  permlink: 'My-reply-permlink',
   parentAuthor: accountName,
-  parentPermlink: 'My_article_permlink',
+  parentPermlink: 'my-article-permlink',
   body: 'My reply body',
   tags: ['my-reply'],
   description: 'This is my reply!',
@@ -232,14 +222,11 @@ commentOperationTx.sign(wallet, publicPostingSigningKey);
 // Log the article transaction into console in API form
 console.log(commentOperationTx.toApi());
 
-// Prepare transaction for broadcasting
-const commentOperationTxBroadcastRequest = new BroadcastTransactionRequest(commentOperationTx);
-
 /*
  * Call actual broadcast API to send transaction to the blockchain.
  * The code is commented out because examples does not have access to Hive mainnet keys.
  */
-// const broadcastedTx = await chain.api.network_broadcast_api.broadcast_transaction(commentOperationTxBroadcastRequest);
+// await chain.broadcast(otherOperationsTx);
 
 '--------------------------------------------------------------------------------------------------------------------------------'
 ////////////////////////////////////////////////////////////////////////////////
@@ -285,14 +272,11 @@ operationFactoriesTx.sign(wallet, publicActiveSigningKey);
 // Log the operation factories transaction into console in API form
 console.log(operationFactoriesTx.toApi());
 
-// Prepare transaction for broadcasting
-const operationFactoriesTxBroadcastRequest = new BroadcastTransactionRequest(operationFactoriesTx);
-
 /*
  * Call actual broadcast API to send transaction to the blockchain.
  * The code is commented out because examples does not have access to Hive mainnet keys.
  */
-// const broadcastedTx = await chain.api.network_broadcast_api.broadcast_transaction(operationFactoriesTxBroadcastRequest);
+// await chain.broadcast(otherOperationsTx);
 
 '--------------------------------------------------------------------------------------------------------------------------------'
 //////////////////////////////////////////////////////////////////////////////////
@@ -308,9 +292,9 @@ const followOperation = new FollowOperation();
 // Push operations of follow operation into the created transaction
 otherOperationsTx.pushOperation(
   followOperation
-    .followBlog(accountName, 'blog_to_follow')
-    .muteBlog(accountName, 'blog_to_mute')
-    .reblog(accountName, 'to_reblog', 'post_permlink')
+    .followBlog(accountName, 'blog-to-follow')
+    .muteBlog(accountName, 'blog-to-mute')
+    .reblog(accountName, 'to-reblog', 'post-permlink')
     // The account that authorizes underlying custom json operation is also reponsible for signing the transaction using its posting authority
     .authorize(accountName)
 );
@@ -331,7 +315,7 @@ otherOperationsTx.pushOperation(
 const communityOperation = new CommunityOperation();
 
 // Declare example community name
-const communityName = 'community_name';
+const communityName = 'community-name';
 
 // Push operations of community operation into the created transaction
 otherOperationsTx.pushOperation(
@@ -340,7 +324,7 @@ otherOperationsTx.pushOperation(
     .subscribe('communityName')
     // Flag the post of the author in the community with the permlink
     // Add notes regarding the violation (violation notes).
-    .flagPost(communityName, 'author_account', 'post_permlink', 'violation notes')
+    .flagPost(communityName, 'author-account', 'post-permlink', 'violation notes')
     // The account that authorizes underlying custom json operation is also reponsible for signing the transaction using its posting authority
     .authorize(accountName)
 );
@@ -351,14 +335,11 @@ otherOperationsTx.sign(wallet, publicPostingSigningKey);
 // Log the other operations transaction into console in API form
 console.log(otherOperationsTx.toApi());
 
-// Prepare transaction for broadcasting
-const otherOperationsTxBroadcastRequest = new BroadcastTransactionRequest(otherOperationsTx);
-
 /*
  * Call actual broadcast API to send transaction to the blockchain.
  * The code is commented out because examples does not have access to Hive mainnet keys.
  */
-// const broadcastedTx = await chain.api.network_broadcast_api.broadcast_transaction(otherOperationsTxBroadcastRequest);
+// await chain.broadcast(otherOperationsTx);
 
 // Beekeeper cleanup
 session.close();

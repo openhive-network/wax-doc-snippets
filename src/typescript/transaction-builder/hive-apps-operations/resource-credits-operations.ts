@@ -9,13 +9,13 @@ const tx = await chain.createTransaction();
 const { wallet, publicKey1 } = globalThis.snippetsBeekeeperData; // It should be the public key of the account that you authorize the operation
 
 // Your account name
-const yourAccount = 'your_account';
+const yourAccount = 'your-account';
 
 // Friend's account
-const friend = 'your_friend_account';
+const friend = 'your-friend-account';
 
 // Other friend's account
-const otherFriend = 'other_friend_account'
+const otherFriend = 'other-friend-account'
 
 // Create resource credits operation new instance
 const rcOperation = new ResourceCreditsOperation();

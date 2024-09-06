@@ -12,7 +12,7 @@ const tx = chain.createTransactionWithTaPoS('04c507a8c7fe5be96be64ce7c86855e1806
  */
 tx.pushOperation(new BlogPostOperation({
   // Here you can pass the arguments to given class constructor
-  author: 'post_author',
+  author: 'post-author',
   permlink: 'post-title',
   body: 'the-post-body',
   title: 'The Post Title',

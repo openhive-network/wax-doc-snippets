@@ -1,4 +1,4 @@
-import { createHiveChain, ReplyOperation, BroadcastTransactionRequest } from '@hiveio/wax';
+import { createHiveChain, ReplyOperation } from '@hiveio/wax';
 
 // Initialize chain
 const chain = await createHiveChain();
@@ -40,11 +40,8 @@ txFromApi.sign(wallet, publicKey2);
 // log multi signed transaction
 console.log(txFromApi.toApi());
 
-// Prepare transaction for broadcasting
-const broadcastRequest = new BroadcastTransactionRequest(txFromApi);
-
 /*
  * Call actual broadcast API to send transaction to the blockchain.
  * The code is commented out because examples does not have access to Hive mainnet keys.
  */
-// const broadcastedTx = await chain.api.network_broadcast_api.broadcast_transaction(broadcastRequest);
+// await chain.broadcast(txFromApi);

@@ -9,16 +9,16 @@ const tx = await chain.createTransaction();
 const { wallet, publicKey1 } = globalThis.snippetsBeekeeperData; // It should be the public key of the account that you authorize the operation
 
 // Your account name
-const yourAccount = 'your_account';
+const yourAccount = 'your-account';
 
 // Blog author name to follow
-const blogToFollow = 'interesting_blog';
+const blogToFollow = 'interesting-blog';
 
 // Blog author name to mute
 const blogToMute = 'spammer';
 
 // Author of post to reblog
-const toReblog = 'reblog_me';
+const toReblog = 'reblog-me';
 
 // Create follow operation new instance
 const followOperation = new FollowOperation();
@@ -28,7 +28,7 @@ tx.pushOperation(
   followOperation
     .followBlog(yourAccount, blogToFollow)
     .muteBlog(yourAccount, blogToMute)
-    .reblog(yourAccount, toReblog, 'post_permlink')
+    .reblog(yourAccount, toReblog, 'post-permlink')
     // The account that authorizes underlying custom json operation is also reponsible for signing the transaction using its posting authority
     .authorize(yourAccount)
 );

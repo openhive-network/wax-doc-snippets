@@ -13,7 +13,7 @@ const operation = {
   vote: {
     voter: "voter",
     author: "author",
-    permlink: "test_permlink",
+    permlink: "test-permlink",
     weight: 2200
   }
 };

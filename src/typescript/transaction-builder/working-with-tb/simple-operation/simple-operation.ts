@@ -10,8 +10,8 @@ const tx = wax.createTransactionWithTaPoS('04c507a8c7fe5be96be64ce7c86855e1806cb
 const operation = {
   vote: {
     voter: "voter",
-    author: "test_author",
-    permlink: "test_permlink",
+    author: "test-author",
+    permlink: "test-permlink",
     weight: 2200
   }
 };

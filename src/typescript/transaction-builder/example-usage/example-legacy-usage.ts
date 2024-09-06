@@ -1,4 +1,4 @@
-import { createHiveChain, BroadcastTransactionRequest } from '@hiveio/wax';
+import { createHiveChain } from '@hiveio/wax';
 
 // Initialize chain
 const chain = await createHiveChain();
@@ -14,7 +14,7 @@ const operation = {
   vote: {
     voter: "voter",
     author: "author",
-    permlink: "test_permlink",
+    permlink: "test-permlink",
     weight: 2200
   }
 };

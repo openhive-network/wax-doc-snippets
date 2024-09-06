@@ -13,7 +13,7 @@ const operation = {
   vote: {
     voter: "voter",
     author: "author",
-    permlink: "test_permlink",
+    permlink: "test-permlink",
     weight: 2200
   }
 };
@@ -21,7 +21,7 @@ const operation = {
 // Push operation into the transction
 tx.pushOperation(operation);
 
-// Build transaction with signature provided.
-const builtTransaction = tx.sign(wallet, publicKey1);
+// Sign transaction.
+const signature = tx.sign(wallet, publicKey1);
 
-console.log(builtTransaction);
+console.log(signature);
