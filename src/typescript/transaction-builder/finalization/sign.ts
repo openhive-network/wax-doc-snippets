@@ -25,3 +25,6 @@ tx.pushOperation(operation);
 const signature = tx.sign(wallet, publicKey1);
 
 console.log(signature);
+
+// Delete the created wax proto_protocol instance
+chain.delete();

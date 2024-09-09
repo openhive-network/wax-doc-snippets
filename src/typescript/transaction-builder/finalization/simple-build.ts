@@ -21,3 +21,6 @@ tx.pushOperation(operation);
 
 // Log to the console the transaction which is **not signed yet** in the api form
 console.log(tx.toApi());
+
+// Delete the created wax proto_protocol instance
+chain.delete();

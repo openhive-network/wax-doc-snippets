@@ -23,3 +23,6 @@ tx.pushOperation(operation);
 const legacyApiTx = tx.toLegacyApi();
 
 console.log(legacyApiTx);
+
+// Delete the created wax proto_protocol instance
+chain.delete();

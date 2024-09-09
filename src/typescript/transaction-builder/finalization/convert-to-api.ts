@@ -23,3 +23,6 @@ tx.pushOperation(operation);
 const apiTx = tx.toApi();
 
 console.log(apiTx);
+
+// Delete the created wax proto_protocol instance
+chain.delete();

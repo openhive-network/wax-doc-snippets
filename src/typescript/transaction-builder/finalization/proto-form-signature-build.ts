@@ -23,3 +23,6 @@ tx.pushOperation(operation);
 tx.sign('signature...');
 
 console.log(tx.toApi());
+
+// Delete the created wax proto_protocol instance
+chain.delete();

@@ -344,3 +344,6 @@ console.log(otherOperationsTx.toApi());
 // Beekeeper cleanup
 session.close();
 await beekeeper.delete();
+
+// Delete the created wax proto_protocol instance
+chain.delete();
