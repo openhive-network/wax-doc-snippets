@@ -14,7 +14,7 @@ const memo = "Monthly subscription";
 
 // Use this time just for example default values for recurrence and executions which is 24 for recurrence and 2 for executions.
 tx.pushOperation(new RecurrentTransferOperation({
-    // If the amount is specified, the removal will be automatically generated
+    // If the amount is NOT specified, the removal operation will be automatically generated
     from,
     to,
     pairId,
