@@ -1,5 +1,6 @@
 import { createHiveChain, WitnessSetPropertiesOperation } from '@hiveio/wax';
 
+// Initialize hive chain interface
 const chain = await createHiveChain();
 
 const owner = "witness-account";
@@ -9,7 +10,8 @@ const hbdInterestRate = 750; // 7.5%
 const accountCreationFee = chain.hive(30000); // 300.000 HIVE
 const witnessUrl = "https://witness.example.com";
 
-const tx = chain.createTransactionWithTaPoS('04c507a8c7fe5be96be64ce7c86855e1806cbde3', '2023-11-09T21:51:27');
+// Initialize a transaction object
+const tx = await chain.createTransaction();
 
 tx.pushOperation(new WitnessSetPropertiesOperation({
     owner,

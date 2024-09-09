@@ -1,10 +1,10 @@
-import { createWaxFoundation } from '@hiveio/wax';
+import { createHiveChain } from '@hiveio/wax';
 
-// Initialize wax base interface
-const wax = await createWaxFoundation();
+// Initialize hive chain interface
+const chain = await createHiveChain();
 
 // Initialize a transaction object
-const tx = wax.createTransactionWithTaPoS('04c507a8c7fe5be96be64ce7c86855e1806cbde3', '+30m');
+const tx = await chain.createTransaction();
 
 // Declare example operation
 const operation = {

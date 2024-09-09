@@ -1,10 +1,10 @@
 import { createHiveChain, ReplyOperation } from '@hiveio/wax';
 
-// Initialize the chain
+// Initialize hive chain interface
 const chain = await createHiveChain();
 
-// Create a transaction
-const tx = chain.createTransactionWithTaPoS('04c507a8c7fe5be96be64ce7c86855e1806cbde3', '2023-11-09T21:51:27');
+// Initialize a transaction object
+const tx = await chain.createTransaction();
 
 // Use multiple explicit values
 tx.pushOperation(new ReplyOperation({
