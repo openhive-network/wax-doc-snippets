@@ -8,7 +8,7 @@ const tx = await chain.createTransaction();
 
 /**
  * Uses the push operation on the transaction and specifies an argument:
- * The operation class new instance, which takes an object as the argument with the operation configuration.,
+ * The operation class new instance, which takes an object as the argument with the operation configuration.
  */
 tx.pushOperation(new BlogPostOperation({
   // Here you can pass the arguments to given class constructor
