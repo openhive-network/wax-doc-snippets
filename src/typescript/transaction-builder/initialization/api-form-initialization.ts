@@ -1,16 +1,12 @@
-import { createWaxFoundation } from '@hiveio/wax';
+import { createHiveChain, IWaxBaseInterface } from '@hiveio/wax';
 
-const wax = await createWaxFoundation();
+const chain = await createHiveChain();
 
-// Stringify the transaction to be able to show the example.
-const tx = JSON.stringify({
-  ref_block_num: 34559,
-  ref_block_prefix: 1271006404,
-  expiration: '2021-12-13T11:31:33',
-  operations: [],
-  extensions: [],
-  signatures: []
-});
+// We use IWaxBaseInterface here to enforce lack of any network activity.
+const base: IWaxBaseInterface = chain;
+
+// Fetch block data from Hive API.
+const { block } = await chain.api.block_api.get_block({ block_num: 5000000 });
 
 // Converts Hive API-form transaction in JSON form to our transaction.
-wax.createTransactionFromJson(tx);
+base.createTransactionFromJson(block!.transactions[0]);
