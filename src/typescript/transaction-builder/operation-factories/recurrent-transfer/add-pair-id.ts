@@ -1,4 +1,4 @@
-import { createHiveChain, RecurrentTransferOperation } from '@hiveio/wax';
+import { createHiveChain, DefineRecurrentTransferOperation } from '@hiveio/wax';
 
 // Initialize hive chain interface
 const chain = await createHiveChain();
@@ -13,7 +13,7 @@ const amount = chain.hive(10000); // 100.000 HIVE
 const memo = "Monthly subscription";
 
 // Use this time just for example default values for recurrence and executions which is 24 for recurrence and 2 for executions.
-tx.pushOperation(new RecurrentTransferOperation({
+tx.pushOperation(new DefineRecurrentTransferOperation({
   from,
   to,
   // Add pairId to the operation constructor

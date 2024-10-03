@@ -1,4 +1,4 @@
-import { createHiveChain, RecurrentTransferOperation } from '@hiveio/wax';
+import { createHiveChain, DefineRecurrentTransferOperation } from '@hiveio/wax';
 
 // Initialize hive chain interface
 const chain = await createHiveChain();
@@ -13,7 +13,7 @@ const memo = "Monthly subscription";
 const recurrence = 24; // every day
 const executions = 30; // for 30 days
 
-tx.pushOperation(new RecurrentTransferOperation({
+tx.pushOperation(new DefineRecurrentTransferOperation({
   from,
   to,
   amount,

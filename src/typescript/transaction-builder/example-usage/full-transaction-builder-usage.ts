@@ -5,7 +5,7 @@ import {
   ReplyOperation,
   BlogPostOperation,
   ECommentFormat,
-  RecurrentTransferOperation,
+  DefineRecurrentTransferOperation,
   UpdateProposalOperation,
   WitnessSetPropertiesOperation,
   FollowOperation,
@@ -237,7 +237,7 @@ console.log(commentOperationTx.toApi());
 const operationFactoriesTx = await chain.createTransaction();
 
 // Create a recurrent transfer operation that will be executed every day for 30 days with the ammount of 100 HIVE
-operationFactoriesTx.pushOperation(new RecurrentTransferOperation({
+operationFactoriesTx.pushOperation(new DefineRecurrentTransferOperation({
   from: accountName,
   to: 'friend',
   amount: chain.hive(100),

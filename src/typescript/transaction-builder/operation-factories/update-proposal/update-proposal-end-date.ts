@@ -8,7 +8,7 @@ const tx = await chain.createTransaction();
 
 const proposalId = 1;
 const creator = "your-account";
-const dailyPay = chain.hive(10000); // 100.000 HIVE
+const dailyPay = chain.hbd(10000); // 100.000 HBD
 const subject = "Proposal Update";
 const permlink = "proposal-update";
 const endDate = '2023-03-14' // You can also give end date as a timestamp, eg. 1678917600000
