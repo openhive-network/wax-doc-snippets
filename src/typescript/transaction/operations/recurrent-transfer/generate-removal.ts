@@ -10,7 +10,8 @@ const from = "sender-account";
 const to = "recipient-account";
 const pairId = 12345;
 
-// Use this time just for example default values for recurrence and executions which is 24 for recurrence and 2 for executions.
+// Use dedicated wax complex operation to generate recurrent transfer removal
+// (recurrent_transfer_operation is generated under the hood having specified amount = 0)
 tx.pushOperation(new RecurrentTransferRemovalOperation({
     // If the amount is NOT specified, the removal operation will be automatically generated
     from,

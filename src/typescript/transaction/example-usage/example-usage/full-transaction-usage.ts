@@ -246,7 +246,7 @@ operationFactoriesTx.pushOperation(new DefineRecurrentTransferOperation({
   executions: 30
 }));
 
-// Create a proposal update operation of id equals 1 with the ammount of 100.000 HIVE
+// Create a proposal update operation of id equals 1 with the ammount of 100.000 HBD
 operationFactoriesTx.pushOperation(new UpdateProposalOperation({
   proposalId: 1,
   creator: accountName,
