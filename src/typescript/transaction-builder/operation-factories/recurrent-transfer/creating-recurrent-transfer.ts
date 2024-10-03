@@ -8,7 +8,7 @@ const tx = await chain.createTransaction();
 
 const from = "sender-account";
 const to = "recipient-account";
-const amount = chain.hive(10000); // 100.000 HIVE
+const amount = chain.hiveCoins(100); // 100.000 HIVE
 const memo = "Monthly subscription";
 const recurrence = 24; // every day
 const executions = 30; // for 30 days
@@ -23,4 +23,4 @@ tx.pushOperation(new DefineRecurrentTransferOperation({
 }));
 
 // Get a transaction object holding all operations and transaction TAPOS & expiration data, but transaction is **not signed yet**
-tx.transaction;
+console.log(tx.transaction);

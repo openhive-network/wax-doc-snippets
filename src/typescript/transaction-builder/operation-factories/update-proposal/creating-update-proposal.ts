@@ -8,7 +8,7 @@ const tx = await chain.createTransaction();
 
 const proposalId = 1;
 const creator = "your-account";
-const dailyPay = chain.hbd(10000); // 100.000 HBD
+const dailyPay = chain.hbdCoins(100); // 100.000 HBD
 const subject = "Proposal Update";
 const permlink = "proposal-update";
 
@@ -21,4 +21,4 @@ tx.pushOperation(new UpdateProposalOperation({
 }));
 
 // Get a transaction object holding all operations and transaction TAPOS & expiration data, but transaction is **not signed yet**
-tx.transaction;
+console.log(tx.transaction);

@@ -7,7 +7,7 @@ const owner = "witness-account";
 const { publicKey1 } = globalThis.snippetsBeekeeperData;
 const maxBlockSize = 65536;
 const hbdInterestRate = 750; // 7.5%
-const accountCreationFee = chain.hive(30000); // 300.000 HIVE
+const accountCreationFee = chain.hiveCoins(5); // 5.000 HIVE
 const witnessUrl = "https://witness.example.com";
 
 // Initialize a transaction object
@@ -23,4 +23,4 @@ tx.pushOperation(new WitnessSetPropertiesOperation({
 }));
 
 // Get a transaction object holding all operations and transaction TAPOS & expiration data, but transaction is **not signed yet**
-tx.transaction;
+console.log(tx.transaction);

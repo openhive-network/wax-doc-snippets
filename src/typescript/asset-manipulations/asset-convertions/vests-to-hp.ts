@@ -4,14 +4,14 @@ import { createWaxFoundation } from '@hiveio/wax';
 const waxApi = await createWaxFoundation();
 
 // Assume these amounts represent the vests, totalVestingFundHive, and totalVestingShares
-const vestsAmount = 10000;
-const totalVestingFundHiveAmount = 20000;
-const totalVestingSharesAmount = 50000;
+const vestsAmount = 1_000000;
+const totalVestingFundHiveAmount = 20_000;
+const totalVestingSharesAmount = 5_000000;
 
 // Convert amounts to `NaiAsset`
-const vestsAsset = waxApi.vests(vestsAmount);
-const totalVestingFundHiveAsset = waxApi.hive(totalVestingFundHiveAmount);
-const totalVestingSharesAsset = waxApi.vests(totalVestingSharesAmount);
+const vestsAsset = waxApi.vestsSatoshis(vestsAmount);
+const totalVestingFundHiveAsset = waxApi.hiveSatoshis(totalVestingFundHiveAmount);
+const totalVestingSharesAsset = waxApi.vestsSatoshis(totalVestingSharesAmount);
 
 // Use `vestsToHp` to perform the conversion
 const hpAsset = waxApi.vestsToHp(vestsAsset, totalVestingFundHiveAsset, totalVestingSharesAsset);

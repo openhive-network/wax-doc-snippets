@@ -13,7 +13,7 @@ tx.startEncrypt(publicKey1, publicKey2)
     transfer: {
       from_account: "alice",
       to_account: "bob",
-      amount: hiveChain.hive(100),
+      amount: hiveChain.hiveCoins(5), // Send 5.000 HIVE (Note: Coins, not satoshis)
       memo: "This memo will be encrypted with two keys"
     }
   })

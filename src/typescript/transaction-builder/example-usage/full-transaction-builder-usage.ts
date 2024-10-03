@@ -93,7 +93,7 @@ const transferOp = {
   transfer: {
     from_account: accountName,
     to_account: "friend",
-    amount: chain.hive(100),
+    amount: chain.hiveCoins(100),
     memo: "My transfer operation"
   }
 };
@@ -137,7 +137,7 @@ const transferEncryptionOp = {
   transfer: {
     from_account: accountName,
     to_account: "friend",
-    amount: chain.hive(100),
+    amount: chain.hiveCoins(100),
     memo: "This will be encrypted"
   }
 };
@@ -188,7 +188,7 @@ commentOperationTx.pushOperation(new BlogPostOperation({
   links: ['https://example.com'],
   format: ECommentFormat.MARKDOWN,
   beneficiaries: [{ account: 'friend', weight: 40 }],
-  maxAcceptedPayout: chain.hbd(100),
+  maxAcceptedPayout: chain.hbdCoins(100),
   allowCurationRewards: true,
   allowVotes: true
 }));
@@ -209,7 +209,7 @@ commentOperationTx.pushOperation(new ReplyOperation({
   links: ['https://example.com'],
   format: ECommentFormat.MARKDOWN,
   beneficiaries: [{ account: 'friend', weight: 40 }],
-  maxAcceptedPayout: chain.hbd(100),
+  maxAcceptedPayout: chain.hbdCoins(100),
   allowCurationRewards: true,
   allowVotes: true
 }));
@@ -236,21 +236,21 @@ console.log(commentOperationTx.toApi());
 // Create a transaction
 const operationFactoriesTx = await chain.createTransaction();
 
-// Create a recurrent transfer operation that will be executed every day for 30 days with the ammount of 100 HIVE
+// Create a recurrent transfer operation that will be executed every day for 30 days with the ammount of 100.000 HIVE
 operationFactoriesTx.pushOperation(new DefineRecurrentTransferOperation({
   from: accountName,
   to: 'friend',
-  amount: chain.hive(100),
+  amount: chain.hiveCoins(100),
   memo: 'Daily pay',
   recurrence: 24,
   executions: 30
 }));
 
-// Create a proposal update operation of id equals 1 with the ammount of 100 HIVE
+// Create a proposal update operation of id equals 1 with the ammount of 100.000 HIVE
 operationFactoriesTx.pushOperation(new UpdateProposalOperation({
   proposalId: 1,
   creator: accountName,
-  dailyPay: chain.hbd(100),
+  dailyPay: chain.hbdCoins(100),
   subject: 'Proposal Update',
   permlink: 'proposal-update',
   endDate:  '2023-03-14',
@@ -262,7 +262,7 @@ operationFactoriesTx.pushOperation(new WitnessSetPropertiesOperation({
   witnessSigningKey: publicActiveSigningKey,
   maximumBlockSize: 65536,
   hbdInterestRate: 750,
-  accountCreationFee: chain.hive(30000),
+  accountCreationFee: chain.hiveCoins(300),
   url: "https://example.com"
 }));
 
