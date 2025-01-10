@@ -13,6 +13,7 @@ node_modules
 # Generated build files
 *.js
 !/scripts/runner.js
+tsconfig.tsbuildinfo
 
 # Beekeeper data
 storage_root-node

@@ -9,11 +9,11 @@ importers:
   .:
     dependencies:
       '@hiveio/beekeeper':
-        specifier: 1.27.6-rc3
-        version: 1.27.6-rc3
+        specifier: 1.27.6-rc4
+        version: 1.27.6-rc4
       '@hiveio/wax':
-        specifier: 1.27.6-rc5
-        version: 1.27.6-rc5
+        specifier: 1.27.6-rc7
+        version: 1.27.6-rc7
       class-validator:
         specifier: ^0.14.1
         version: 0.14.1
@@ -30,12 +30,12 @@ importers:
 
 packages:
 
-  '@hiveio/beekeeper@1.27.6-rc3':
-    resolution: {integrity: sha512-Ils535APQ0SULiBB3TNv9DEqikpQZ50ySySBmQ4OGpGjuaiXhtlXt2sopYatKi7/iOJFI9Z109996mzIjJCPIw==}
+  '@hiveio/beekeeper@1.27.6-rc4':
+    resolution: {integrity: sha512-iSaJ1Os+YoxocMEG8tnuMO28B7Wa9pJTdJNxvRAV90PJZIQo+WJZFilanKjSDhbaKiVO4TN+gO7nEdn3nWKeOA==}
     engines: {node: '>= 18'}
 
-  '@hiveio/wax@1.27.6-rc5':
-    resolution: {integrity: sha512-2fgbB4w/YDJFfszRe9gZvOawH1k2mqmW+ylHziQr4UcV4jas6QdHo6iFqPfvm+rUOWOUNs6JkI3OMzw4Ygp71w==}
+  '@hiveio/wax@1.27.6-rc7':
+    resolution: {integrity: sha512-tLUZsXqeJvqkFI0FWWxJlON4zgPWJ+Pk7O+yU+PAZ+W7YKXHOm5Dtyt7fm1OuFr5GE+iMVNPa8dyzgEiDzMBkQ==}
     engines: {node: '>= 18'}
 
   '@types/node@18.19.39':
@@ -144,11 +144,11 @@ packages:
 
 snapshots:
 
-  '@hiveio/beekeeper@1.27.6-rc3': {}
+  '@hiveio/beekeeper@1.27.6-rc4': {}
 
-  '@hiveio/wax@1.27.6-rc5':
+  '@hiveio/wax@1.27.6-rc7':
     dependencies:
-      '@hiveio/beekeeper': 1.27.6-rc3
+      '@hiveio/beekeeper': 1.27.6-rc4
       class-transformer: 0.5.1
       class-validator: 0.14.1
       events: 3.3.0

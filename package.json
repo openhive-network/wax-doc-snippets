@@ -47,6 +47,11 @@
     "test-transaction-finalization-convert-to-api": "npm test src/typescript/transaction/finalization/convert-to-api.ts",
     "test-transaction-finalization-convert-to-legacy-api": "npm test src/typescript/transaction/finalization/convert-to-legacy-api.ts",
     "test-transaction-finalization-sign": "npm test src/typescript/transaction/finalization/sign.ts",
+    "test-transaction-operations-account-update-set-memo": "npm test src/typescript/transaction/operations/account-update/set-memo.ts",
+    "test-transaction-operations-account-update-add-posting-account": "npm test src/typescript/transaction/operations/account-update/add-posting-account.ts",
+    "test-transaction-operations-account-update-change-active-key": "npm test src/typescript/transaction/operations/account-update/change-active-key.ts",
+    "test-transaction-operations-account-update-change-weight-treshold": "npm test src/typescript/transaction/operations/account-update/change-weight-treshold.ts",
+    "test-transaction-operations-account-update-iterate-roles": "npm test src/typescript/transaction/operations/account-update/iterate-roles.ts",
     "test-transaction-operations-creating-article": "npm test src/typescript/transaction/operations/comment/creating-article.ts",
     "test-transaction-operations-creating-reply": "npm test src/typescript/transaction/operations/comment/creating-reply.ts",
     "test-transaction-operations-creating-recurrent-transfer": "npm test src/typescript/transaction/operations/recurrent-transfer/creating-recurrent-transfer.ts",
@@ -73,8 +78,8 @@
   },
   "packageManager": "pnpm@9.1.1+sha256.9551e803dcb7a1839fdf5416153a844060c7bce013218ce823410532504ac10b",
   "dependencies": {
-    "@hiveio/beekeeper": "1.27.6-rc3",
-    "@hiveio/wax": "1.27.6-rc5",
+    "@hiveio/beekeeper": "1.27.6-rc4",
+    "@hiveio/wax": "1.27.6-rc7",
     "class-validator": "^0.14.1"
   },
   "devDependencies": {
