@@ -6,7 +6,7 @@ const chain = await createHiveChain();
 // Initialize a transaction object
 const tx = await chain.createTransaction();
 
-// Create online operation
+// Create online operation - createFor will parse authorities for "gtg" account from the chain
 const op = await AccountAuthorityUpdateOperation.createFor(chain, "gtg");
 
 // Add account named "initminer" to the posting role of my account. Weight is by default set to 1
