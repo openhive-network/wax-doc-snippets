@@ -1,0 +1,25 @@
+entrypoint = "scripts/main.py"
+
+[nix]
+channel = "stable-24_05"
+
+[unitTest]
+language = "python3"
+
+[gitHubImport]
+requiredFiles = [".replit", "replit.nix"]
+
+[deployment]
+run = "bash scripts/build-wax-on-replit.sh"
+
+[workflows]
+runButton = "Run"
+
+[[workflows.workflow]]
+name = "Run"
+author = 45016256
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "bash scripts/build-wax-on-replit.sh"
