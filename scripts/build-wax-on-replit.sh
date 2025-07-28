@@ -6,6 +6,10 @@ SECOND_INDEX="https://gitlab.syncad.com/api/v4/projects/434/packages/pypi/simple
 THIRD_INDEX="https://gitlab.syncad.com/api/v4/projects/198/packages/pypi/simple"
 
 echo "🔧 [1/4] Creating virtual environment..."
+
+python --version
+python3 --version
+
 python3 -m venv .venv
 echo "⚙️  [2/4] Activating venv..."
 source .venv/bin/activate
