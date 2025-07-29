@@ -7,8 +7,7 @@
   "customizations": {
     "vscode": {
       "settings": {
-        "terminal.integrated.shell.linux": "/bin/bash",
-        "python.pythonPath": "/poetry_venv/bin/python"
+        "python.defaultInterpreterPath": "/poetry_venv/bin/python"
       },
       "extensions": [
         "ms-python.python",
@@ -20,6 +19,5 @@
   "forwardPorts": [8000],
   "mounts": [
     "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
-  ],
-  "initializeCommand": "mkdir -p /home/user && echo 'source /poetry_venv/bin/activate' >> /home/user/.bashrc"
+  ]
 }
