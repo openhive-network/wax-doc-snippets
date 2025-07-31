@@ -1,0 +1,23 @@
+{
+  "name": "Wax snippets dev-container",
+  "image": "registry.gitlab.syncad.com/hive/wax/wax-python-runtime-codespaces:ee5929b2bd9ad46aaf50c1148e3a31d74430b82d",
+  "remoteUser": "user",
+  "workspaceFolder": "/workspaces/wax-doc-snippets",
+  "customizations": {
+    "codespaces": {
+      "openFiles": [
+        "/workspaces/wax-doc-snippets/src/python/default_wax_initialization.py"
+      ]
+    },
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": "/home/user/python_venv/bin/python"
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-toolsai.jupyter"
+      ]
+    }
+  }
+}
