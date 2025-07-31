@@ -1,0 +1,23 @@
+{
+  "name": "Wax snippets dev-container",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": "/poetry_venv/bin/python"
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance"
+      ]
+    }
+  },
+  "remoteUser": "user",
+  "postCreateCommand": "echo 'source /poetry_venv/bin/activate' >> ~/.bashrc",
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+  ]
+}
