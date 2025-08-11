@@ -17,7 +17,6 @@
     }
   },
   "remoteUser": "user",
-  "postCreateCommand": "echo 'source /poetry_venv/bin/activate' >> ~/.bashrc",
   "mounts": [
     "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
   ]
