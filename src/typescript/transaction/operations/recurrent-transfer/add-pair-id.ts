@@ -6,8 +6,8 @@ const chain = await createHiveChain();
 // Initialize a transaction object
 const tx = await chain.createTransaction();
 
-const from = "sender-account";
-const to = "recipient-account";
+const from = "sender.account";
+const to = "recip.account";
 const pairId = 12345;
 const amount = chain.hiveCoins(100); // 100.000 HIVE
 const memo = "Monthly subscription";

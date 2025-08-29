@@ -57,7 +57,7 @@ const publicEncryptionSigningKey = await wallet.importKey(privateEncryptionKeyDa
 const simpleOperationTx = await chain.createTransaction();
 
 const voteOp = {
-  vote: {
+  vote_operation: {
     voter: "voter",
     author: "author",
     permlink: "test-permlink",
@@ -90,9 +90,9 @@ const legacyTx = await chain.createTransaction();
 
 // Declare example transfer operation
 const transferOp = {
-  transfer: {
-    from_account: accountName,
-    to_account: "friend",
+  transfer_operation: {
+    from: accountName,
+    to: "friend",
     amount: chain.hiveCoins(100),
     memo: "My transfer operation"
   }
@@ -134,9 +134,9 @@ const encryptionTx = await chain.createTransaction();
 
 // Declare other example transfer operation
 const transferEncryptionOp = {
-  transfer: {
-    from_account: accountName,
-    to_account: "friend",
+  transfer_operation: {
+    from: accountName,
+    to: "friend",
     amount: chain.hiveCoins(100),
     memo: "This will be encrypted"
   }
@@ -340,10 +340,3 @@ console.log(otherOperationsTx.toApi());
  * The code is commented out because examples does not have access to Hive mainnet keys.
  */
 // await chain.broadcast(otherOperationsTx);
-
-// Beekeeper cleanup
-session.close();
-await beekeeper.delete();
-
-// Delete the created wax proto_protocol instance
-chain.delete();

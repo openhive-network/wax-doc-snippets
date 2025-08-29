@@ -13,7 +13,6 @@ tx.pushOperation(new WitnessSetPropertiesOperation({
   owner: 'owner',
   witnessSigningKey: publicKey1,
   url: 'https://example.com'
-
 }));
 
 // Get a transaction object holding all operations and transaction TAPOS & expiration data, but transaction is **not signed yet**

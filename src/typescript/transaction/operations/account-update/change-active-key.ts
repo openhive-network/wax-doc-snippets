@@ -10,8 +10,8 @@ const tx = await chain.createTransaction();
 const op = await AccountAuthorityUpdateOperation.createFor(chain, "gtg");
 
 // Example public keys data
-const oldKey = "STM8QmFV8MfGK2j9b2c7vYtXf1fJb3zQ6UQJjv3zvz1fJb3zQ6UQJjv3zvz";
-const newKey = "STM7QmFV8MfGK2j9b2c7vYtXf1fJb3zQ6UQJjv3zvz1fJb3zQ6UQJjv3pol";
+const oldKey = "STM4utwdRemiWrprD4aZantE8CVRnxRRZShz68W5SoDfZinfhCmSA";
+const newKey = "STM6NPx2HsYEBTyCpsA792NMbHFJYSB8GL79wFDovAjiEvGEiXbF2";
 
 // Replace old key in active role with new key and weight 1
 op.role("active").replace(oldKey, 1, newKey);

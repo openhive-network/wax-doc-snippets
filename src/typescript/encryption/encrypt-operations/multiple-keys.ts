@@ -10,9 +10,9 @@ const tx = await hiveChain.createTransaction();
 // Start the encryption chain with two keys
 tx.startEncrypt(publicKey1, publicKey2)
   .pushOperation({ // Add encrypted operations
-    transfer: {
-      from_account: "alice",
-      to_account: "bob",
+    transfer_operation: {
+      from: "alice",
+      to: "bob",
       amount: hiveChain.hiveCoins(5), // Send 5.000 HIVE (Note: Coins, not satoshis)
       memo: "This memo will be encrypted with two keys"
     }

@@ -22,7 +22,8 @@ const tx = {
       }
     }
   ],
-  extensions: []
+  extensions: [],
+  signatures: []
 };
 
 const output = chain.waxify`Tx: #${tx}`;

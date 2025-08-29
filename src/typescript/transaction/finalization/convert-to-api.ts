@@ -8,7 +8,7 @@ const tx = await chain.createTransaction();
 
 // Declare example operation
 const operation = {
-  vote: {
+  vote_operation: {
     voter: "voter",
     author: "test-author",
     permlink: "test-permlink",
@@ -23,6 +23,3 @@ tx.pushOperation(operation);
 const apiTx = tx.toApi();
 
 console.log(apiTx);
-
-// Delete the created wax proto_protocol instance
-chain.delete();

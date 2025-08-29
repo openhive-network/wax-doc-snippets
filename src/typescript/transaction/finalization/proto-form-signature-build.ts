@@ -8,7 +8,7 @@ const tx = await chain.createTransaction();
 
 // Declare example operation
 const operation = {
-  vote: {
+  vote_operation: {
     voter: "voter",
     author: "author",
     permlink: "test-permlink",
@@ -20,9 +20,6 @@ const operation = {
 tx.pushOperation(operation);
 
 // Supplement a transaction with an externally generated signature.
-tx.sign('signature...');
+tx.sign('deadc0de');
 
 console.log(tx.toApi());
-
-// Delete the created wax proto_protocol instance
-chain.delete();

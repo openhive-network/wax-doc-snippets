@@ -8,7 +8,7 @@ const tx = await chain.createTransaction();
 
 // Declare example operation
 const operation = {
-  vote: {
+  vote_operation: {
     voter: "voter",
     author: "test-author",
     permlink: "test-permlink",
@@ -22,5 +22,6 @@ tx.pushOperation(operation);
 // Log to the console the transaction which is **not signed yet** in the api form
 console.log(tx.toApi());
 
-// Delete the created wax proto_protocol instance
-chain.delete();
+// broadcast the transaction
+// Uncomment the following line to broadcast the transaction to the mainnet (this will most likely fail due to transaction not being signed):
+// await chain.broadcast(tx);
