@@ -10,7 +10,8 @@ import {
   WitnessSetPropertiesOperation,
   FollowOperation,
   ResourceCreditsOperation,
-  CommunityOperation
+  CommunityOperation,
+  AccountAuthorityUpdateOperation
 } from '@hiveio/wax';
 
 // Initialize wax api
@@ -34,24 +35,42 @@ const accountName = "your-account";
 const masterPassword = "your-master-password";
 
 // Generating a new posting private key from a password
-const privatePostingKeyData = waxApi.getPrivateKeyFromPassword(accountName, 'posting', masterPassword);
+const privatePostingKeyData = waxApi.getPrivateKeyFromPassword(
+  accountName,
+  'posting',
+  masterPassword
+);
 // Import the posting key into the wallet
-const publicPostingSigningKey = await wallet.importKey(privatePostingKeyData.wifPrivateKey);
+const publicPostingSigningKey = await wallet.importKey(
+  privatePostingKeyData.wifPrivateKey
+);
 
 // Generating a new active private key from a password
-const privateActiveKeyData = waxApi.getPrivateKeyFromPassword(accountName, 'active', masterPassword);
+const privateActiveKeyData = waxApi.getPrivateKeyFromPassword(
+  accountName,
+  'active',
+  masterPassword
+);
 // Import the active key into the wallet
-const publicActiveSigningKey = await wallet.importKey(privateActiveKeyData.wifPrivateKey);
+const publicActiveSigningKey = await wallet.importKey(
+  privateActiveKeyData.wifPrivateKey
+);
 
 // Generating a new encryption private key from a password
-const privateEncryptionKeyData = waxApi.getPrivateKeyFromPassword(accountName, 'memo', masterPassword);
+const privateEncryptionKeyData = waxApi.getPrivateKeyFromPassword(
+  accountName,
+  'memo',
+  masterPassword
+);
 // Import the encryption key into the wallet
-const publicEncryptionSigningKey = await wallet.importKey(privateEncryptionKeyData.wifPrivateKey);
+const publicEncryptionSigningKey = await wallet.importKey(
+  privateEncryptionKeyData.wifPrivateKey
+);
 
-'--------------------------------------------------------------------------------------------------------------------------------'
-///////////////////////////////////////////////////////////////////////////////
-//                           Simple operation scenario                      //
-/////////////////////////////////////////////////////////////////////////////
+'--------------------------------------------------------------'
+////////////////////////////////////////////////////////////////
+//                  Simple operation scenario                 //
+////////////////////////////////////////////////////////////////
 
 // Create a transaction
 const simpleOperationTx = await chain.createTransaction();
@@ -76,14 +95,15 @@ console.log(simpleOperationTx.toApi());
 
 /*
  * Call actual broadcast API to send transaction to the blockchain.
- * The code is commented out because examples does not have access to Hive mainnet keys.
+ * The code is commented out because examples does not have access to
+ * Hive mainnet keys.
  */
 // await chain.broadcast(simpleOperationTx);
 
-'--------------------------------------------------------------------------------------------------------------------------------'
-////////////////////////////////////////////////////////////////////////////////
-//                      Simple operation legacy scenario                     //
-//////////////////////////////////////////////////////////////////////////////
+'--------------------------------------------------------------'
+////////////////////////////////////////////////////////////////
+//             Simple operation legacy scenario               //
+////////////////////////////////////////////////////////////////
 
 // Create a transaction
 const legacyTx = await chain.createTransaction();
@@ -101,16 +121,20 @@ const transferOp = {
 // Push simple vote operation into previously initialized transaction
 legacyTx.pushOperation(transferOp)
 
-// Because we want to process transction signing externally, we need to calculate its digest first.
+// Because we want to process transction signing externally,
+// we need to calculate its digest first.
 const digest = legacyTx.legacy_sigDigest;
 
-/* Here you can make any external signing process specific to HIVE transaction, by using another signing tool than beekeeper */
+/*
+Here you can make any external signing process specific to HIVE transaction,
+by using another signing tool than beekeeper
+*/
 
 // Generate the signature based on the transction digest
 const signature = wallet.signDigest(publicPostingSigningKey, digest);
 
 // Suplement the transaction by created signature
-legacyTx.sign(signature);
+legacyTx.addSignature(signature);
 
 // This is JSON form ready for broadcasting or passing to third-party service.
 const txApiForm = legacyTx.toLegacyApi();
@@ -124,10 +148,10 @@ console.log(txApiForm);
  */
 // await chain.broadcast(otherOperationsTx);
 
-'--------------------------------------------------------------------------------------------------------------------------------'
-////////////////////////////////////////////////////////////////////////////////
-//                             Encryption example                            //
-//////////////////////////////////////////////////////////////////////////////
+'--------------------------------------------------------------'
+////////////////////////////////////////////////////////////////
+//                    Encryption example                      //
+////////////////////////////////////////////////////////////////
 
 // Create a transaction
 const encryptionTx = await chain.createTransaction();
@@ -160,15 +184,18 @@ console.log(encryptionTx.toApi());
 
 /*
  * Call actual broadcast API to send transaction to the blockchain.
- * The code is commented out because examples does not have access to Hive mainnet keys.
+ * The code is commented out because examples does not have access
+ * to Hive mainnet keys.
  */
 // await chain.broadcast(otherOperationsTx);
 
-'--------------------------------------------------------------------------------------------------------------------------------'
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//                                       Comment operation scenario                                          //
-// This example will create multiple operations including comment_operation and comment_options_operation //
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
+'--------------------------------------------------------------'
+////////////////////////////////////////////////////////////////
+//                Comment operation scenario                  //
+////////////////////////////////////////////////////////////////
+
+// This example will create multiple operations including
+// comment_operation and comment_options_operation
 
 // Create a transaction
 const commentOperationTx = await chain.createTransaction();
@@ -195,7 +222,8 @@ commentOperationTx.pushOperation(new BlogPostOperation({
 
 /*
  * Use ReplyOperation to create a reply operation and set all fields.
- * Note that the category is not set because it is only available in the BlogPostOperation.
+ * Note that the category is not set because it is only available in
+ * the BlogPostOperation.
 */
 commentOperationTx.pushOperation(new ReplyOperation({
   author: accountName,
@@ -214,7 +242,10 @@ commentOperationTx.pushOperation(new ReplyOperation({
   allowVotes: true
 }));
 
-/* Note that all the logic is hidden under the specific operation constructor that you are currently using */
+/*
+Note that all the logic is hidden under the specific operation
+constructor that you are currently using
+*/
 
 // Sign and build the transaction
 commentOperationTx.sign(wallet, publicPostingSigningKey);
@@ -224,19 +255,75 @@ console.log(commentOperationTx.toApi());
 
 /*
  * Call actual broadcast API to send transaction to the blockchain.
- * The code is commented out because examples does not have access to Hive mainnet keys.
+ * The code is commented out because examples does not have access
+ * to Hive mainnet keys.
  */
 // await chain.broadcast(otherOperationsTx);
 
-'--------------------------------------------------------------------------------------------------------------------------------'
-////////////////////////////////////////////////////////////////////////////////
-//                    Other operation factories scenario                     //
-//////////////////////////////////////////////////////////////////////////////
+'--------------------------------------------------------------'
+////////////////////////////////////////////////////////////////
+//            Account authority update scenario               //
+////////////////////////////////////////////////////////////////
+
+// This example will create account_update2_operation
+
+// Create a transaction
+const accountUpdateTx = await chain.createTransaction();
+
+/*
+ * Use AccountAuthorityUpdateOperation to create
+ * new account_update2_operation with all the fields initialized
+ */
+const accountAuthorityUpdateOp = await AccountAuthorityUpdateOperation.createFor(
+  chain,
+  "gtg"
+);
+
+// role method squashes all authority categories and allows you to select
+// specific ones to modify in a user-friendly interface
+const hasGandalfAuth = accountAuthorityUpdateOp.role("active").has("gandalf");
+
+console.log("Has Gandalf Auth:", hasGandalfAuth);
+
+// Add frodo authority with weight 2
+accountAuthorityUpdateOp.role("active").add("frodo", 2);
+
+// Update the memo key
+accountAuthorityUpdateOp.role("memo").set(
+  "STM8GC13uCZbP44HzMLV6zPZGwVQ8Nt4Kji8PapsPiNq1BK153XTX"
+);
+
+// You can also iterate over different authority levels from given category
+// To perform batch operations
+console.log("Current account authority:")
+for(const role of accountAuthorityUpdateOp.roles("hive"))
+  console.log(role.level, ":", role.value);
+
+accountUpdateTx.pushOperation(accountAuthorityUpdateOp);
+
+// Sign and build the transaction
+accountUpdateTx.sign(wallet, publicActiveSigningKey);
+
+// Log the article transaction into console in API form
+console.log(accountUpdateTx.toApi());
+
+/*
+ * Call actual broadcast API to send transaction to the blockchain.
+ * The code is commented out because examples does not have access
+ * to Hive mainnet keys.
+ */
+// await chain.broadcast(otherOperationsTx);
+
+'--------------------------------------------------------------'
+////////////////////////////////////////////////////////////////
+//            Other operation factories scenario              //
+////////////////////////////////////////////////////////////////
 
 // Create a transaction
 const operationFactoriesTx = await chain.createTransaction();
 
-// Create a recurrent transfer operation that will be executed every day for 30 days with the ammount of 100.000 HIVE
+// Create a recurrent transfer operation that will be executed every day
+// for 30 days with the ammount of 100.000 HIVE
 operationFactoriesTx.pushOperation(new DefineRecurrentTransferOperation({
   from: accountName,
   to: 'friend',
@@ -246,7 +333,8 @@ operationFactoriesTx.pushOperation(new DefineRecurrentTransferOperation({
   executions: 30
 }));
 
-// Create a proposal update operation of id equals 1 with the ammount of 100.000 HBD
+// Create a proposal update operation of id equals 1 with the
+// ammount of 100.000 HBD
 operationFactoriesTx.pushOperation(new UpdateProposalOperation({
   proposalId: 1,
   creator: accountName,
@@ -256,7 +344,9 @@ operationFactoriesTx.pushOperation(new UpdateProposalOperation({
   endDate:  '2023-03-14',
 }));
 
-// Create a witness set properties operation with hbd interest rate of 7.5%, maximum block size of 65536, account creation fee of 300.000 HIVE and url of "https://example.com"
+// Create a witness set properties operation with hbd interest rate of 7.5%,
+// maximum block size of 65536, account creation fee of 300.000 HIVE
+// and url of "https://example.com"
 operationFactoriesTx.pushOperation(new WitnessSetPropertiesOperation({
   owner: accountName,
   witnessSigningKey: publicActiveSigningKey,
@@ -274,14 +364,17 @@ console.log(operationFactoriesTx.toApi());
 
 /*
  * Call actual broadcast API to send transaction to the blockchain.
- * The code is commented out because examples does not have access to Hive mainnet keys.
+ * The code is commented out because examples does not have access
+ * to Hive mainnet keys.
  */
 // await chain.broadcast(otherOperationsTx);
 
-'--------------------------------------------------------------------------------------------------------------------------------'
-//////////////////////////////////////////////////////////////////////////////////
-//     Scenario taht includes all HiveAppsOperations (custom_json based)       //
-////////////////////////////////////////////////////////////////////////////////
+'--------------------------------------------------------------'
+////////////////////////////////////////////////////////////////
+//      Scenario taht includes all HiveAppsOperations         //
+////////////////////////////////////////////////////////////////
+
+// (custom_json based)
 
 // Create a transaction
 const otherOperationsTx = await chain.createTransaction();
@@ -295,7 +388,8 @@ otherOperationsTx.pushOperation(
     .followBlog(accountName, 'blog-to-follow')
     .muteBlog(accountName, 'blog-to-mute')
     .reblog(accountName, 'to-reblog', 'post-permlink')
-    // The account that authorizes underlying custom json operation is also reponsible for signing the transaction using its posting authority
+    // The account that authorizes underlying custom json operation is
+    // also reponsible for signing the transaction using its posting authority
     .authorize(accountName)
 );
 
@@ -307,7 +401,8 @@ otherOperationsTx.pushOperation(
   rcOperation
   // Delegate 1000 RC from your account to a friend's account.
   .delegate(accountName, 1000, 'friend')
-  // The account that authorizes underlying custom json operation is also reponsible for signing the transaction using its posting authority
+  // The account that authorizes underlying custom json operation is also
+  // reponsible for signing the transaction using its posting authority
   .authorize(accountName)
 );
 
@@ -325,7 +420,8 @@ otherOperationsTx.pushOperation(
     // Flag the post of the author in the community with the permlink
     // Add notes regarding the violation (violation notes).
     .flagPost(communityName, 'author-account', 'post-permlink', 'violation notes')
-    // The account that authorizes underlying custom json operation is also reponsible for signing the transaction using its posting authority
+    // The account that authorizes underlying custom json operation is also
+    // reponsible for signing the transaction using its posting authority
     .authorize(accountName)
 );
 
@@ -337,6 +433,7 @@ console.log(otherOperationsTx.toApi());
 
 /*
  * Call actual broadcast API to send transaction to the blockchain.
- * The code is commented out because examples does not have access to Hive mainnet keys.
+ * The code is commented out because examples does not have access
+ * to Hive mainnet keys.
  */
 // await chain.broadcast(otherOperationsTx);

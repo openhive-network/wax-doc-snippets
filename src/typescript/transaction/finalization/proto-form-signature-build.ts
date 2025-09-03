@@ -20,6 +20,6 @@ const operation = {
 tx.pushOperation(operation);
 
 // Supplement a transaction with an externally generated signature.
-tx.sign('deadc0de');
+tx.addSignature('deadc0de');
 
 console.log(tx.toApi());

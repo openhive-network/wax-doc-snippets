@@ -6,7 +6,8 @@ const chain = await createHiveChain();
 // Create transaction with data from remote
 const tx = await chain.createTransaction();
 
-const { wallet, publicKey1 } = globalThis.snippetsBeekeeperData; // It should be the public key of the account that you authorize the operation
+// It should be the public key of the account that you authorize the operation
+const { wallet, publicKey1 } = globalThis.snippetsBeekeeperData;
 
 // Your account name
 const yourAccount = 'your-account';
@@ -25,7 +26,8 @@ tx.pushOperation(
   rcOperation
   // Delegate 1000 RC from your account to a friend's account.
   .delegate(yourAccount, 1000, friend)
-  // The account that authorizes underlying custom json operation is also reponsible for signing the transaction using its posting authority
+  // The account that authorizes underlying custom json operation is
+  // also reponsible for signing the transaction using its posting authority
   .authorize(yourAccount)
 );
 
@@ -38,7 +40,9 @@ otherTx.pushOperation(
   rcOperation
     // Remove delegation of RC from your account to a friend's account.
     .removeDelegation(yourAccount, otherFriend)
-    .authorize(yourAccount) // The account that authorizes the operation must also sign the transaction// Build the current set of hive apps operation ready to be pushed into the transaction
+    .authorize(yourAccount) // The account that authorizes the operation must also
+    // sign the transaction// Build the current set of hive apps operation
+    // ready to be pushed into the transaction
 );
 
 // Sign and build the other transaction

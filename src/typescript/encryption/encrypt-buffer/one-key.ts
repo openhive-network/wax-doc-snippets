@@ -1,6 +1,7 @@
 import { createHiveChain } from "@hiveio/wax";
 
-const { wallet, publicKey1 } = globalThis.snippetsBeekeeperData; /* Import preconfigured beekeeper data specific to snippet examples */
+/* Import preconfigured beekeeper data specific to snippet examples */
+const { wallet, publicKey1 } = globalThis.snippetsBeekeeperData;
 
 const hiveChain = await createHiveChain();
 const content = "This is a secret message.";

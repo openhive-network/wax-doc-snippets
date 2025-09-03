@@ -19,7 +19,10 @@ const operation = {
 // Push operation into the transction
 tx.pushOperation(operation);
 
-// Get a transaction object holding all operations and transaction TAPOS & expiration data, but transaction is **not signed yet**
+/*
+Get a transaction object holding all operations and transaction
+TAPOS & expiration data, but transaction is **not signed yet**
+*/
 const builtTransaction = tx.transaction;
 
 // Most transaction properties should be read from the transaction before building it.

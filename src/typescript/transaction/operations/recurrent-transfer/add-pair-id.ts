@@ -12,7 +12,8 @@ const pairId = 12345;
 const amount = chain.hiveCoins(100); // 100.000 HIVE
 const memo = "Monthly subscription";
 
-// Use this time just for example default values for recurrence and executions which is 24 for recurrence and 2 for executions.
+// Use this time just for example default values for recurrence and executions
+// which is 24 for recurrence and 2 for executions.
 tx.pushOperation(new DefineRecurrentTransferOperation({
   from,
   to,
@@ -22,5 +23,8 @@ tx.pushOperation(new DefineRecurrentTransferOperation({
   memo
 }));
 
-// Get a transaction object holding all operations and transaction TAPOS & expiration data, but transaction is **not signed yet**
+/*
+Get a transaction object holding all operations and transaction
+TAPOS & expiration data, but transaction is **not signed yet**
+*/
 console.log(tx.transaction);

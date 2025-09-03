@@ -3,15 +3,15 @@ import { createHiveChain } from '@hiveio/wax';
 // Initialize hive chain interface
 const chain = await createHiveChain();
 
-// Initialize a transaction object
+// Initialize an online transaction object
 const tx = await chain.createTransaction();
 
 // Declare example operation
 const operation = {
   vote_operation: {
-    voter: "voter",
-    author: "test-author",
-    permlink: "test-permlink",
+    voter: "gtg",
+    author: "gtg",
+    permlink: "hello-world",
     weight: 2200
   }
 };
@@ -19,10 +19,5 @@ const operation = {
 // Push operation into the transction
 tx.pushOperation(operation);
 
-/*
-Get a transaction object holding all operations and transaction
-TAPOS & expiration data, but transaction is **not signed yet**
-*/
-const builtTx = tx.transaction;
-
-console.log(builtTx.operations);
+// Display transaction in the binary form
+console.log(tx.toBinaryForm());

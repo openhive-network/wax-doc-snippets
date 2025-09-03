@@ -5,7 +5,9 @@ const chain = await createHiveChain();
 class OperationsFormatter {
   @WaxFormattable({ matchProperty: "type", matchValue: "transfer_operation" })
   public transferOperationFormatter({ source }): string {
-    return `${source.value.from} transferred ${chain.waxify`${source.value.amount!}`} to ${source.value.to}`;
+    const amount = chain.waxify`${source.value.amount!}`;
+
+    return `${source.value.from} transferred ${amount} to ${source.value.to}`;
   }
 
   @WaxFormattable({ matchProperty: "type", matchValue: "vote_operation" })

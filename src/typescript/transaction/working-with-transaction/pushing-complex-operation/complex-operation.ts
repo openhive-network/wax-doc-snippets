@@ -15,7 +15,10 @@ tx.pushOperation(new WitnessSetPropertiesOperation({
   url: 'https://example.com'
 }));
 
-// Get a transaction object holding all operations and transaction TAPOS & expiration data, but transaction is **not signed yet**
+/*
+Get a transaction object holding all operations and transaction
+TAPOS & expiration data, but transaction is **not signed yet**
+*/
 const builtTransaction = tx.transaction;
 
 console.log(builtTransaction.operations[0]); // Witness set properties operation

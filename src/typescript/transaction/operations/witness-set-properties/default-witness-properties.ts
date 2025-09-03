@@ -14,5 +14,8 @@ tx.pushOperation(new WitnessSetPropertiesOperation({
   witnessSigningKey: publicKey1,
 }));
 
-// Get a transaction object holding all operations and transaction TAPOS & expiration data, but transaction is **not signed yet**
+/*
+Get a transaction object holding all operations and transaction
+TAPOS & expiration data, but transaction is **not signed yet**
+*/
 console.log(tx.transaction);

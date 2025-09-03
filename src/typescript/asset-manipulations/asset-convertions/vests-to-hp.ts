@@ -14,5 +14,10 @@ const totalVestingFundHiveAsset = waxApi.hiveSatoshis(totalVestingFundHiveAmount
 const totalVestingSharesAsset = waxApi.vestsSatoshis(totalVestingSharesAmount);
 
 // Use `vestsToHp` to perform the conversion
-const hpAsset = waxApi.vestsToHp(vestsAsset, totalVestingFundHiveAsset, totalVestingSharesAsset);
+const hpAsset = waxApi.vestsToHp(
+  vestsAsset,
+  totalVestingFundHiveAsset,
+  totalVestingSharesAsset
+);
+
 console.log(`HP Asset: ${JSON.stringify(hpAsset)}`);

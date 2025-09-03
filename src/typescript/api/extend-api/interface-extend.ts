@@ -13,7 +13,10 @@ interface IsKnownTransactionResponse {
 // Create the proper API structure
 type TExtendedApi = {
   database_api: { // API
-    is_known_transaction: TWaxApiRequest<IsKnownTransactionRequest, IsKnownTransactionResponse>; // Method
+    is_known_transaction: TWaxApiRequest<
+      IsKnownTransactionRequest,
+      IsKnownTransactionResponse
+    >; // Method
   }
 };
 

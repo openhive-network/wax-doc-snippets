@@ -6,7 +6,8 @@ const chain = await createHiveChain();
 // Create transaction with data from remote
 const tx = await chain.createTransaction();
 
-const { wallet, publicKey1 } = globalThis.snippetsBeekeeperData; // It should be the public key of the account that you authorize the operation
+// It should be the public key of the account that you authorize the operation
+const { wallet, publicKey1 } = globalThis.snippetsBeekeeperData;
 
 // Your account name
 const yourAccount = 'your-account';
@@ -22,10 +23,12 @@ tx.pushOperation(
   communityOperation
     // Subscribe the community
     .subscribe(communityName)
-    // Flag the post of the author (authoraccount) in the community (communityname) with the permlink (postpermlink)
+    // Flag the post of the author (authoraccount) in
+    // the community (communityname) with the permlink (postpermlink)
     // Add notes regarding the violation (violation notes).
     .flagPost(communityName, 'author-account', 'post-permlink', 'violation notes')
-    // The account that authorizes underlying custom json operation is also reponsible for signing the transaction using its posting authority
+    // The account that authorizes underlying custom json operation is also
+    // responsible for signing the transaction using its posting authority
     .authorize(yourAccount)
 );
 

@@ -6,7 +6,9 @@ const chain = await createHiveChain();
 const base: IWaxBaseInterface = chain;
 
 /**
- * This creation method is useful for cases, when already confirmed blockchain transaction is about to analyzed using ITransaction functions
+ * This creation method is useful for cases,
+ * when already confirmed blockchain transaction is about to
+ * analyzed using ITransaction functions
  * such as providing signatureKeys or transactoin ID.
  */
 

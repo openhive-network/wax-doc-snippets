@@ -27,16 +27,20 @@ const legacyApiTx = tx.toLegacyApi();
 
 console.log(legacyApiTx);
 
-// Because we want to process transction signing externally, we need to calculate its digest first.
+// Because we want to process transction signing externally,
+// we need to calculate its digest first.
 const digest = tx.legacy_sigDigest;
 
-/* Here you can make any external signing process specific to HIVE transaction, by using another signing tool than beekeeper */
+/*
+Here you can make any external signing process specific to HIVE
+transaction, by using another signing tool than beekeeper
+*/
 
 // Generate the signature based on the transction digest
 const signature = wallet.signDigest(publicKey1, digest);
 
 // Suplement the transaction by created signature
-tx.sign(signature);
+tx.addSignature(signature);
 
 // This is JSON form ready for broadcasting or passing to third-party service.
 const txApiForm = tx.toLegacyApi();

@@ -23,5 +23,6 @@ tx.pushOperation(operation);
 console.log(tx.toApi());
 
 // broadcast the transaction
-// Uncomment the following line to broadcast the transaction to the mainnet (this will most likely fail due to transaction not being signed):
+// Uncomment the following line to broadcast the transaction to the mainnet
+// (this will most likely fail due to transaction not being signed):
 // await chain.broadcast(tx);

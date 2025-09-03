@@ -12,8 +12,8 @@ importers:
         specifier: 1.27.11
         version: 1.27.11
       '@hiveio/wax':
-        specifier: 1.27.6-rc10
-        version: 1.27.6-rc10
+        specifier: 1.27.6-rc13
+        version: 1.27.6-rc13
     devDependencies:
       '@types/node':
         specifier: '20'
@@ -31,8 +31,8 @@ packages:
     resolution: {integrity: sha512-e3L0TTI1LI8mHqTgyGGOWsI6hPabOwFh47x9+nm+9IATzCS50SbEGx61781PhDmJUq+JIetMYphdtfuiqcMtoA==}
     engines: {node: ^20.11 || >= 21.2}
 
-  '@hiveio/wax@1.27.6-rc10':
-    resolution: {integrity: sha512-ojimDDF9xZAhuN/qZknB5ND/q1vUZvDgxwYPQ7XCep9BqOCe++BKCJnH7mdPs2J1zPc+CbKIX4xDQbf96ORO5g==}
+  '@hiveio/wax@1.27.6-rc13':
+    resolution: {integrity: sha512-SVz55Yda0CAk0kFf1afxwwIjY8fzUVtd1fOoLtCb3kiPxwFgtqyJXUNl+93qBElxT8Q6pM4CmPAobnq3N/1VjQ==}
     engines: {node: ^20.11 || >= 21.2}
 
   '@types/node@20.19.11':
@@ -60,9 +60,6 @@ packages:
   json-parse-even-better-errors@4.0.0:
     resolution: {integrity: sha512-lR4MXjGNgkJc7tkQ97kb2nuEMnNCyU//XYVH0MKTGcXEiSudQ5MKGKen3C5QubYy0vmq+JGitUg92uuywGEwIA==}
     engines: {node: ^18.17.0 || >=20.5.0}
-
-  long@5.2.3:
-    resolution: {integrity: sha512-lcHwpNoggQTObv5apGNCTdJrO69eHOZMi4BNC+rTLER8iHAqGrUVeLh/irVIM7zTw2bOXA8T6uNPeujwOLg/2Q==}
 
   memorystream@0.3.1:
     resolution: {integrity: sha512-S3UwM3yj5mtUSEfP41UZmt/0SCoVYUcU1rkXv+BQ5Ig8ndL4sPoJNBUJERafdPb5jjHJGuMgytgKvKIf58XNBw==}
@@ -127,10 +124,9 @@ snapshots:
 
   '@hiveio/beekeeper@1.27.11': {}
 
-  '@hiveio/wax@1.27.6-rc10':
+  '@hiveio/wax@1.27.6-rc13':
     dependencies:
       events: 3.3.0
-      long: 5.2.3
 
   '@types/node@20.19.11':
     dependencies:
@@ -151,8 +147,6 @@ snapshots:
   isexe@3.1.1: {}
 
   json-parse-even-better-errors@4.0.0: {}
-
-  long@5.2.3: {}
 
   memorystream@0.3.1: {}
 

@@ -8,7 +8,8 @@ const tx = await chain.createTransaction();
 
 /**
  * Uses the push operation on the transaction and specifies an argument:
- * The operation class new instance, which takes an object as the argument with the operation configuration.
+ * The operation class new instance, which takes an object as
+ * the argument with the operation configuration.
  */
 tx.pushOperation(new BlogPostOperation({
   // Here you can pass the arguments to given class constructor
@@ -22,5 +23,8 @@ tx.pushOperation(new BlogPostOperation({
   beneficiaries: [{ account: 'conan-librarian', weight: 40 }]
 }));
 
-// Get a transaction object holding all operations and transaction TAPOS & expiration data, but transaction is **not signed yet**
+/*
+Get a transaction object holding all operations and transaction
+TAPOS & expiration data, but transaction is **not signed yet**
+*/
 console.log(tx.transaction);

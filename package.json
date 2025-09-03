@@ -41,6 +41,12 @@
     "test-transaction-working-with-transaction-simple-operation": "npm test src/typescript/transaction/working-with-transaction/pushing-simple-operation/simple-operation.ts",
     "test-transaction-working-with-transaction-complex-operation": "npm test src/typescript/transaction/working-with-transaction/pushing-complex-operation/complex-operation.ts",
     "test-transaction-working-with-transaction-reading-properties": "npm test src/typescript/transaction/working-with-transaction/reading-transaction-properties/reading-properties.ts",
+    "test-transaction-working-with-transaction-binary-from": "npm test src/typescript/transaction/working-with-transaction/binary-view/from-binary.ts",
+    "test-transaction-working-with-transaction-binary-metadata": "npm test src/typescript/transaction/working-with-transaction/binary-view/get-binary-metadata.ts",
+    "test-transaction-working-with-transaction-binary-to": "npm test src/typescript/transaction/working-with-transaction/binary-view/to-binary.ts",
+    "test-transaction-working-with-transaction-online-trace": "npm test src/typescript/transaction/working-with-transaction/online-transaction/authority-verification-trace.ts",
+    "test-transaction-working-with-transaction-online-operation-validation": "npm test src/typescript/transaction/working-with-transaction/online-transaction/on-chain-operation-validation.ts",
+    "test-transaction-working-with-transaction-online-verification": "npm test src/typescript/transaction/working-with-transaction/online-transaction/on-chain-verification.ts",
     "test-transaction-finalization-simple-build": "npm test src/typescript/transaction/finalization/simple-build.ts",
     "test-transaction-finalization-proto-form-signature-build": "npm test src/typescript/transaction/finalization/proto-form-signature-build.ts",
     "test-transaction-finalization-sign-and-build": "npm test src/typescript/transaction/finalization/sign-and-build.ts",
@@ -79,7 +85,7 @@
   "packageManager": "pnpm@10.0.0+sha512.b8fef5494bd3fe4cbd4edabd0745df2ee5be3e4b0b8b08fa643aa3e4c6702ccc0f00d68fa8a8c9858a735a0032485a44990ed2810526c875e416f001b17df12b",
   "dependencies": {
     "@hiveio/beekeeper": "1.27.11",
-    "@hiveio/wax": "1.27.6-rc10"
+    "@hiveio/wax": "1.27.6-rc13"
   },
   "devDependencies": {
     "@types/node": "20",

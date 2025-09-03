@@ -14,7 +14,8 @@ interface BlockHeaderResponse {
   transaction_merkle_root: string;
 };
 
-// Note: We have to first provide the type of our API with proper structure in the generics for IntelliSense
+// Note: We have to first provide the type of our API with
+// proper structure in the generics for IntelliSense
 const extended = chain.extendRest<{
   hafahApi: {
     blocks: {
@@ -27,8 +28,10 @@ const extended = chain.extendRest<{
     }
   }
 }>
-// Then here we provide the implementation details as a function argument for runtime evaluation.
-// This helps to deduce template values in the URL (provided {} characters) and potentially change HTTP methods
+// Then here we provide the implementation details as
+// a function argument for runtime evaluation.
+// This helps to deduce template values in the URL
+// (provided {} characters) and potentially change HTTP methods
 ({
   hafahApi: {
     urlPath: 'hafah-api',
