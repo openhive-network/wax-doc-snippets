@@ -9,7 +9,7 @@ const tx = await chain.createTransaction();
 // Create online operation - createFor will parse authorities for "gtg" account from the chain
 const op = await AccountAuthorityUpdateOperation.createFor(chain, "gtg");
 
-// Add "initminer" to owner role and change weight treshold to 2
+// Add "initminer" to owner role and change weight threshold to 2
 op.role("owner").add("initminer", 1).setTreshold(2);
 
 // Push operation to transaction

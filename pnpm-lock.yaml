@@ -12,11 +12,11 @@ importers:
         specifier: 1.27.11
         version: 1.27.11
       '@hiveio/wax':
-        specifier: 1.27.6-rc13
-        version: 1.27.6-rc13
+        specifier: 1.27.11-rc0
+        version: 1.27.11-rc0
       '@hiveio/wax-signers-beekeeper':
-        specifier: 1.27.6-rc13
-        version: 1.27.6-rc13
+        specifier: 1.27.11-rc0
+        version: 1.27.11-rc0
     devDependencies:
       '@types/node':
         specifier: '20'
@@ -34,11 +34,11 @@ packages:
     resolution: {integrity: sha512-e3L0TTI1LI8mHqTgyGGOWsI6hPabOwFh47x9+nm+9IATzCS50SbEGx61781PhDmJUq+JIetMYphdtfuiqcMtoA==}
     engines: {node: ^20.11 || >= 21.2}
 
-  '@hiveio/wax-signers-beekeeper@1.27.6-rc13':
-    resolution: {integrity: sha512-vzUEAwDvaZpSdSWjN//yWuPNH0b0r0uelCBVI5Z9oM0t6ES8ntow9FPmWDyxDiLSelsPZc78kvKT+0yzVDwI2Q==}
+  '@hiveio/wax-signers-beekeeper@1.27.11-rc0':
+    resolution: {integrity: sha512-AxKq7IE4gcGCj6VQNYLodonRrfUvAeFBrbTjOArcH+ysOlsNl/9onI5iDF+jHrGRn8iN3ZHSa2hFnhTRNwCDYg==}
 
-  '@hiveio/wax@1.27.6-rc13':
-    resolution: {integrity: sha512-SVz55Yda0CAk0kFf1afxwwIjY8fzUVtd1fOoLtCb3kiPxwFgtqyJXUNl+93qBElxT8Q6pM4CmPAobnq3N/1VjQ==}
+  '@hiveio/wax@1.27.11-rc0':
+    resolution: {integrity: sha512-9t7rYkGYby4zXUkE1DaF6VseTj5P4Ka/AQai7z9nSKRqzVnmuNlKI+ZTWxEwmJLU9SyKdz5rKrUNwAi7Xig1tg==}
     engines: {node: ^20.11 || >= 21.2}
 
   '@types/node@20.19.11':
@@ -130,12 +130,12 @@ snapshots:
 
   '@hiveio/beekeeper@1.27.11': {}
 
-  '@hiveio/wax-signers-beekeeper@1.27.6-rc13':
+  '@hiveio/wax-signers-beekeeper@1.27.11-rc0':
     dependencies:
       '@hiveio/beekeeper': 1.27.11
-      '@hiveio/wax': 1.27.6-rc13
+      '@hiveio/wax': 1.27.11-rc0
 
-  '@hiveio/wax@1.27.6-rc13':
+  '@hiveio/wax@1.27.11-rc0':
     dependencies:
       events: 3.3.0
 
