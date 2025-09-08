@@ -25,10 +25,7 @@ TAPOS & expiration data, but transaction is **not signed yet**
 */
 const builtTransaction = tx.transaction;
 
-// Most transaction properties should be read from the transaction before building it.
 console.log(`id: ${tx.id}`);
 console.log(`sigDigest: ${tx.sigDigest}`);
-
-// Some transaction properties should be read from the transaction after building it.
 console.log(`expiration: ${builtTransaction.expiration}`);
 console.log(`ref_block_num: ${builtTransaction.ref_block_num}`);

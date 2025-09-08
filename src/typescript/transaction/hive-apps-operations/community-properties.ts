@@ -6,8 +6,7 @@ const chain = await createHiveChain();
 // Create transaction with data from remote
 const tx = await chain.createTransaction();
 
-// It should be the public key of the account that you authorize the operation
-const { wallet, publicKey1 } = globalThis.snippetsBeekeeperData;
+const { signer1 } = globalThis.snippetsBeekeeperData;
 
 // Your account name
 const yourAccount = 'your-account';
@@ -36,6 +35,6 @@ tx.pushOperation(
 );
 
 // Sign and build the transaction
-tx.sign(wallet, publicKey1);
+await signer1.signTransaction(tx);
 
 console.log(tx.transaction.operations[0]); // Update community properties operation

@@ -3,7 +3,7 @@ import { createHiveChain } from '@hiveio/wax';
 // Initialize hive chain interface
 const chain = await createHiveChain();
 
-const { wallet, publicKey1 } = globalThis.snippetsBeekeeperData;
+const { signer1 } = globalThis.snippetsBeekeeperData;
 
 // Initialize a transaction object
 const tx = await chain.createTransaction();
@@ -22,6 +22,6 @@ const operation = {
 tx.pushOperation(operation);
 
 // Build transaction with signature provided.
-tx.sign(wallet, publicKey1);
+await signer1.signTransaction(tx);
 
 console.log(tx.toApi());

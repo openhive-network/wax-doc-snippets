@@ -3,8 +3,8 @@ import { createHiveChain, ReplyOperation } from '@hiveio/wax';
 // Initialize chain
 const chain = await createHiveChain();
 
-// Create/get a wallet
-const { wallet, publicKey1, publicKey2 } = globalThis.snippetsBeekeeperData;
+// Retrieve the signers
+const { signer1, signer2 } = globalThis.snippetsBeekeeperData;
 
 // Create a transaction
 const tx = await chain.createTransaction();
@@ -29,13 +29,12 @@ console.log(apiTx);
 // Apply the transaction in the API form into transaction interface
 const txFromApi = chain.createTransactionFromJson(apiTx);
 
-txFromApi.sign(wallet, publicKey1);
+await signer1.signTransaction(txFromApi);
 
 // Log txSigned
 console.log(txFromApi.toApi());
 
-// Multi sign the transaction with another public key
-txFromApi.sign(wallet, publicKey2);
+await signer2.signTransaction(txFromApi);
 
 // log multi signed transaction
 console.log(txFromApi.toApi());

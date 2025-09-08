@@ -1,7 +1,7 @@
 import { createHiveChain } from "@hiveio/wax";
 
 /* Import preconfigured beekeeper data specific to snippet examples */
-const { wallet, publicKey1, publicKey2 } = globalThis.snippetsBeekeeperData;
+const { signer1, publicKey1, publicKey2 } = globalThis.snippetsBeekeeperData;
 
 const hiveChain = await createHiveChain();
 
@@ -21,6 +21,6 @@ tx.startEncrypt(publicKey1, publicKey2)
   .stopEncrypt(); // Stop the encryption chain
 
 // Sign and build the transaction
-tx.sign(wallet, publicKey1);
+await signer1.signTransaction(tx);
 
 console.log(tx.transaction);

@@ -1,15 +1,12 @@
-import { createHiveChain } from "@hiveio/wax";
-
 /* Import preconfigured beekeeper data specific to snippet examples */
-const { wallet, publicKey1, publicKey2 } = globalThis.snippetsBeekeeperData;
+const { signer1, signer2, publicKey2 } = globalThis.snippetsBeekeeperData;
 
-const hiveChain = await createHiveChain();
 const content = "This is a secret message.";
 
-// Encrypt the content using two keys - sender side
-const encryptedContent = hiveChain.encrypt(wallet, content, publicKey1, publicKey2);
+// Pre-encrypt data for the second signer - sender side
+const encryptedContent = await signer1.encryptData(content, publicKey2);
 
 // Decrypt the content - receiver side
-const decryptedContent = hiveChain.decrypt(wallet, encryptedContent);
+const decryptedContent = await signer2.decryptData(encryptedContent);
 
 console.log(decryptedContent); // This is a secret message.

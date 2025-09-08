@@ -14,6 +14,9 @@ importers:
       '@hiveio/wax':
         specifier: 1.27.6-rc13
         version: 1.27.6-rc13
+      '@hiveio/wax-signers-beekeeper':
+        specifier: 1.27.6-rc13
+        version: 1.27.6-rc13
     devDependencies:
       '@types/node':
         specifier: '20'
@@ -30,6 +33,9 @@ packages:
   '@hiveio/beekeeper@1.27.11':
     resolution: {integrity: sha512-e3L0TTI1LI8mHqTgyGGOWsI6hPabOwFh47x9+nm+9IATzCS50SbEGx61781PhDmJUq+JIetMYphdtfuiqcMtoA==}
     engines: {node: ^20.11 || >= 21.2}
+
+  '@hiveio/wax-signers-beekeeper@1.27.6-rc13':
+    resolution: {integrity: sha512-vzUEAwDvaZpSdSWjN//yWuPNH0b0r0uelCBVI5Z9oM0t6ES8ntow9FPmWDyxDiLSelsPZc78kvKT+0yzVDwI2Q==}
 
   '@hiveio/wax@1.27.6-rc13':
     resolution: {integrity: sha512-SVz55Yda0CAk0kFf1afxwwIjY8fzUVtd1fOoLtCb3kiPxwFgtqyJXUNl+93qBElxT8Q6pM4CmPAobnq3N/1VjQ==}
@@ -123,6 +129,11 @@ packages:
 snapshots:
 
   '@hiveio/beekeeper@1.27.11': {}
+
+  '@hiveio/wax-signers-beekeeper@1.27.6-rc13':
+    dependencies:
+      '@hiveio/beekeeper': 1.27.11
+      '@hiveio/wax': 1.27.6-rc13
 
   '@hiveio/wax@1.27.6-rc13':
     dependencies:
