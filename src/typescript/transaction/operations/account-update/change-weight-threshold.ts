@@ -10,7 +10,7 @@ const tx = await chain.createTransaction();
 const op = await AccountAuthorityUpdateOperation.createFor(chain, "gtg");
 
 // Add "initminer" to owner role and change weight threshold to 2
-op.role("owner").add("initminer", 1).setTreshold(2);
+op.role("owner").add("initminer", 1).setThreshold(2);
 
 // Push operation to transaction
 tx.pushOperation(op);
