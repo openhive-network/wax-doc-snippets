@@ -27,13 +27,13 @@ const legacyApiTx = tx.toLegacyApi();
 
 console.log(legacyApiTx);
 
-// Because we want to process transction signing externally,
-// we need to calculate its digest first.
+// Because we want to process transction signing in legacy way, we need to sign the transaction externally, which is shown below.
+// We need to calculate the transaction digest first.
 const digest = tx.legacy_sigDigest;
 
 /*
-Here you can make any external signing process specific to HIVE
-transaction, by using another signing tool than beekeeper
+Other signers (except beekeeper) do not allow signing the digest directly,
+this is a beekeeper-specific feature.
 */
 
 // Generate the signature based on the transction digest
