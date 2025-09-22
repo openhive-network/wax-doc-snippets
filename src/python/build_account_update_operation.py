@@ -9,17 +9,12 @@
 
 from __future__ import annotations
 import asyncio
-import nest_asyncio
 from wax import create_hive_chain
 from wax.complex_operations.account_update import AccountAuthorityUpdateOperation
-from src.static.snippets.src.python.utils import (
-    EXAMPLE_PUBLIC_KEY,
-    get_random_public_key,
+from src.python.utils import (
     show_transaction,
     show_authority,
 )
-
-nest_asyncio.apply()
 
 # %% [markdown]
 # ## 1. Configuration
@@ -31,6 +26,8 @@ chain = create_hive_chain()
 
 # %%
 async def create_account_update_operation() -> AccountAuthorityUpdateOperation:
+    example_public_key = chain.suggest_brain_key().associated_public_key
+
     # First, create the operation for the specified account
     operation = await AccountAuthorityUpdateOperation.create_for(chain, account_name="alice")
 
@@ -46,7 +43,7 @@ async def create_account_update_operation() -> AccountAuthorityUpdateOperation:
     show_authority(active.authority, "Bob was added to Active")
 
     # Add a public key to the active role
-    active.add(account_or_key=EXAMPLE_PUBLIC_KEY, weight=2)
+    active.add(account_or_key=example_public_key, weight=2)
     show_authority(active.authority, "Public key added to Active")
 
     # Change the weight threshold for this role
@@ -81,7 +78,7 @@ async def create_account_update_operation() -> AccountAuthorityUpdateOperation:
     show_authority(owner.authority, "Owner authority initial state")
 
     # Add 5 random public keys to the owner authority
-    for key in [get_random_public_key() for _ in range(5)]:
+    for key in [chain.suggest_brain_key().associated_public_key for _ in range(5)]:
         owner.add(account_or_key=key, weight=1)
     show_authority(owner.authority, "5 random keys added to owner")
 
@@ -90,7 +87,7 @@ async def create_account_update_operation() -> AccountAuthorityUpdateOperation:
     show_authority(owner.authority, "Owner authority reset to original")
 
     # Set the memo key
-    operation.roles.memo.set(public_key=EXAMPLE_PUBLIC_KEY)
+    operation.roles.memo.set(public_key=example_public_key)
 
     return operation
 
