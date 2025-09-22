@@ -29,7 +29,7 @@ from wax import WaxChainOptions, WaxOptions, create_hive_chain, create_wax_found
 # matches actual on-chain operations.
 
 # %%
-wax_default = create_wax_foundation()
+wax = create_wax_foundation()
 
 # %% [markdown]
 # #### 2. Create a Wax foundation with a custom chain_id

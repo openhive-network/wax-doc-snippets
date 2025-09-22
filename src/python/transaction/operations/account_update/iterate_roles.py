@@ -6,13 +6,13 @@ from wax.complex_operations.account_update import AccountAuthorityUpdateOperatio
 
 async def main() -> None:
     # Initialize hive chain interface
-    wax = create_hive_chain()
+    chain = create_hive_chain()
 
     # Initialize a transaction object
-    tx = await wax.create_transaction()
+    tx = await chain.create_transaction()
 
     # Create online operation - createFor will parse authorities for "gtg" account from the chain
-    op = await AccountAuthorityUpdateOperation.create_for(wax, account_name="gtg")
+    op = await AccountAuthorityUpdateOperation.create_for(chain, account_name="gtg")
 
     # Iterate over all role levels of hive role category
     for role in op.categories.hive:

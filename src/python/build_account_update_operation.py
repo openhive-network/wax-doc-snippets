@@ -26,13 +26,13 @@ nest_asyncio.apply()
 # Load necessary values from environment variables or provide them directly for testing purposes.
 
 # %%
-wax = create_hive_chain()
+chain = create_hive_chain()
 
 
 # %%
 async def create_account_update_operation() -> AccountAuthorityUpdateOperation:
     # First, create the operation for the specified account
-    operation = await AccountAuthorityUpdateOperation.create_for(wax, account_name="alice")
+    operation = await AccountAuthorityUpdateOperation.create_for(chain, account_name="alice")
 
     # Access the active role authority
     active = operation.roles.active
@@ -99,7 +99,7 @@ async def create_account_update_operation() -> AccountAuthorityUpdateOperation:
 async def main() -> None:
     account_update = await create_account_update_operation()
 
-    transaction = await wax.create_transaction()
+    transaction = await chain.create_transaction()
     transaction.push_operation(account_update)
     print("Transaction ready to sign and broadcast:")
     show_transaction(transaction)
