@@ -5,9 +5,6 @@
   "workspaceFolder": "/workspaces/wax-doc-snippets",
   "customizations": {
     "codespaces": {
-      "openFiles": [
-        "/workspaces/wax-doc-snippets/src/python/default_wax_initialization.py"
-      ]
     },
     "vscode": {
       "settings": {
