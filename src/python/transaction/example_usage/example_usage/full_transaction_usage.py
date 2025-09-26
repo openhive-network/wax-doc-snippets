@@ -1,4 +1,6 @@
 import asyncio
+import secrets
+import string
 
 from beekeepy import AsyncBeekeeper
 from wax import create_hive_chain, create_wax_foundation
@@ -28,8 +30,10 @@ async def main():
         async with wallet:
             # Declare example account name
             account_name = "your-account"
+
             # Declare example password for generating private key
-            master_password = "your-master-password"
+            characters = string.ascii_letters + string.digits + string.punctuation
+            master_password = "".join(secrets.choice(characters) for _ in range(24))
 
             # Generating a new posting private key from a password
             private_posting_key_data = my_wax.get_private_key_from_password(

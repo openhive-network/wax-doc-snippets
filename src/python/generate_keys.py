@@ -1,4 +1,10 @@
 # %% [markdown]
+# Required for generating a secure, random master password
+import secrets
+
+# Provides a set of characters to use in the master password
+import string
+
 # Import the function to create a WAX Foundation instance from the 'wax' library
 from wax import create_wax_foundation
 
@@ -10,14 +16,20 @@ wax = create_wax_foundation()
 # ### 🔑 Generate Private Key from Password
 #
 # Generate a private key using an account name, password, and role.
-# Roles can be: `'owner'`, `'active'`, `'posting'`, or `'memo'`.
+#
+# Important notice!!!
+# The master password should always be a truly random and secure value, such
+# as one retrieved from the `secrets` python package.
+characters = string.ascii_letters + string.digits + string.punctuation
+master_password = "".join(secrets.choice(characters) for _ in range(24))
+
 password_gen_key_data = wax.get_private_key_from_password(
     account="alice",
-    password="alice has a cat",
-    role="active",
+    password=master_password,
+    role="active",  # roles can be 'active', 'owner', 'posting', or 'memo'
 )
 
-print("Results from Password-derived key generation:")
+print("Example results from Password-derived key generation:")
 print(f"Private key: {password_gen_key_data.wif_private_key}")
 print(f"Public key: {password_gen_key_data.associated_public_key}")
 
