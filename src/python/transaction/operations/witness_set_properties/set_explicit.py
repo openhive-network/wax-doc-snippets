@@ -11,14 +11,15 @@ async def main():
     # Initialize a transaction object
     tx = await chain.create_transaction()
 
+    # Add a witness set properties operation to the transaction
     tx.push_operation(
         WitnessSetProperties(
             data=WitnessSetPropertiesData(
                 owner="witness-account",
                 witness_signing_key="STM4utwdRemiWrprD4aZantE8CVRnxRRZShz68W5SoDfZinfhCmSA",
-                maximum_block_size=65536,
-                hbd_interest_rate=750,
-                account_creation_fee=chain.hive.coins(1),
+                maximum_block_size=65536,  # Maximum block size in bytes
+                hbd_interest_rate=750,  # HBD interest rate as a percentage (7.5%)
+                account_creation_fee=chain.hive.coins(1),  # Fee for account creation in Hive coins
                 url="https://witness.example.com",
             )
         )
