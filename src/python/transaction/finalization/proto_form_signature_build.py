@@ -5,16 +5,6 @@ import asyncio
 from wax import create_hive_chain
 from wax.proto.operations import vote
 
-from pathlib import Path
-from typing import TYPE_CHECKING, AsyncGenerator, Generator
-
-from beekeepy import AsyncBeekeeper, Settings
-from wax import ITransaction, IWaxBaseInterface, create_wax_foundation
-
-if TYPE_CHECKING:
-    from beekeepy import AsyncUnlockedWallet
-
-
 # Initialize hive chain interface
 chain = create_hive_chain()
 
