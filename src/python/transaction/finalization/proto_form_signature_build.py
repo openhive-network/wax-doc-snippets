@@ -25,7 +25,8 @@ async def main():
     # Push operation into the transaction
     tx.push_operation(operation)
 
-    await tx.sign("deadc0de")
+    # Supplement a transaction with an externally generated signature.
+    tx.add_signature("deadc0de")
     print(tx.to_api())
 
 
