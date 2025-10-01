@@ -33,7 +33,7 @@ async def main():
 
             if WALLET_NAME in existing_wallets:
                 wallet = await session.open_wallet(name=WALLET_NAME)
-                await wallet.unlock(WALLET_PASSWORD)
+                wallet = await wallet.unlock(WALLET_PASSWORD)
             else:
                 wallet = await session.create_wallet(name=WALLET_NAME, password=WALLET_PASSWORD)
 
