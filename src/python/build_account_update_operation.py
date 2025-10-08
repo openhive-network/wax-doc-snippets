@@ -11,10 +11,7 @@ from __future__ import annotations
 import asyncio
 from wax import create_hive_chain
 from wax.complex_operations.account_update import AccountAuthorityUpdateOperation
-from src.python.utils import (
-    show_transaction,
-    show_authority,
-)
+from utils import show_authority, show_transaction
 
 # %% [markdown]
 # ## 1. Configuration
