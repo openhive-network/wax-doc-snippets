@@ -1,6 +1,6 @@
 {
   "name": "Wax snippets dev-container",
-  "image": "registry.gitlab.syncad.com/hive/wax/wax-python-runtime-codespaces:d97510680027e6210fa3834f377e995ef1341803",
+  "image": "registry.gitlab.syncad.com/hive/wax/wax-python-runtime-codespaces:19cb13317a60414f67a62844a68fc569716966c8",
   "remoteUser": "user",
   "workspaceFolder": "/workspaces/wax-doc-snippets",
   "customizations": {
