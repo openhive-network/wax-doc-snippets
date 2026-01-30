@@ -1,14 +1,14 @@
 import asyncio
 
 from wax import create_hive_chain
-from reputation_api.reputation_api_client import ReputationApi
+from rc_api.rc_api_client import RcApi
 
 
 # Class containing additional APIs
 class ExtendedApi:
     def __init__(self):
-        # Extend the chain interface with the predefined ReputationApi
-        self.reputation_api = ReputationApi
+        # Extend the chain interface with the predefined RcApi
+        self.rc_api = RcApi
 
 
 async def main():
@@ -16,10 +16,9 @@ async def main():
     # Create an extended chain with the new API
     extended_chain = chain.extends(new_api=ExtendedApi)
 
-    # Calling methods from ReputationApi through the extended interface
-    print(f"Reputation: {await extended_chain.api.reputation_api.accounts_reputation('gtg')}")
-    print(f"Version: {await extended_chain.api.reputation_api.version()}")
-    print(f"Last synced block: {await extended_chain.api.reputation_api.last_synced_block()}")
+    # Calling methods from RcApi through the extended interface
+    print(f"RC Accounts: {await extended_chain.api.rc_api.find_rc_accounts(accounts=['gtg'])}")
+    print(f"Resource Pool: {await extended_chain.api.rc_api.get_resource_pool()}")
 
 
 asyncio.run(main())
