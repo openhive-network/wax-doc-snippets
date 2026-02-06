@@ -33,15 +33,15 @@ async def main():
 
             if WALLET_NAME in existing_wallets:
                 wallet = await session.open_wallet(name=WALLET_NAME)
-                await wallet.unlock(WALLET_PASSWORD)
+                unlocked = await wallet.unlock(WALLET_PASSWORD)
             else:
-                wallet = await session.create_wallet(name=WALLET_NAME, password=WALLET_PASSWORD)
+                unlocked = await session.create_wallet(name=WALLET_NAME, password=WALLET_PASSWORD)
 
-            async with wallet:
-                await wallet.import_key(private_key=private_key)
+            async with unlocked:
+                await unlocked.import_key(private_key=private_key)
 
                 # Sign transaction.
-                print(await tx.sign(wallet, public_key))
+                print(await tx.sign(unlocked, public_key))
 
 
 asyncio.run(main())

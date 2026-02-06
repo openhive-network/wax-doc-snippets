@@ -2,7 +2,7 @@ import asyncio
 from datetime import datetime
 
 from wax import create_hive_chain
-from rc_api.rc_api_client import RcApi
+from hiveio_api.rc_api.rc_api_client import RcApi
 
 
 class ExtendedApis:

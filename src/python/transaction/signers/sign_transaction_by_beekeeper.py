@@ -25,14 +25,14 @@ async def main() -> None:
 
             if "wallet_name" in existing_wallets:
                 wallet = await session.open_wallet(name="wallet_name")
-                wallet = await wallet.unlock("password_to_wallet")
+                unlocked = await wallet.unlock("password_to_wallet")
             else:
-                wallet = await session.create_wallet(name="wallet_name", password="password_to_wallet")
+                unlocked = await session.create_wallet(name="wallet_name", password="password_to_wallet")
 
-            async with wallet:
-                await wallet.import_key(private_key=private_key)
+            async with unlocked:
+                await unlocked.import_key(private_key=private_key)
                 # Wait for the beekeeper to sign the transaction
-                await tx.sign(wallet, public_key)
+                await tx.sign(unlocked, public_key)
 
                 # broadcast the transaction
                 # await chain.broadcast(transaction=tx)

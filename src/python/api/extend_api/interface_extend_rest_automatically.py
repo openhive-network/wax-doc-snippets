@@ -1,7 +1,7 @@
 import asyncio
 
 from wax import create_hive_chain
-from rc_api.rc_api_client import RcApi
+from hiveio_api.rc_api.rc_api_client import RcApi
 
 
 # Class containing additional APIs
