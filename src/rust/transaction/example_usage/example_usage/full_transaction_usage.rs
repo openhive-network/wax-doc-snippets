@@ -7,11 +7,11 @@ use wax::complex_operations::{
     WitnessSetPropertiesOperation,
 };
 use wax::hive_apps_operations::HiveAppsOperation;
-use wax::hive_apps_operations::community::CommunityOperation;
-use wax::hive_apps_operations::follow::FollowOperation;
-use wax::hive_apps_operations::rc::ResourceCreditsOperation;
-use wax::models::asset::NaiAssetConvertible;
-use wax::AccountAuthorityUpdateOperation;
+use wax::hive_apps_operations::CommunityOperation;
+use wax::hive_apps_operations::FollowOperation;
+use wax::hive_apps_operations::ResourceCreditsOperation;
+use wax::models::NaiAssetConvertible;
+use wax::complex_operations::AccountAuthorityUpdateOperation;
 use wax_signers_beekeeper::BeekeeperSignatureProvider;
 
 #[tokio::main]
