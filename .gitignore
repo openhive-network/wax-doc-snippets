@@ -12,6 +12,7 @@ node_modules
 .idea
 
 # Generated build files
+target
 *.js
 !/scripts/runner.js
 tsconfig.tsbuildinfo

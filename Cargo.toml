@@ -1,0 +1,258 @@
+[package]
+name = "wax-doc-snippets"
+version = "1.0.0"
+edition = "2024"
+publish = false
+license-file = "LICENSE.md"
+
+# Rust counterpart of scripts/runner.js — the shared beekeeper fixture
+# snippets pull in with `use runner::snippets_beekeeper_data`.
+[lib]
+name = "runner"
+path = "src/rust/runner.rs"
+
+[dependencies]
+hiveio-wax = { path = "../wax_clean/wax/rust/wax" }
+hiveio-beekeeper = { path = "../wax_clean/wax/rust/crates/hiveio-beekeeper" }
+hiveio-wax-signers-beekeeper = { path = "../wax_clean/wax/rust/signers/beekeeper" }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
+
+# Run with: cargo run --bin <name>
+
+[[bin]]
+name = "retrieve_block"
+path = "src/rust/api/default_api/retrieve_block.rs"
+
+[[bin]]
+name = "set_endpoint"
+path = "src/rust/api/default_api/set_endpoint.rs"
+
+[[bin]]
+name = "interface_extend"
+path = "src/rust/api/extend_api/interface_extend.rs"
+
+[[bin]]
+name = "interface_extend_rest"
+path = "src/rust/api/extend_api/interface_extend_rest.rs"
+
+[[bin]]
+name = "vests_to_hp"
+path = "src/rust/asset_manipulations/asset_convertions/vests_to_hp.rs"
+
+[[bin]]
+name = "hbd_to_hive"
+path = "src/rust/asset_manipulations/asset_convertions/hbd_to_hive.rs"
+
+[[bin]]
+name = "receive_nai_asset"
+path = "src/rust/asset_manipulations/construct_nai_asset/receive_nai_asset.rs"
+
+[[bin]]
+name = "chain"
+path = "src/rust/config/init_general/chain.rs"
+
+[[bin]]
+name = "chain_with_config"
+path = "src/rust/config/init_general/chain_with_config.rs"
+
+[[bin]]
+name = "suggest_brain_key"
+path = "src/rust/key_generation/generate_key/suggest_brain_key.rs"
+
+[[bin]]
+name = "generate_private_key"
+path = "src/rust/key_generation/generate_key/generate_private_key.rs"
+
+[[bin]]
+name = "manabar_upvote_account"
+path = "src/rust/manabars/manabars_calculations/manabar_upvote_account.rs"
+
+[[bin]]
+name = "manabar_downvote_account"
+path = "src/rust/manabars/manabars_calculations/manabar_downvote_account.rs"
+
+[[bin]]
+name = "manabar_rc_account"
+path = "src/rust/manabars/manabars_calculations/manabar_rc_account.rs"
+
+[[bin]]
+name = "from_remote_initialization"
+path = "src/rust/transaction/initialization/from_remote_initialization.rs"
+
+[[bin]]
+name = "sign"
+path = "src/rust/transaction/finalization/sign.rs"
+
+[[bin]]
+name = "convert_to_legacy_api"
+path = "src/rust/transaction/finalization/convert_to_legacy_api.rs"
+
+[[bin]]
+name = "convert_to_api"
+path = "src/rust/transaction/finalization/convert_to_api.rs"
+
+[[bin]]
+name = "proto_form_signature_build"
+path = "src/rust/transaction/finalization/proto_form_signature_build.rs"
+
+[[bin]]
+name = "simple_build"
+path = "src/rust/transaction/finalization/simple_build.rs"
+
+[[bin]]
+name = "sign_and_build"
+path = "src/rust/transaction/finalization/sign_and_build.rs"
+
+[[bin]]
+name = "resource_credits_operations"
+path = "src/rust/transaction/hive_apps_operations/resource_credits_operations.rs"
+
+[[bin]]
+name = "follow_operation"
+path = "src/rust/transaction/hive_apps_operations/follow_operation.rs"
+
+[[bin]]
+name = "community_operation"
+path = "src/rust/transaction/hive_apps_operations/community_operation.rs"
+
+[[bin]]
+name = "community_properties"
+path = "src/rust/transaction/hive_apps_operations/community_properties.rs"
+
+[[bin]]
+name = "on_chain_operation_validation"
+path = "src/rust/transaction/working_with_transaction/online_transaction/on_chain_operation_validation.rs"
+
+[[bin]]
+name = "authority_verification_trace"
+path = "src/rust/transaction/working_with_transaction/online_transaction/authority_verification_trace.rs"
+
+[[bin]]
+name = "on_chain_verification"
+path = "src/rust/transaction/working_with_transaction/online_transaction/on_chain_verification.rs"
+
+[[bin]]
+name = "simple_operation"
+path = "src/rust/transaction/working_with_transaction/pushing_simple_operation/simple_operation.rs"
+
+[[bin]]
+name = "get_binary_metadata"
+path = "src/rust/transaction/working_with_transaction/binary_view/get_binary_metadata.rs"
+
+[[bin]]
+name = "from_binary"
+path = "src/rust/transaction/working_with_transaction/binary_view/from_binary.rs"
+
+[[bin]]
+name = "to_binary"
+path = "src/rust/transaction/working_with_transaction/binary_view/to_binary.rs"
+
+[[bin]]
+name = "reading_properties"
+path = "src/rust/transaction/working_with_transaction/reading_transaction_properties/reading_properties.rs"
+
+[[bin]]
+name = "complex_operation"
+path = "src/rust/transaction/working_with_transaction/pushing_complex_operation/complex_operation.rs"
+
+[[bin]]
+name = "example_usage"
+path = "src/rust/transaction/example_usage/example_usage/example_usage.rs"
+
+[[bin]]
+name = "full_transaction_usage"
+path = "src/rust/transaction/example_usage/example_usage/full_transaction_usage.rs"
+
+[[bin]]
+name = "example_legacy_usage"
+path = "src/rust/transaction/example_usage/example_usage/example_legacy_usage.rs"
+
+[[bin]]
+name = "protobuf_transaction_initialization"
+path = "src/rust/transaction/example_usage/advanced_usage/protobuf_transaction_initialization.rs"
+
+[[bin]]
+name = "api_form_initialization"
+path = "src/rust/transaction/example_usage/advanced_usage/api_form_initialization.rs"
+
+[[bin]]
+name = "explicit_data_initialization"
+path = "src/rust/transaction/example_usage/advanced_usage/explicit_data_initialization.rs"
+
+[[bin]]
+name = "update_proposal_end_date"
+path = "src/rust/transaction/operations/update_proposal/update_proposal_end_date.rs"
+
+[[bin]]
+name = "creating_update_proposal"
+path = "src/rust/transaction/operations/update_proposal/creating_update_proposal.rs"
+
+[[bin]]
+name = "creating_recurrent_transfer"
+path = "src/rust/transaction/operations/recurrent_transfer/creating_recurrent_transfer.rs"
+
+[[bin]]
+name = "generate_removal"
+path = "src/rust/transaction/operations/recurrent_transfer/generate_removal.rs"
+
+[[bin]]
+name = "add_pair_id"
+path = "src/rust/transaction/operations/recurrent_transfer/add_pair_id.rs"
+
+[[bin]]
+name = "creating_reply"
+path = "src/rust/transaction/operations/comment/creating_reply.rs"
+
+[[bin]]
+name = "creating_article"
+path = "src/rust/transaction/operations/comment/creating_article.rs"
+
+[[bin]]
+name = "iterate_roles"
+path = "src/rust/transaction/operations/account_update/iterate_roles.rs"
+
+[[bin]]
+name = "change_weight_threshold"
+path = "src/rust/transaction/operations/account_update/change_weight_threshold.rs"
+
+[[bin]]
+name = "add_posting_account"
+path = "src/rust/transaction/operations/account_update/add_posting_account.rs"
+
+[[bin]]
+name = "set_memo"
+path = "src/rust/transaction/operations/account_update/set_memo.rs"
+
+[[bin]]
+name = "change_active_key"
+path = "src/rust/transaction/operations/account_update/change_active_key.rs"
+
+[[bin]]
+name = "default_witness_properties"
+path = "src/rust/transaction/operations/witness_set_properties/default_witness_properties.rs"
+
+[[bin]]
+name = "set_explicit"
+path = "src/rust/transaction/operations/witness_set_properties/set_explicit.rs"
+
+[[bin]]
+name = "encrypt_operations_one_key"
+path = "src/rust/encryption/encrypt_operations/one_key.rs"
+
+[[bin]]
+name = "encrypt_operations_multiple_keys"
+path = "src/rust/encryption/encrypt_operations/multiple_keys.rs"
+
+[[bin]]
+name = "multiple_start_encrypt"
+path = "src/rust/encryption/encrypt_operations/multiple_start_encrypt.rs"
+
+[[bin]]
+name = "encrypt_buffer_one_key"
+path = "src/rust/encryption/encrypt_buffer/one_key.rs"
+
+[[bin]]
+name = "encrypt_buffer_multiple_keys"
+path = "src/rust/encryption/encrypt_buffer/multiple_keys.rs"

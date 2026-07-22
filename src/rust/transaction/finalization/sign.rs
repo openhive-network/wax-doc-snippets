@@ -1,0 +1,31 @@
+use runner::{SnippetsBeekeeperData, snippets_beekeeper_data};
+use wax::prelude::*;
+
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    // Initialize hive chain interface
+    let chain = create_hive_chain(None)?;
+
+    let SnippetsBeekeeperData { signer1, public_key1, .. } = snippets_beekeeper_data();
+
+    // Initialize a transaction object
+    let mut tx = chain.create_transaction(None).await?;
+
+    // Declare example operation
+    let operation = chain.create_operation(Value::VoteOperation(Vote {
+        voter: "voter".into(),
+        author: "author".into(),
+        permlink: "test-permlink".into(),
+        weight: 2200,
+    }));
+
+    // Push operation into the transaction
+    tx.push_operation(operation);
+
+    // Sign transaction.
+    tx.sign(&signer1, &public_key1)?;
+
+    println!("{}", tx.transaction().signatures[0]);
+
+    Ok(())
+}

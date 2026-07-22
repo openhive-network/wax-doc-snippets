@@ -1,0 +1,22 @@
+use runner::{SnippetsBeekeeperData, snippets_beekeeper_data};
+use wax::prelude::*;
+
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    /* Import preconfigured beekeeper data specific to snippet examples */
+    let SnippetsBeekeeperData { signer1, public_key1, .. } = snippets_beekeeper_data();
+
+    let content = "This is a secret message.";
+
+    // Encrypt the content - sender side
+    // Note that signer1 holds the private key for public_key1
+    let encrypted_content =
+        signer1.encrypt_data(content, &public_key1, None, None)?;
+
+    // Decrypt the content - receiver side
+    let decrypted_content =
+        signer1.decrypt_data(&encrypted_content)?;
+
+    println!("{decrypted_content}"); // This is a secret message.
+
+    Ok(())
+}
