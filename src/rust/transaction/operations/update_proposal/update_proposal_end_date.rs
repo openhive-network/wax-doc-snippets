@@ -1,6 +1,6 @@
 use wax::prelude::*;
 use wax::complex_operations::UpdateProposalOperation;
-use wax::models::asset::NaiAssetConvertible;
+use wax::models::NaiAssetConvertible;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
