@@ -1,5 +1,4 @@
 use wax::prelude::*;
-use wax::complex_operations::RecurrentTransferRemovalOperation;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {

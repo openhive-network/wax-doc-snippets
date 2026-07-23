@@ -5,11 +5,8 @@
 //! global object, so each snippet calls [`snippets_beekeeper_data`] itself
 //! and owns the returned fixture.
 
-use beekeeper::api::BeekeeperApi;
-use beekeeper::options::BeekeeperOptions;
-use beekeeper::session::Session;
-use beekeeper::wallet::UnlockedWallet;
-use wax_signers_beekeeper::BeekeeperSignatureProvider;
+use beekeeper::prelude::*;
+use wax_signers_beekeeper::prelude::*;
 
 // Test keys imported into the snippets wallet (same as scripts/runner.js).
 const PRIVATE_KEY_1: &str =
