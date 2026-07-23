@@ -1,6 +1,5 @@
 use runner::{SnippetsBeekeeperData, snippets_beekeeper_data};
 use wax::prelude::*;
-use wax::hive_apps_operations::ResourceCreditsOperation;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {

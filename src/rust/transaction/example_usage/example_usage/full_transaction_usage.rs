@@ -1,18 +1,6 @@
-use beekeeper::api::BeekeeperApi;
-use beekeeper::options::BeekeeperOptions;
+use beekeeper::prelude::*;
 use wax::prelude::*;
-use wax::complex_operations::{
-    BeneficiaryRoute, BlogPostOperation, CommentFormat,
-    DefineRecurrentTransferOperation, ReplyOperation, UpdateProposalOperation,
-    WitnessSetPropertiesOperation,
-};
-use wax::hive_apps_operations::HiveAppsOperation;
-use wax::hive_apps_operations::CommunityOperation;
-use wax::hive_apps_operations::FollowOperation;
-use wax::hive_apps_operations::ResourceCreditsOperation;
-use wax::models::NaiAssetConvertible;
-use wax::complex_operations::AccountAuthorityUpdateOperation;
-use wax_signers_beekeeper::BeekeeperSignatureProvider;
+use wax_signers_beekeeper::prelude::*;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
