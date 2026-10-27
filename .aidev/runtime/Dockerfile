@@ -1,0 +1,38 @@
+# The image AIDEV runs this project's suites in (`environment.image` in
+# .aidev/project.yaml). Suites run with `--network none` and the caller's uid, so
+# everything they need is in the image.
+#
+# Node and pnpm come from common-ci-configuration's node-test-tools image, the one
+# hive's CI templates use; this file pins no Node version of its own. It adds a
+# pnpm store and pnpm's metadata cache filled by an install of package.json, so
+# `pnpm install --offline` links node_modules (typescript, @hiveio/wax,
+# @hiveio/beekeeper, @hiveio/wax-signers-beekeeper) in the sandbox. The install
+# resolves package.json rather than fetching the lockfile alone because
+# pnpm-lock.yaml does not match package.json on main (it still names wax
+# 1.27.11-rc0); with a lockfile that matches, it resolves the lockfile's versions.
+#
+# .aidev/runtime/build.sh builds it on the digest node-test-tools:develop names at
+# the time; the result is pinned as `environment.image`.
+ARG BASE_IMAGE=registry.gitlab.syncad.com/hive/common-ci-configuration/node-test-tools:develop
+FROM ${BASE_IMAGE}
+USER root
+# The suite runs as an arbitrary uid with no passwd entry, so HOME must be a
+# directory anyone can write. pnpm must not switch to `packageManager`'s version:
+# that would download at run time, offline. The environment variable covers the
+# outer pnpm only: a pnpm started from a package script reads the setting from
+# its global rc ($XDG_CONFIG_HOME/pnpm/rc).
+ENV HOME=/tmp \
+    XDG_CONFIG_HOME=/opt/xdg-config \
+    npm_config_store_dir=/opt/pnpm-store \
+    npm_config_cache_dir=/opt/pnpm-cache \
+    npm_config_manage_package_manager_versions=false \
+    CI=1 \
+    DO_NOT_TRACK=1
+RUN mkdir -p /opt/xdg-config/pnpm \
+    && printf 'manage-package-manager-versions=false\n' > /opt/xdg-config/pnpm/rc \
+    && chmod -R a+rX /opt/xdg-config
+COPY package.json pnpm-lock.yaml /tmp/pnpm-fetch/
+RUN cd /tmp/pnpm-fetch \
+    && pnpm install --no-frozen-lockfile --ignore-scripts \
+    && cd / && rm -rf /tmp/pnpm-fetch /tmp/.npm /tmp/.cache \
+    && chmod -R a+rwX /opt/pnpm-store /opt/pnpm-cache
