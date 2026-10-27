@@ -4,12 +4,10 @@
 #
 # Node and pnpm come from common-ci-configuration's node-test-tools image, the one
 # hive's CI templates use; this file pins no Node version of its own. It adds a
-# pnpm store and pnpm's metadata cache filled by an install of package.json, so
+# pnpm store filled by a frozen install of pnpm-lock.yaml, so
 # `pnpm install --offline` links node_modules (typescript, @hiveio/wax,
-# @hiveio/beekeeper, @hiveio/wax-signers-beekeeper) in the sandbox. The install
-# resolves package.json rather than fetching the lockfile alone because
-# pnpm-lock.yaml does not match package.json on main (it still names wax
-# 1.27.11-rc0); with a lockfile that matches, it resolves the lockfile's versions.
+# @hiveio/beekeeper, @hiveio/wax-signers-beekeeper) in the sandbox. A frozen
+# install fetches no metadata, so the metadata cache directory is created here.
 #
 # .aidev/runtime/build.sh builds it on the digest node-test-tools:develop names at
 # the time; the result is pinned as `environment.image`.
@@ -33,6 +31,7 @@ RUN mkdir -p /opt/xdg-config/pnpm \
     && chmod -R a+rX /opt/xdg-config
 COPY package.json pnpm-lock.yaml /tmp/pnpm-fetch/
 RUN cd /tmp/pnpm-fetch \
-    && pnpm install --no-frozen-lockfile --ignore-scripts \
+    && pnpm install --frozen-lockfile --ignore-scripts \
     && cd / && rm -rf /tmp/pnpm-fetch /tmp/.npm /tmp/.cache \
+    && mkdir -p /opt/pnpm-store /opt/pnpm-cache \
     && chmod -R a+rwX /opt/pnpm-store /opt/pnpm-cache

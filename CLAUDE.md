@@ -6,7 +6,7 @@ Code snippets for Hive blockchain documentation in TypeScript and Python. These 
 
 ## Tech Stack
 
-- **Runtime:** Node.js ^20.11 || >= 21.2
+- **Runtime:** Node.js 24 — the single version common-ci-configuration pins (`NODE_VERSION`); CI and the AIDEV runtime image get it from ccc's `node-test-tools` image
 - **Package Manager:** pnpm 10.0.0
 - **Languages:** TypeScript 5.7.3, Python
 - **Core Libraries:**

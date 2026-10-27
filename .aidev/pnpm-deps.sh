@@ -1,9 +1,8 @@
 # Sourced by run-checks.sh from the repository root: bring node_modules up to
 # date with package.json from the image's pnpm store and metadata cache, offline.
-# pnpm-lock.yaml does not match package.json on main (it names wax 1.27.11-rc0
-# where package.json asks for 2.0.1), so a frozen install refuses; the install
-# resolves package.json offline instead and the lockfile is put back afterwards,
-# so a run leaves the tree as it found it. A marker records package.json, the
+# A frozen install is tried first; when pnpm-lock.yaml does not match
+# package.json the install resolves package.json offline instead and the lockfile
+# is put back afterwards, so a run leaves the tree as it found it. A marker records package.json, the
 # lockfile and Node it was installed for; it is written only after an install
 # that succeeded, and an install whose tools don't resolve is redone.
 lock_id="$(cat package.json pnpm-lock.yaml | sha256sum | cut -d' ' -f1) $(node --version)"

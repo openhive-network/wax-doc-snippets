@@ -60,6 +60,7 @@ SNIPPETS_NEED_NETWORK=(
     test-transaction-operations-account-update-set-memo
     test-transaction-operations-account-update-add-posting-account
     test-transaction-operations-account-update-change-active-key
+    test-transaction-operations-account-update-change-weight-threshold
     test-transaction-operations-account-update-iterate-roles
     test-transaction-operations-creating-article
     test-transaction-operations-creating-reply
@@ -80,11 +81,8 @@ SNIPPETS_NEED_NETWORK=(
     test-transaction-hive-apps-community-operation
     test-transaction-hive-apps-community-properties
 )
-# - they fail at onboarding for a reason of their own:
-#   change-weight-threshold.ts calls setThreshold, which wax 2.0.1 does not
-#   have (TS2551; it also fails the typecheck step).
+# - they fail for a reason of their own (none at present):
 SNIPPETS_FAILING=(
-    test-transaction-operations-account-update-change-weight-threshold
 )
 SNIPPET_TIMEOUT="${SNIPPET_TIMEOUT:-120}"
 
