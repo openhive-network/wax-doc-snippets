@@ -1,14 +1,14 @@
-import { createHiveChain, WaxFormattable } from '@hiveio/wax';
+import { createHiveChain, WaxFormattable, type IFormatFunctionArguments } from '@hiveio/wax';
 
 const chain = await createHiveChain();
 
 class MyFormatters {
-  myFunction(value) {
+  myFunction(value: number) {
     return value.toString();
   }
 
   @WaxFormattable()
-  myCustomProp({ source }) {
+  myCustomProp({ source }: IFormatFunctionArguments<{ myCustomProp: number }>) {
     return this.myFunction(source.myCustomProp);
   }
 }

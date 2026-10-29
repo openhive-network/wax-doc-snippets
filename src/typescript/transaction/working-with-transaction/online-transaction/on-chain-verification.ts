@@ -27,5 +27,5 @@ try {
   // Now safe to broadcast
   // await chain.broadcast(tx);
 } catch (error) {
-  console.error('Verification failed:', error.message);
+  console.error('Verification failed:', (error as Error).message);
 }

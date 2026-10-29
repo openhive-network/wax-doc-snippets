@@ -24,8 +24,8 @@ branches:
 # How this project's suites execute (#13892): one kind, stated once.
 environment:
   kind: "container"
-  image: "registry.gitlab.syncad.com/hive/wax-doc-snippets/aidev-tests@sha256:478028bc5753ac210ec5fafb04b866c41757dc06db2be6d01152a8bb2e9fea7d"
-  inputs: ["package.json", "pnpm-lock.yaml"]
+  image: "registry.gitlab.syncad.com/hive/wax-doc-snippets/aidev-tests@sha256:7442212dcab5cd655baa55610bd478632fc040c3ae9b8f002cd7a5ed12cacfb9"
+  inputs: ["package.json", "pnpm-lock.yaml", "pnpm-workspace.yaml", ".npmrc"]
 
 issues:
   intake_label: todo
