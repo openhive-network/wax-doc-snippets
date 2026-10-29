@@ -4,19 +4,35 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  hiveio-toolset:
+    '@hiveio/wax':
+      specifier: 1.28.8-stable.261028191145
+      version: 1.28.8-stable.261028191145
+    '@hiveio/wax-signers-beekeeper':
+      specifier: 1.28.8-stable.261028191145
+      version: 1.28.8-stable.261028191145
+  typescript-toolset:
+    typescript:
+      specifier: 6.0.3
+      version: 6.0.3
+
+overrides:
+  '@hiveio/beekeeper': 1.28.9-rc0-stable.261028200530
+
 importers:
 
   .:
     dependencies:
       '@hiveio/beekeeper':
-        specifier: 1.28.4
-        version: 1.28.4
+        specifier: 1.28.9-rc0-stable.261028200530
+        version: 1.28.9-rc0-stable.261028200530
       '@hiveio/wax':
-        specifier: 2.0.1
-        version: 2.0.1
+        specifier: catalog:hiveio-toolset
+        version: 1.28.8-stable.261028191145
       '@hiveio/wax-signers-beekeeper':
-        specifier: 2.0.1
-        version: 2.0.1
+        specifier: catalog:hiveio-toolset
+        version: 1.28.8-stable.261028191145
     devDependencies:
       '@types/node':
         specifier: '24'
@@ -25,21 +41,21 @@ importers:
         specifier: 8.0.4
         version: 8.0.4
       typescript:
-        specifier: 5.7.3
-        version: 5.7.3
+        specifier: catalog:typescript-toolset
+        version: 6.0.3
 
 packages:
 
-  '@hiveio/beekeeper@1.28.4':
-    resolution: {integrity: sha512-rIby3kHk1NMwAMsmAknvD5OIVqLThcOmZoej6D78NLDCdC0TV1WPCAfrG80MPx0yQiMO5FHp21jLI1MQfN5Gxw==}
-    engines: {node: ^20.11 || >= 21.2}
+  '@hiveio/beekeeper@1.28.9-rc0-stable.261028200530':
+    resolution: {integrity: sha1-nzTNga2OqN6212HzkKyHGZoMuAk=, tarball: https://gitlab.syncad.com/api/v4/projects/558/packages/npm/@hiveio/beekeeper/-/@hiveio/beekeeper-1.28.9-rc0-stable.261028200530.tgz}
+    engines: {node: '>=24'}
 
-  '@hiveio/wax-signers-beekeeper@2.0.1':
-    resolution: {integrity: sha512-mi3mMbtgPV7prcdtXfLSLXu+6RKmWApLtj8LbjLzzDTm2UXLbVO+Wm/+h+qsc8H9P3dv9ViI+Y2nNc9joKmXxw==}
+  '@hiveio/wax-signers-beekeeper@1.28.8-stable.261028191145':
+    resolution: {integrity: sha1-14foFq3qVlDH4nZE4a53ChRjqbw=, tarball: https://gitlab.syncad.com/api/v4/projects/419/packages/npm/@hiveio/wax-signers-beekeeper/-/@hiveio/wax-signers-beekeeper-1.28.8-stable.261028191145.tgz}
 
-  '@hiveio/wax@2.0.1':
-    resolution: {integrity: sha512-1T+VLbj98ykHynKAJkBDAK72PVPrahFL1gKhn2FpnrEFmjINf7Gkog+6qHM9TedYjj8qiCVjuxzv7UhJ+Xf4mA==}
-    engines: {node: ^20.11 || >= 21.2}
+  '@hiveio/wax@1.28.8-stable.261028191145':
+    resolution: {integrity: sha1-FT9OHciWwgkExNyutr7xtQRs9Oo=, tarball: https://gitlab.syncad.com/api/v4/projects/419/packages/npm/@hiveio/wax/-/@hiveio/wax-1.28.8-stable.261028191145.tgz}
+    engines: {node: '>=24'}
 
   '@types/node@24.19.2':
     resolution: {integrity: sha512-93d49wCWJkCyN87MxLpNN6KXPCwFw7bVUg79mGUV1OS40JGWwVCr8n61DXCSqz7CV6/VfPkb7xec7uP2M+QHWQ==}
@@ -108,8 +124,8 @@ packages:
   shell-quote@1.8.1:
     resolution: {integrity: sha512-6j1W9l1iAs/4xYBI1SYOVZyFcCis9b4KCLQ8fgAGG07QvzaRLVVRQvAy85yNmmZSjYjg4MWh4gNvlPujU/5LpA==}
 
-  typescript@5.7.3:
-    resolution: {integrity: sha512-84MVSjMEHP+FQRPy3pX9sTVV/INIex71s9TL2Gm5FG/WG1SqXeKyZ0k7/blY/4FdOzI12CBy1vGc4og/eus0fw==}
+  typescript@6.0.3:
+    resolution: {integrity: sha512-y2TvuxSZPDyQakkFRPZHKFm+KKVqIisdg9/CZwm9ftvKXLP8NRWj38/ODjNbr43SsoXqNuAisEf1GdCxqWcdBw==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -128,14 +144,14 @@ packages:
 
 snapshots:
 
-  '@hiveio/beekeeper@1.28.4': {}
+  '@hiveio/beekeeper@1.28.9-rc0-stable.261028200530': {}
 
-  '@hiveio/wax-signers-beekeeper@2.0.1':
+  '@hiveio/wax-signers-beekeeper@1.28.8-stable.261028191145':
     dependencies:
-      '@hiveio/beekeeper': 1.28.4
-      '@hiveio/wax': 2.0.1
+      '@hiveio/beekeeper': 1.28.9-rc0-stable.261028200530
+      '@hiveio/wax': 1.28.8-stable.261028191145
 
-  '@hiveio/wax@2.0.1':
+  '@hiveio/wax@1.28.8-stable.261028191145':
     dependencies:
       events: 3.3.0
 
@@ -193,7 +209,7 @@ snapshots:
 
   shell-quote@1.8.1: {}
 
-  typescript@5.7.3: {}
+  typescript@6.0.3: {}
 
   undici-types@7.24.6: {}
 

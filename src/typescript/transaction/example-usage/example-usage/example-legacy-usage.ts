@@ -37,7 +37,7 @@ this is a beekeeper-specific feature.
 */
 
 // Generate the signature based on the transction digest
-const signature = wallet.signDigest(publicKey1, digest);
+const signature = await wallet.signDigest(publicKey1, digest);
 
 // Suplement the transaction by created signature
 tx.addSignature(signature);
