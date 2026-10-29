@@ -3,7 +3,8 @@
 # and print the digest-pinned reference to put in .aidev/project.yaml's
 # `environment.image`. See .aidev/README.md.
 #
-# The tag is `aidev-<hash>` of the image inputs (the Dockerfile, package.json, pnpm-lock.yaml and
+# The tag is `aidev-<hash>` of the image inputs (the Dockerfile, package.json, pnpm-lock.yaml,
+# pnpm-workspace.yaml and .npmrc (ccc's, through the npm-common-config submodule) and
 # the digest the followed base tag names now). When <repository>:aidev-<hash> is
 # already in the registry nothing is built: the script prints its digest.
 #
@@ -17,7 +18,7 @@ set -euo pipefail
 cd "$(dirname "$0")/../.."
 REPOSITORY="${AIDEV_RUNTIME_REPOSITORY:-registry.gitlab.syncad.com/hive/wax-doc-snippets/aidev-tests}"
 BASE_IMAGE="$(sed -n 's/^ARG BASE_IMAGE=//p' .aidev/runtime/Dockerfile)"
-INPUTS=(.aidev/runtime/Dockerfile package.json pnpm-lock.yaml)
+INPUTS=(.aidev/runtime/Dockerfile package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc)
 input_hash() {
     local base_digest
     base_digest="$(docker buildx imagetools inspect "$BASE_IMAGE" --format '{{json .Manifest}}' \
@@ -47,7 +48,8 @@ echo "$REPOSITORY:$TAG is not in the registry; building it" >&2
 context="$(mktemp -d)"
 trap 'rm -rf "$context"' EXIT
 # Only the files the Dockerfile copies: the repository root holds node_modules.
-cp package.json pnpm-lock.yaml "$context/"
+# pnpm-workspace.yaml and .npmrc are symlinks into the submodule: copy their targets.
+cp -L package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc "$context/"
 build=(docker buildx build --pull --provenance=false -f .aidev/runtime/Dockerfile -t "$REPOSITORY:$TAG")
 [ -z "${AIDEV_RUNTIME_BUILDER:-}" ] || build+=(--builder "$AIDEV_RUNTIME_BUILDER")
 if [ "${1:-}" != "--push" ]; then

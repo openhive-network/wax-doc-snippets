@@ -49,8 +49,8 @@ offline with `WaxUnknownRequestError`; they are left out of the `snippets` step
 `.aidev/runtime/Dockerfile` builds on common-ci-configuration's `node-test-tools:develop` (Node
 and pnpm come from there; this repository pins no Node of its own in it) and adds a pnpm store
 filled by a frozen install of `pnpm-lock.yaml`. Rebuild and re-pin it with
-`.aidev/runtime/build.sh --push` when the Dockerfile, `package.json` or `pnpm-lock.yaml`
-changes, or to follow a new `node-test-tools:develop`, and put the printed `repo@sha256:…` into
+`.aidev/runtime/build.sh --push` when the Dockerfile, `package.json`, `pnpm-lock.yaml` or ccc's
+catalogs (`pnpm-workspace.yaml`, through the submodule) change, or to follow a new `node-test-tools:develop`, and put the printed `repo@sha256:…` into
 `environment.image`.
 
 ## Known state at onboarding (2026-10-26)
@@ -66,3 +66,8 @@ changes, or to follow a new `node-test-tools:develop`, and put the printed `repo
   `change-weight-threshold.ts` calls `setTreshold`; that snippet reads `gtg` from a Hive API
   node, so it is now among the network-dependent snippets.
 - `snippets` (19 cases) and `pycompile` pass offline.
+- Since issue #4 the dependencies come from common-ci-configuration's pnpm catalogs
+  (`catalog:hiveio-toolset`, `catalog:typescript-toolset`): `pnpm-workspace.yaml` and `.npmrc`
+  are symlinks into the `npm-common-config` submodule (ccc `develop`), which a checkout must
+  initialise before a run (`.aidev/pnpm-deps.sh` refuses otherwise). The snippets follow the
+  wax 1.28.8 API and TypeScript 6; all 70 `test-*` scripts pass with network access.

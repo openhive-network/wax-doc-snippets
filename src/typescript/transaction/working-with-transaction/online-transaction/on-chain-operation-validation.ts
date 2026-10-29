@@ -30,5 +30,5 @@ try {
 
   console.log('Verification successful!');
 } catch (error) {
-  console.error('Verification failed:', error.message);
+  console.error('Verification failed:', (error as Error).message);
 }

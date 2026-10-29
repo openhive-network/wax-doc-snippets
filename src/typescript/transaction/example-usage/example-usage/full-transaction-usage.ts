@@ -1,4 +1,5 @@
 import beekeeperFactory from '@hiveio/beekeeper';
+import BeekeeperSigner from '@hiveio/wax-signers-beekeeper';
 import {
   createHiveChain,
   createWaxFoundation,
@@ -67,6 +68,10 @@ const publicEncryptionSigningKey = await wallet.importKey(
   privateEncryptionKeyData.wifPrivateKey
 );
 
+// Create signers that sign transactions with the posting and active keys held by the wallet
+const postingSigner = BeekeeperSigner.for(chain, wallet, publicPostingSigningKey);
+const activeSigner = BeekeeperSigner.for(chain, wallet, publicActiveSigningKey);
+
 '--------------------------------------------------------------'
 ////////////////////////////////////////////////////////////////
 //                  Simple operation scenario                 //
@@ -88,7 +93,7 @@ const voteOp = {
 simpleOperationTx.pushOperation(voteOp);
 
 // Sign and build the transaction
-simpleOperationTx.sign(wallet, publicPostingSigningKey);
+await postingSigner.signTransaction(simpleOperationTx);
 
 // Log the simple transaction into console in API form
 console.log(simpleOperationTx.toApi());
@@ -131,7 +136,7 @@ this is a beekeeper-specific feature.
 */
 
 // Generate the signature based on the transction digest
-const signature = wallet.signDigest(publicPostingSigningKey, digest);
+const signature = await wallet.signDigest(publicPostingSigningKey, digest);
 
 // Suplement the transaction by created signature
 legacyTx.addSignature(signature);
@@ -177,7 +182,7 @@ encryptionTx
   .pushOperation(transferOp);
 
 // Sign and build the transaction
-encryptionTx.sign(wallet, publicPostingSigningKey);
+await postingSigner.signTransaction(encryptionTx);
 
 // Log the encryption transaction into console in API form
 console.log(encryptionTx.toApi());
@@ -248,7 +253,7 @@ constructor that you are currently using
 */
 
 // Sign and build the transaction
-commentOperationTx.sign(wallet, publicPostingSigningKey);
+await postingSigner.signTransaction(commentOperationTx);
 
 // Log the article transaction into console in API form
 console.log(commentOperationTx.toApi());
@@ -302,7 +307,7 @@ for(const role of accountAuthorityUpdateOp.roles("hive"))
 accountUpdateTx.pushOperation(accountAuthorityUpdateOp);
 
 // Sign and build the transaction
-accountUpdateTx.sign(wallet, publicActiveSigningKey);
+await activeSigner.signTransaction(accountUpdateTx);
 
 // Log the article transaction into console in API form
 console.log(accountUpdateTx.toApi());
@@ -357,7 +362,7 @@ operationFactoriesTx.pushOperation(new WitnessSetPropertiesOperation({
 }));
 
 // Sign and build the transaction
-operationFactoriesTx.sign(wallet, publicActiveSigningKey);
+await activeSigner.signTransaction(operationFactoriesTx);
 
 // Log the operation factories transaction into console in API form
 console.log(operationFactoriesTx.toApi());
@@ -426,7 +431,7 @@ otherOperationsTx.pushOperation(
 );
 
 // Sign and build the transaction
-otherOperationsTx.sign(wallet, publicPostingSigningKey);
+await postingSigner.signTransaction(otherOperationsTx);
 
 // Log the other operations transaction into console in API form
 console.log(otherOperationsTx.toApi());

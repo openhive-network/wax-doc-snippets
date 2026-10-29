@@ -7,9 +7,9 @@ Code snippets for Hive blockchain documentation in TypeScript and Python. These 
 ## Tech Stack
 
 - **Runtime:** Node.js 24 — the single version common-ci-configuration pins (`NODE_VERSION`); CI and the AIDEV runtime image get it from ccc's `node-test-tools` image
-- **Package Manager:** pnpm 10.0.0
-- **Languages:** TypeScript 5.7.3, Python
-- **Core Libraries:**
+- **Package Manager:** pnpm 10.33.0 (ccc's `PNPM_VERSION`)
+- **Languages:** TypeScript 6.0 (ccc's `typescript-toolset` catalog), Python
+- **Core Libraries** (ccc's `hiveio-toolset` catalog, the 1.28.8 Hive release line):
   - `@hiveio/wax` - WAX library for Hive blockchain
   - `@hiveio/beekeeper` - Key/wallet management
   - `@hiveio/wax-signers-beekeeper` - Beekeeper integration for WAX
@@ -38,6 +38,10 @@ src/
 └── python/                     # Python snippets (47 files)
     └── (mirrors TypeScript structure)
 
+npm-common-config/            # ccc submodule (branch develop): pnpm catalogs
+pnpm-workspace.yaml           # -> npm-common-config/pnpm-config/pnpm-workspace.yaml
+.npmrc                        # -> npm-common-config/pnpm-config/.npmrc (@hiveio registry)
+
 scripts/
 ├── build-and-test.sh           # Build and test script
 └── runner.js                   # Test runner (sets up beekeeper/WAX globals)
@@ -46,7 +50,8 @@ scripts/
 ## Development Commands
 
 ```bash
-# Install dependencies
+# Install dependencies (the catalogs live in the ccc submodule)
+git submodule update --init --remote
 pnpm install
 
 # Build TypeScript
@@ -64,7 +69,7 @@ npm run test-api-default-api-retrieve-block
 
 ## Key Files
 
-- `package.json` - Dependencies and test scripts
+- `package.json` - Dependencies (`catalog:hiveio-toolset` / `catalog:typescript-toolset`; never a version of their own) and test scripts
 - `tsconfig.json` - TypeScript configuration (ES2022, Node16)
 - `scripts/runner.js` - Test harness that sets up Beekeeper with test keys
 - `src/typescript/shims.d.ts` - Global type declarations for test data

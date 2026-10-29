@@ -6,8 +6,13 @@ Snippets for the Hive Documentation
 
 ### Prepare
 
+Dependency versions come from the pnpm catalogs of
+[common-ci-configuration](https://gitlab.syncad.com/hive/common-ci-configuration), checked out
+as the `npm-common-config` submodule (`pnpm-workspace.yaml` and `.npmrc` link into it):
+
 ```bash
-npx pnpm install
+git submodule update --init --remote
+pnpm install
 ```
 
 ### Run tests
